@@ -11,10 +11,35 @@
 @property (nonatomic, assign) NSInteger itemCount;
 @property (nonatomic, assign) CGFloat interitemSpacing;
 @property (nonatomic, strong) NSMutableArray *columnHeights; // height for each column
-@property (nonatomic, strong) NSMutableArray *itemPositions; // position for each item
+@property (nonatomic, strong) NSMutableArray *itemAttributes; // attributes for each item
 @end
 
 @implementation UICollectionViewWaterfallLayout
+
+#pragma mark - Accessors
+- (void)setColumnCount:(NSUInteger)columnCount
+{
+    if (_columnCount != columnCount) {
+        _columnCount = columnCount;
+        [self invalidateLayout];
+    }
+}
+
+- (void)setItemWidth:(CGFloat)itemWidth
+{
+    if (_itemWidth != itemWidth) {
+        _itemWidth = itemWidth;
+        [self invalidateLayout];
+    }
+}
+
+- (void)setSectionInset:(UIEdgeInsets)sectionInset
+{
+    if (!UIEdgeInsetsEqualToEdgeInsets(_sectionInset, sectionInset)) {
+        _sectionInset = sectionInset;
+        [self invalidateLayout];
+    }
+}
 
 #pragma mark - Init
 - (void)commonInit
@@ -39,8 +64,8 @@
     [_columnHeights removeAllObjects];
     _columnHeights = nil;
 
-    [_itemPositions removeAllObjects];
-    _itemPositions = nil;
+    [_itemAttributes removeAllObjects];
+    _itemAttributes = nil;
 }
 
 #pragma mark - Methods to Override
@@ -54,7 +79,7 @@
     CGFloat width = self.collectionView.frame.size.width - _sectionInset.left - _sectionInset.right;
     _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
 
-    _itemPositions = [NSMutableArray arrayWithCapacity:_itemCount];
+    _itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
     _columnHeights = [NSMutableArray arrayWithCapacity:_columnCount];
     for (NSInteger idx = 0; idx < _columnCount; idx++) {
         [_columnHeights addObject:@(_sectionInset.top)];
@@ -62,15 +87,20 @@
 
     // Item will be put into shortest column.
     for (NSInteger idx = 0; idx < _itemCount; idx++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:0];
         CGFloat itemHeight = [self.delegate collectionView:self.collectionView
                                                     layout:self
-                                  heightForItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+                                  heightForItemAtIndexPath:indexPath];
         NSUInteger columnIndex = [self shortestColumnIndex];
         CGFloat xOffset = _sectionInset.left + (_itemWidth + _interitemSpacing) * columnIndex;
         CGFloat yOffset = [(_columnHeights[columnIndex]) floatValue];
         CGPoint itemCenter = CGPointMake(floorf(xOffset + _itemWidth/2), floorf((yOffset + itemHeight/2)));
 
-        [_itemPositions addObject:[NSValue valueWithCGPoint:itemCenter]];
+        PSUICollectionViewLayoutAttributes *attributes =
+        [PSUICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+        attributes.size = CGSizeMake(self.itemWidth, itemHeight);
+        attributes.center = itemCenter;
+        [_itemAttributes addObject:attributes];
         _columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
     }
 }
@@ -90,24 +120,18 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)path
 {
-    UICollectionViewLayoutAttributes *attributes =
-    [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:path];
-    CGFloat itemHeight = [self.delegate collectionView:self.collectionView
-                                                layout:self
-                              heightForItemAtIndexPath:path];
-    attributes.size = CGSizeMake(self.itemWidth, itemHeight);
-    attributes.center = [self.itemPositions[path.item] CGPointValue];
-    return attributes;
+    return (self.itemAttributes)[path.item];
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSMutableArray *attributes = [NSMutableArray array];
-    for (NSInteger i = 0; i < self.itemCount; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
-    }
-    return attributes;
+//    // Currently, PSTCollectionView has issue with this.
+//    // It can't display items correctly.
+//    // But UICollectionView works perfectly.
+//    return [self.itemAttributes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+//        return CGRectIntersectsRect(rect, [evaluatedObject frame]);
+//    }]];
+    return self.itemAttributes;
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds

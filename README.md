@@ -3,13 +3,19 @@ UIWaterfallLayout
 
 iOS 6 introduced a new feature called [UICollectionView](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionView_class/Reference/Reference.html). **UIWaterfallLayout** is a subclass of [UICollectionViewLayout](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html).
 
-This layout is inspired by [Pinterest](http://pinterest.com/). It also is compatible with [PSTUICollectionView](https://github.com/steipete/PSTCollectionView).
+This layout is inspired by [Pinterest](http://pinterest.com/). It also is compatible with [PSTUICollectionView][1].
+
+Screen Shots
+------------
+![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
+![3 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/3-columns.png)
 
 Prerequisite
 ------------
 * ARC
+* Xcode 4.4+, which supports literals syntax.
 * iOS 6+, or
-* iOS 5 and below, with [PSTUICollectionView](https://github.com/steipete/PSTCollectionView).
+* iOS 5 and below, with [PSTUICollectionView][1].
 
 How to Use
 ----------
@@ -30,13 +36,19 @@ And you also need to implement a method for the `UICollecitonViewDelegateWaterfa
                        layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
      heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 
-Then you are done! Easy, right?
+**Then you are done! Easy, right?**
 
-Screen Shots
-------------
-![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
-![3 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/3-columns.png)
+Limitation
+----------
+* Only one section is supported.
+
+
+License
+-------
+UIWaterfallLayout is available under the MIT license. See the LICENSE file for more info.
 
 Known Issue
 -----------
 None, so far.
+
+[1]: https://github.com/steipete/PSTCollectionView
