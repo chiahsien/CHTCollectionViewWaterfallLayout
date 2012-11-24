@@ -1,7 +1,7 @@
-UIWaterfallLayout
-=================
+UICollectionViewWaterfallLayout
+===============================
 
-iOS 6 introduced a new feature called [UICollectionView](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionView_class/Reference/Reference.html). **UIWaterfallLayout** is a subclass of [UICollectionViewLayout](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html).
+iOS 6 introduced a new feature called [UICollectionView](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionView_class/Reference/Reference.html). **UICollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout](http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html).
 
 This layout is inspired by [Pinterest](http://pinterest.com/). It also is compatible with [PSTUICollectionView][1].
 
@@ -30,7 +30,7 @@ There are four properties for you to set up.
 It's your responsibility to set up `delegate`, `columnCount`, and `itemWidth`, they are required. But `sectionInset` is optional.
 
 #### Step 2
-And you also need to implement a method for the `UICollecitonViewDelegateWaterfallLayout` protocol.
+And you also need to implement one method in your delegate for the `UICollecitonViewDelegateWaterfallLayout` protocol.
 
     - (CGFloat)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
@@ -41,11 +41,12 @@ And you also need to implement a method for the `UICollecitonViewDelegateWaterfa
 Limitation
 ----------
 * Only one section is supported.
+* No supplementary view and decoration view.
 
 
 License
 -------
-UIWaterfallLayout is available under the MIT license. See the LICENSE file for more info.
+UICollectionViewWaterfallLayout is available under the MIT license. See the LICENSE file for more info.
 
 Known Issue
 -----------
