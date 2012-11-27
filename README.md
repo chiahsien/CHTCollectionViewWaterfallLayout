@@ -41,8 +41,8 @@ And you also need to implement one method in your delegate for the `UIColleciton
 Limitation
 ----------
 * Only one section is supported.
+* Only vertical scrolling is supported.
 * No supplementary view and decoration view.
-
 
 License
 -------
