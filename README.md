@@ -22,7 +22,7 @@ How to Use
 #### Step 1
 There are four properties for you to set up.
 
-    @property (nonatomic, weak) id<UICollecitonViewDelegateWaterfallLayout> delegate;
+    @property (nonatomic, weak) id<UICollectionViewDelegateWaterfallLayout> delegate;
     @property (nonatomic, assign) NSUInteger columnCount; // How many columns
     @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
     @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section
@@ -30,7 +30,7 @@ There are four properties for you to set up.
 It's your responsibility to set up `delegate`, `columnCount`, and `itemWidth`, they are required. But `sectionInset` is optional.
 
 #### Step 2
-And you also need to implement one method in your delegate for the `UICollecitonViewDelegateWaterfallLayout` protocol.
+And you also need to implement one method in your delegate for the `UICollectionViewDelegateWaterfallLayout` protocol.
 
     - (CGFloat)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
