@@ -125,13 +125,9 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-//    // Currently, PSTCollectionView has issue with this.
-//    // It can't display items correctly.
-//    // But UICollectionView works perfectly.
-//    return [self.itemAttributes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-//        return CGRectIntersectsRect(rect, [evaluatedObject frame]);
-//    }]];
-    return self.itemAttributes;
+    return [self.itemAttributes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UICollectionViewLayoutAttributes *evaluatedObject, NSDictionary *bindings) {
+        return CGRectIntersectsRect(rect, [evaluatedObject frame]);
+    }]];
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds

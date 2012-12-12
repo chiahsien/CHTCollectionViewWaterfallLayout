@@ -13,6 +13,10 @@
 #define CELL_COUNT 30
 #define CELL_IDENTIFIER @"WaterfallCell"
 
+@interface ViewController()
+@property (nonatomic, strong) NSMutableArray *cellHeights;
+@end
+
 @implementation ViewController
 
 #pragma mark - Accessors
@@ -34,6 +38,17 @@
             forCellWithReuseIdentifier:CELL_IDENTIFIER];
     }
     return _collectionView;
+}
+
+- (NSMutableArray *)cellHeights
+{
+    if (!_cellHeights) {
+        _cellHeights = [NSMutableArray arrayWithCapacity:CELL_COUNT];
+        for (NSInteger i = 0; i < CELL_COUNT; i++) {
+            _cellHeights[i] = @(arc4random()%100*2+100);
+        }
+    }
+    return _cellHeights;
 }
 
 #pragma mark - Life Cycle
@@ -58,7 +73,8 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    UICollectionViewWaterfallLayout *layout = (UICollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
+    UICollectionViewWaterfallLayout *layout =
+    (UICollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
     layout.columnCount = self.collectionView.bounds.size.width / CELL_WIDTH;
     layout.itemWidth = CELL_WIDTH;
 }
@@ -90,7 +106,7 @@
                    layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
  heightForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return arc4random()%100*2+100;
+    return [self.cellHeights[indexPath.item] floatValue];
 }
 
 @end
