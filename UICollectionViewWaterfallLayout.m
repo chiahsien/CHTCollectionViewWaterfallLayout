@@ -94,12 +94,10 @@
         NSUInteger columnIndex = [self shortestColumnIndex];
         CGFloat xOffset = _sectionInset.left + (_itemWidth + _interitemSpacing) * columnIndex;
         CGFloat yOffset = [(_columnHeights[columnIndex]) floatValue];
-        CGPoint itemCenter = CGPointMake(floorf(xOffset + _itemWidth/2), floorf((yOffset + itemHeight/2)));
 
         UICollectionViewLayoutAttributes *attributes =
         [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        attributes.size = CGSizeMake(self.itemWidth, itemHeight);
-        attributes.center = itemCenter;
+        attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
         [_itemAttributes addObject:attributes];
         _columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
     }
