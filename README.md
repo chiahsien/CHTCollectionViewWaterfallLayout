@@ -15,7 +15,7 @@ Prerequisite
 * ARC
 * Xcode 4.4+, which supports literals syntax.
 * iOS 6+, or
-* iOS 5 and below, with [PSTUICollectionView][1].
+* iOS 4.x/5.x, with [PSTUICollectionView][1].
 
 How to Use
 ----------
@@ -43,7 +43,7 @@ And you also need to implement one method in your delegate for the `UICollection
 ```
 
 #### Step 3 (Optional)
-If you need to support iOS 5 and below and you have installed [PSTUICollectionView][1], then you **NEED** to modify some codes.
+If you need to support iOS 4.x/5.x and you have installed [PSTUICollectionView][1], then you **NEED** to modify some codes.
 
 Quoted from [PSTUICollectionView][1] README file:
 > **If you want to have PSTCollectionView on iOS4.3/5.x and UICollectionView on iOS6, use PSUICollectionView (basically add PS on any UICollectionView* class to get auto-support for older iOS versions)**
