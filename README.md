@@ -19,6 +19,8 @@ Prerequisite
 
 How to Use
 ----------
+Read the demo codes for detail information.
+
 #### Step 1
 There are four properties for you to set up.
 
@@ -40,7 +42,14 @@ And you also need to implement one method in your delegate for the `UICollection
  heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 ```
 
-**Then you are done! Easy, right?**
+#### Step 3 (Optional)
+If you need to support iOS 5 and below and you have installed [PSTUICollectionView][1], then you **NEED** to modify some codes.
+
+Quoted from [PSTUICollectionView][1] README file:
+> **If you want to have PSTCollectionView on iOS4.3/5.x and UICollectionView on iOS6, use PSUICollectionView (basically add PS on any UICollectionView* class to get auto-support for older iOS versions)**
+> If you always want to use PSTCollectionView, use PSTCollectionView as class names. (replace the UI with PST)
+
+*That's all! Easy, right?*
 
 Limitation
 ----------
