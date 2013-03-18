@@ -24,8 +24,7 @@
 {
     if (!_collectionView) {
         UICollectionViewWaterfallLayout *layout = [[UICollectionViewWaterfallLayout alloc] init];
-        layout.itemWidth = CELL_WIDTH;
-        layout.columnCount = self.view.bounds.size.width / CELL_WIDTH;
+
         layout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
         layout.delegate = self;
 
@@ -65,13 +64,27 @@
     [self.view addSubview:self.collectionView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateLayout];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                         duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
+                                            duration:duration];
+    [self updateLayout];
+}
+
+- (void)updateLayout
 {
     UICollectionViewWaterfallLayout *layout =
     (UICollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
