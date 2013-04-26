@@ -10,5 +10,6 @@
 #import "UICollectionViewWaterfallLayout.h"
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateWaterfallLayout>
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) CGFloat cellWidth;
 @end
