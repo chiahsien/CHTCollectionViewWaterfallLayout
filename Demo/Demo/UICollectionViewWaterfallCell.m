@@ -9,7 +9,6 @@
 #import "UICollectionViewWaterfallCell.h"
 
 @interface UICollectionViewWaterfallCell()
-@property (nonatomic, strong) UILabel *displayLabel;
 @end
 
 @implementation UICollectionViewWaterfallCell

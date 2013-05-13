@@ -15,7 +15,7 @@
 @end
 
 @interface UICollectionViewWaterfallLayout : UICollectionViewLayout
-@property (nonatomic, weak) id<UICollectionViewDelegateWaterfallLayout> delegate;
+@property (nonatomic, weak) IBOutlet id<UICollectionViewDelegateWaterfallLayout> delegate;
 @property (nonatomic, assign) NSUInteger columnCount; // How many columns
 @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
 @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section

@@ -19,6 +19,14 @@
 
 @implementation ViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.cellWidth = CELL_WIDTH;        // Default if not setting runtime attribute
+    }
+    return self;
+}
+
 #pragma mark - Accessors
 - (UICollectionView *)collectionView
 {
@@ -88,8 +96,8 @@
 {
     UICollectionViewWaterfallLayout *layout =
     (UICollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
-    layout.columnCount = self.collectionView.bounds.size.width / CELL_WIDTH;
-    layout.itemWidth = CELL_WIDTH;
+    layout.columnCount = self.collectionView.bounds.size.width / self.cellWidth;
+    layout.itemWidth = self.cellWidth;
 }
 
 #pragma mark - UICollectionViewDataSource
