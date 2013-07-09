@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UICollectionViewWaterfallCell : UICollectionViewCell
+@interface CHTCollectionViewWaterfallCell : UICollectionViewCell
 @property (nonatomic, copy) NSString *displayString;
 @property (nonatomic, strong) IBOutlet UILabel *displayLabel;
 

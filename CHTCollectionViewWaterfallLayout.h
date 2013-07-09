@@ -7,15 +7,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class UICollectionViewWaterfallLayout;
-@protocol UICollectionViewDelegateWaterfallLayout <UICollectionViewDelegate>
+@class CHTCollectionViewWaterfallLayout;
+@protocol CHTCollectionViewDelegateWaterfallLayout <UICollectionViewDelegate>
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
+                   layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
  heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface UICollectionViewWaterfallLayout : UICollectionViewLayout
-@property (nonatomic, weak) IBOutlet id<UICollectionViewDelegateWaterfallLayout> delegate;
+@interface CHTCollectionViewWaterfallLayout : UICollectionViewLayout
+@property (nonatomic, weak) IBOutlet id<CHTCollectionViewDelegateWaterfallLayout> delegate;
 @property (nonatomic, assign) NSUInteger columnCount; // How many columns
 @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
 @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section

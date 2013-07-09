@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UICollectionViewWaterfallCell.h"
+#import "CHTCollectionViewWaterfallCell.h"
 
 #define CELL_WIDTH 129
 #define CELL_COUNT 30
@@ -31,7 +31,7 @@
 - (UICollectionView *)collectionView
 {
     if (!_collectionView) {
-        UICollectionViewWaterfallLayout *layout = [[UICollectionViewWaterfallLayout alloc] init];
+        CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
         layout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
         layout.delegate = self;
@@ -41,7 +41,7 @@
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor blackColor];
-        [_collectionView registerClass:[UICollectionViewWaterfallCell class]
+        [_collectionView registerClass:[CHTCollectionViewWaterfallCell class]
             forCellWithReuseIdentifier:CELL_IDENTIFIER];
     }
     return _collectionView;
@@ -94,8 +94,8 @@
 
 - (void)updateLayout
 {
-    UICollectionViewWaterfallLayout *layout =
-    (UICollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
+    CHTCollectionViewWaterfallLayout *layout =
+    (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
     layout.columnCount = self.collectionView.bounds.size.width / self.cellWidth;
     layout.itemWidth = self.cellWidth;
 }
@@ -114,8 +114,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewWaterfallCell *cell =
-    (UICollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
+    CHTCollectionViewWaterfallCell *cell =
+    (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
                                                                                forIndexPath:indexPath];
 
     cell.displayString = [NSString stringWithFormat:@"%d", indexPath.row];
@@ -124,7 +124,7 @@
 
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewWaterfallLayout *)collectionViewLayout
+                   layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
  heightForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.cellHeights[indexPath.item] floatValue];

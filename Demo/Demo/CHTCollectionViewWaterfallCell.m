@@ -6,12 +6,12 @@
 //  Copyright (c) 2012年 Nelson. All rights reserved.
 //
 
-#import "UICollectionViewWaterfallCell.h"
+#import "CHTCollectionViewWaterfallCell.h"
 
-@interface UICollectionViewWaterfallCell()
+@interface CHTCollectionViewWaterfallCell()
 @end
 
-@implementation UICollectionViewWaterfallCell
+@implementation CHTCollectionViewWaterfallCell
 
 #pragma mark - Accessors
 - (UILabel *)displayLabel
