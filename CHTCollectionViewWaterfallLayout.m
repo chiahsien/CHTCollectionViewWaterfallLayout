@@ -12,9 +12,12 @@
 @property (nonatomic, assign) CGFloat interitemSpacing;
 @property (nonatomic, strong) NSMutableArray *columnHeights; // height for each column
 @property (nonatomic, strong) NSMutableArray *itemAttributes; // attributes for each item
+@property (nonatomic, strong) NSMutableArray *unionRects;
 @end
 
 @implementation CHTCollectionViewWaterfallLayout
+
+const int unionSize = 20;
 
 #pragma mark - Accessors
 - (void)setColumnCount:(NSUInteger)columnCount
@@ -73,6 +76,7 @@
 {
     [super prepareLayout];
 
+    NSInteger idx = 0;
     _itemCount = [[self collectionView] numberOfItemsInSection:0];
 
     NSAssert(_columnCount > 1, @"columnCount for UICollectionViewWaterfallLayout should be greater than 1.");
@@ -81,12 +85,12 @@
 
     _itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
     _columnHeights = [NSMutableArray arrayWithCapacity:_columnCount];
-    for (NSInteger idx = 0; idx < _columnCount; idx++) {
+    for (idx = 0; idx < _columnCount; idx++) {
         [_columnHeights addObject:@(_sectionInset.top)];
     }
 
     // Item will be put into shortest column.
-    for (NSInteger idx = 0; idx < _itemCount; idx++) {
+    for (idx = 0; idx < _itemCount; idx++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:0];
         CGFloat itemHeight = [self.delegate collectionView:self.collectionView
                                                     layout:self
@@ -100,6 +104,16 @@
         attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
         [_itemAttributes addObject:attributes];
         _columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
+    }
+    
+    idx = 0;
+    _unionRects = [NSMutableArray array];
+    while (idx < _itemCount) {
+        CGRect rect1 = ((UICollectionViewLayoutAttributes *)_itemAttributes[idx]).frame;
+        idx = MIN(idx + unionSize, _itemCount) - 1;
+        CGRect rect2 = ((UICollectionViewLayoutAttributes *)_itemAttributes[idx]).frame;
+        [_unionRects addObject:[NSValue valueWithCGRect:CGRectUnion(rect1, rect2)]];
+        idx++;
     }
 }
 
@@ -123,9 +137,33 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    return [self.itemAttributes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UICollectionViewLayoutAttributes *evaluatedObject, NSDictionary *bindings) {
-        return CGRectIntersectsRect(rect, [evaluatedObject frame]);
-    }]];
+    NSInteger i;
+    NSInteger begin = 0, end = self.unionRects.count;
+    NSMutableArray *attrs = [NSMutableArray array];
+    
+    for (i = 0; i < self.unionRects.count; i++)
+    {
+        if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue]))
+        {
+            begin = i * unionSize;
+            break;
+        }
+    }
+    for (i = self.unionRects.count - 1; i > 0; i--)
+    {
+        if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue]))
+        {
+            end = (i + 1) * unionSize;
+            break;
+        }
+    }
+    for (i = begin; i < end; i++)
+    {
+        UICollectionViewLayoutAttributes *attr = self.itemAttributes[i];
+        if (CGRectIntersectsRect(rect, attr.frame))
+            [attrs addObject:attr];
+    }
+    return [attrs copy];
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
@@ -134,6 +172,7 @@
 }
 
 #pragma mark - Private Methods
+
 // Find out shortest column.
 - (NSUInteger)shortestColumnIndex
 {

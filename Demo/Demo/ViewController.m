@@ -10,7 +10,7 @@
 #import "CHTCollectionViewWaterfallCell.h"
 
 #define CELL_WIDTH 129
-#define CELL_COUNT 30
+#define CELL_COUNT 30000
 #define CELL_IDENTIFIER @"WaterfallCell"
 
 @interface ViewController()
