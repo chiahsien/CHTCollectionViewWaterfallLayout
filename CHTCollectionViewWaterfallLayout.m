@@ -149,7 +149,7 @@ const int unionSize = 20;
             break;
         }
     }
-    for (i = self.unionRects.count - 1; i > 0; i--)
+    for (i = self.unionRects.count - 1; i >= 0; i--)
     {
         if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue]))
         {
@@ -157,7 +157,7 @@ const int unionSize = 20;
             break;
         }
     }
-    for (i = begin; i < end; i++)
+    for (i = begin; i < end && i<self.itemAttributes.count; i++)
     {
         UICollectionViewLayoutAttributes *attr = self.itemAttributes[i];
         if (CGRectIntersectsRect(rect, attr.frame))
