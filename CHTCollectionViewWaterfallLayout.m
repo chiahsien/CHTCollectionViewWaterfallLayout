@@ -105,7 +105,7 @@ const int unionSize = 20;
         [_itemAttributes addObject:attributes];
         _columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
     }
-    
+
     idx = 0;
     _unionRects = [NSMutableArray array];
     while (idx < _itemCount) {
@@ -140,7 +140,7 @@ const int unionSize = 20;
     NSInteger i;
     NSInteger begin = 0, end = self.unionRects.count;
     NSMutableArray *attrs = [NSMutableArray array];
-    
+
     for (i = 0; i < self.unionRects.count; i++)
     {
         if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue]))
@@ -153,15 +153,16 @@ const int unionSize = 20;
     {
         if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue]))
         {
-            end = (i + 1) * unionSize;
+            end = MIN((i + 1) * unionSize, self.itemAttributes.count);
             break;
         }
     }
-    for (i = begin; i < end && i<self.itemAttributes.count; i++)
+    for (i = begin; i < end; i++)
     {
         UICollectionViewLayoutAttributes *attr = self.itemAttributes[i];
-        if (CGRectIntersectsRect(rect, attr.frame))
+        if (CGRectIntersectsRect(rect, attr.frame)) {
             [attrs addObject:attr];
+        }
     }
     return [attrs copy];
 }
