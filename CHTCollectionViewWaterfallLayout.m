@@ -167,9 +167,11 @@ const int unionSize = 20;
 		}
 	}
 
-    BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
-    if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
-        [attrs addObject:_headerAttributes];
+    if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
+        BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
+        if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
+            [attrs addObject:_headerAttributes];
+        }
     }
 
 	return [attrs copy];
