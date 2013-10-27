@@ -12,6 +12,7 @@
 @property (nonatomic, assign) CGFloat interitemSpacing;
 @property (nonatomic, strong) NSMutableArray *columnHeights; // height for each column
 @property (nonatomic, strong) NSMutableArray *itemAttributes; // attributes for each item
+@property (nonatomic, strong) UICollectionViewLayoutAttributes *headerAttributes;
 @property (nonatomic, strong) NSMutableArray *unionRects;
 @end
 
@@ -74,12 +75,24 @@ const int unionSize = 20;
     
 	NSAssert(_columnCount > 1, @"columnCount for UICollectionViewWaterfallLayout should be greater than 1.");
 	CGFloat width = self.collectionView.frame.size.width - _sectionInset.left - _sectionInset.right;
-	_interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
+
+    _headerAttributes = nil;
+    if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
+        CGFloat headerHeight = [self.delegate collectionView:self.collectionView
+                                     heightForHeaderInLayout:self];
+
+        _headerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+        _headerAttributes.frame = CGRectMake(0, 0, width, headerHeight);
+    }
+
+    width -= _sectionInset.left + _sectionInset.right;
+
+    _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
     
 	_itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
 	_columnHeights = [NSMutableArray arrayWithCapacity:_columnCount];
 	for (idx = 0; idx < _columnCount; idx++) {
-		[_columnHeights addObject:@(_sectionInset.top)];
+		[_columnHeights addObject:@(_sectionInset.top + CGRectGetMaxY(_headerAttributes.frame))];
 	}
     
 	// Item will be put into shortest column.
@@ -126,6 +139,10 @@ const int unionSize = 20;
 	return (self.itemAttributes)[path.item];
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    return _headerAttributes;
+}
+
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
 	NSInteger i;
 	NSInteger begin = 0, end = self.unionRects.count;
@@ -149,6 +166,12 @@ const int unionSize = 20;
 			[attrs addObject:attr];
 		}
 	}
+
+    BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
+    if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
+        [attrs addObject:_headerAttributes];
+    }
+
 	return [attrs copy];
 }
 

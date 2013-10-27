@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "CHTCollectionViewWaterfallCell.h"
+#import "CHTCollectionViewWaterfallHeader.h"
 
 #define CELL_WIDTH 129
 #define CELL_COUNT 30000
 #define CELL_IDENTIFIER @"WaterfallCell"
+#define HEADER_IDENTIFIER @"WaterfallHeader"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableArray *cellHeights;
@@ -42,6 +44,9 @@
 		_collectionView.backgroundColor = [UIColor blackColor];
 		[_collectionView registerClass:[CHTCollectionViewWaterfallCell class]
 		    forCellWithReuseIdentifier:CELL_IDENTIFIER];
+		[_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
+            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                   withReuseIdentifier:HEADER_IDENTIFIER];
 	}
 	return _collectionView;
 }
@@ -111,11 +116,27 @@
 	return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
+    CHTCollectionViewWaterfallHeader *header =
+    (CHTCollectionViewWaterfallHeader *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                           withReuseIdentifier:HEADER_IDENTIFIER
+                                                                                  forIndexPath:indexPath];
+    return header;
+}
+
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
 - (CGFloat)   collectionView:(UICollectionView *)collectionView
                       layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
     heightForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return [self.cellHeights[indexPath.item] floatValue];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+  heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
+{
+    return 50;
 }
 
 @end
