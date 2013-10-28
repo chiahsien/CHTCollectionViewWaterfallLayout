@@ -11,5 +11,4 @@
 @interface CHTCollectionViewWaterfallCell : UICollectionViewCell
 @property (nonatomic, copy) NSString *displayString;
 @property (nonatomic, strong) IBOutlet UILabel *displayLabel;
-
 @end

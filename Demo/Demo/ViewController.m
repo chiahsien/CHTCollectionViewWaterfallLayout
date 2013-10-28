@@ -24,8 +24,7 @@
 @implementation ViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	self = [super initWithCoder:aDecoder];
-	if (self) {
+	if (self = [super initWithCoder:aDecoder]) {
 		self.cellWidth = CELL_WIDTH;        // Default if not setting runtime attribute
 	}
 	return self;
@@ -35,10 +34,10 @@
 - (UICollectionView *)collectionView {
 	if (!_collectionView) {
 		CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
-        
+
 		layout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
 		layout.delegate = self;
-        
+
 		_collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
 		_collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		_collectionView.dataSource = self;
@@ -47,11 +46,11 @@
 		[_collectionView registerClass:[CHTCollectionViewWaterfallCell class]
 		    forCellWithReuseIdentifier:CELL_IDENTIFIER];
 		[_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
-            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                   withReuseIdentifier:HEADER_IDENTIFIER];
+        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+               withReuseIdentifier:HEADER_IDENTIFIER];
 		[_collectionView registerClass:[CHTCollectionViewWaterfallFooter class]
-            forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                   withReuseIdentifier:FOOTER_IDENTIFIER];
+        forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+               withReuseIdentifier:FOOTER_IDENTIFIER];
 	}
 	return _collectionView;
 }
@@ -74,18 +73,12 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 	[self.view addSubview:self.collectionView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self updateLayout];
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -97,7 +90,7 @@
 
 - (void)updateLayout {
 	CHTCollectionViewWaterfallLayout *layout =
-    (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
+  (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
 	layout.columnCount = self.collectionView.bounds.size.width / self.cellWidth;
 	layout.itemWidth = self.cellWidth;
 }
@@ -114,9 +107,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CHTCollectionViewWaterfallCell *cell =
-    (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
-                                                                                forIndexPath:indexPath];
-    
+  (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
+                                                                              forIndexPath:indexPath];
 	cell.displayString = [NSString stringWithFormat:@"%d", indexPath.row];
 	return cell;
 }
@@ -124,37 +116,36 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *reusableView = nil;
-    
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-            reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                              withReuseIdentifier:HEADER_IDENTIFIER
-                                                                     forIndexPath:indexPath];
-    }
-    else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                          withReuseIdentifier:FOOTER_IDENTIFIER
-                                                                 forIndexPath:indexPath];
-    }
-    
-    return reusableView;
+  UICollectionReusableView *reusableView = nil;
+
+  if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                      withReuseIdentifier:HEADER_IDENTIFIER
+                                                             forIndexPath:indexPath];
+  } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+    reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                      withReuseIdentifier:FOOTER_IDENTIFIER
+                                                             forIndexPath:indexPath];
+  }
+
+  return reusableView;
 }
 
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
-- (CGFloat)   collectionView:(UICollectionView *)collectionView
-                      layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
-    heightForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
+ heightForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return [self.cellHeights[indexPath.item] floatValue];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView
   heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
-    return 50;
+  return 50;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView
   heightForFooterInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
-    return 30;
+  return 30;
 }
 
 @end

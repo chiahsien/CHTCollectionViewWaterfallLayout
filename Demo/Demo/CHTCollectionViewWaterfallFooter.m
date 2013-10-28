@@ -10,14 +10,12 @@
 
 @implementation CHTCollectionViewWaterfallFooter
 
-
 #pragma mark - Accessors
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor blueColor];
-    }
-    return self;
+  if (self = [super initWithFrame:frame]) {
+    self.backgroundColor = [UIColor blueColor];
+  }
+  return self;
 }
 
 @end

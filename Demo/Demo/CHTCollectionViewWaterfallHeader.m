@@ -10,14 +10,12 @@
 
 @implementation CHTCollectionViewWaterfallHeader
 
-
 #pragma mark - Accessors
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor redColor];
-    }
-    return self;
+  if (self = [super initWithFrame:frame]) {
+    self.backgroundColor = [UIColor redColor];
+  }
+  return self;
 }
 
 @end

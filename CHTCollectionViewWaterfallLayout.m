@@ -72,23 +72,25 @@ const int unionSize = 20;
 	[super prepareLayout];
 
 	NSInteger idx = 0;
-	_itemCount = [[self collectionView] numberOfItemsInSection:0];
+	_itemCount = [self.collectionView numberOfItemsInSection:0];
 
 	NSAssert(_columnCount > 1, @"columnCount for UICollectionViewWaterfallLayout should be greater than 1.");
 	CGFloat width = self.collectionView.frame.size.width - _sectionInset.left - _sectionInset.right;
 
-    _headerAttributes = nil;
-    if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
-        CGFloat headerHeight = [self.delegate collectionView:self.collectionView
-                                     heightForHeaderInLayout:self];
-
-        _headerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-        _headerAttributes.frame = CGRectMake(0, 0, width, headerHeight);
-    }
-
-    width -= _sectionInset.left + _sectionInset.right;
-
-    _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
+  _headerAttributes = nil;
+  if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
+    CGFloat headerHeight = [self.delegate collectionView:self.collectionView
+                                 heightForHeaderInLayout:self];
+    
+    _headerAttributes =
+    [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                   withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    _headerAttributes.frame = CGRectMake(0, 0, width, headerHeight);
+  }
+  
+  width -= _sectionInset.left + _sectionInset.right;
+  
+  _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
 
 	_itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
 	_columnHeights = [NSMutableArray arrayWithCapacity:_columnCount];
@@ -96,7 +98,7 @@ const int unionSize = 20;
 		[_columnHeights addObject:@(_sectionInset.top + CGRectGetMaxY(_headerAttributes.frame))];
 	}
 
-    CGFloat maxColumnHeight = 0;
+  CGFloat maxColumnHeight = 0;
 
 	// Item will be put into shortest column.
 	for (idx = 0; idx < _itemCount; idx++) {
@@ -106,15 +108,15 @@ const int unionSize = 20;
 		                          heightForItemAtIndexPath:indexPath];
 		NSUInteger columnIndex = [self shortestColumnIndex];
 		CGFloat xOffset = _sectionInset.left + (_itemWidth + _interitemSpacing) * columnIndex;
-		CGFloat yOffset = [(_columnHeights[columnIndex])floatValue];
+		CGFloat yOffset = [(_columnHeights[columnIndex]) floatValue];
 
 		UICollectionViewLayoutAttributes *attributes =
-        [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
 		attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
 		[_itemAttributes addObject:attributes];
 		_columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
 
-        maxColumnHeight = MAX(maxColumnHeight, [_columnHeights[columnIndex] floatValue]);
+    maxColumnHeight = MAX(maxColumnHeight, [_columnHeights[columnIndex] floatValue]);
 	}
 
 	idx = 0;
@@ -127,13 +129,15 @@ const int unionSize = 20;
 		idx++;
 	}
 
-    _footerAttributes = nil;
-    if ([self.delegate respondsToSelector:@selector(collectionView:heightForFooterInLayout:)]) {
-        CGFloat footerHeight = [self.delegate collectionView:self.collectionView
-                                     heightForFooterInLayout:self];
-        _footerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-        _footerAttributes.frame = CGRectMake(0, maxColumnHeight, width, footerHeight);
-    }
+  _footerAttributes = nil;
+  if ([self.delegate respondsToSelector:@selector(collectionView:heightForFooterInLayout:)]) {
+    CGFloat footerHeight = [self.delegate collectionView:self.collectionView
+                                 heightForFooterInLayout:self];
+    _footerAttributes =
+    [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                                   withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    _footerAttributes.frame = CGRectMake(0, maxColumnHeight, width, footerHeight);
+  }
 }
 
 - (CGSize)collectionViewContentSize {
@@ -146,9 +150,9 @@ const int unionSize = 20;
 	CGFloat height = [self.columnHeights[columnIndex] floatValue];
 	contentSize.height = height - self.interitemSpacing + self.sectionInset.bottom;
 
-    if (self.footerAttributes) {
-        contentSize.height = CGRectGetMaxY(self.footerAttributes.frame);
-    }
+  if (self.footerAttributes) {
+    contentSize.height = CGRectGetMaxY(self.footerAttributes.frame);
+  }
 
 	return contentSize;
 }
@@ -158,13 +162,13 @@ const int unionSize = 20;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        return _headerAttributes;
-    }
-    else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        return _footerAttributes;
-    }
-    return nil;
+  if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    return _headerAttributes;
+  }
+  else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+    return _footerAttributes;
+  }
+  return nil;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -191,19 +195,19 @@ const int unionSize = 20;
 		}
 	}
 
-    if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
-        BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
-        if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
-            [attrs addObject:_headerAttributes];
-        }
+  if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
+    BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
+    if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
+      [attrs addObject:_headerAttributes];
     }
-
-    if ([self.delegate respondsToSelector:@selector(collectionView:heightForFooterInLayout:)]) {
-        BOOL hasFooter = [self.delegate collectionView:self.collectionView heightForFooterInLayout:self] > 0;
-        if (hasFooter && _footerAttributes && CGRectIntersectsRect(rect, [_footerAttributes frame])) {
-            [attrs addObject:_footerAttributes];
-        }
+  }
+  
+  if ([self.delegate respondsToSelector:@selector(collectionView:heightForFooterInLayout:)]) {
+    BOOL hasFooter = [self.delegate collectionView:self.collectionView heightForFooterInLayout:self] > 0;
+    if (hasFooter && _footerAttributes && CGRectIntersectsRect(rect, [_footerAttributes frame])) {
+      [attrs addObject:_footerAttributes];
     }
+  }
 
 	return [attrs copy];
 }

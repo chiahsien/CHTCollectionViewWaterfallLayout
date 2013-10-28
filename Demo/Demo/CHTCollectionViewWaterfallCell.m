@@ -8,9 +8,6 @@
 
 #import "CHTCollectionViewWaterfallCell.h"
 
-@interface CHTCollectionViewWaterfallCell ()
-@end
-
 @implementation CHTCollectionViewWaterfallCell
 
 #pragma mark - Accessors
@@ -39,9 +36,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-	if (self) {
-		// Initialization code
+	if (self = [super initWithFrame:frame]) {
 		[self.contentView addSubview:self.displayLabel];
 	}
 	return self;
