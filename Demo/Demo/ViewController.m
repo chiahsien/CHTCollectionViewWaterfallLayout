@@ -9,11 +9,13 @@
 #import "ViewController.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallHeader.h"
+#import "CHTCollectionViewWaterfallFooter.h"
 
 #define CELL_WIDTH 129
-#define CELL_COUNT 30000
+#define CELL_COUNT 100
 #define CELL_IDENTIFIER @"WaterfallCell"
 #define HEADER_IDENTIFIER @"WaterfallHeader"
+#define FOOTER_IDENTIFIER @"WaterfallFooter"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableArray *cellHeights;
@@ -47,6 +49,9 @@
 		[_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
             forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                    withReuseIdentifier:HEADER_IDENTIFIER];
+		[_collectionView registerClass:[CHTCollectionViewWaterfallFooter class]
+            forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                   withReuseIdentifier:FOOTER_IDENTIFIER];
 	}
 	return _collectionView;
 }
@@ -119,11 +124,20 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    CHTCollectionViewWaterfallHeader *header =
-    (CHTCollectionViewWaterfallHeader *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                           withReuseIdentifier:HEADER_IDENTIFIER
-                                                                                  forIndexPath:indexPath];
-    return header;
+    UICollectionReusableView *reusableView = nil;
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+            reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                              withReuseIdentifier:HEADER_IDENTIFIER
+                                                                     forIndexPath:indexPath];
+    }
+    else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                          withReuseIdentifier:FOOTER_IDENTIFIER
+                                                                 forIndexPath:indexPath];
+    }
+    
+    return reusableView;
 }
 
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
@@ -134,9 +148,13 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-  heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
-{
+  heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
     return 50;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+  heightForFooterInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
+    return 30;
 }
 
 @end

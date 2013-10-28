@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28ACC0CB181E580300454F4A /* CHTCollectionViewWaterfallFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */; };
 		28FB2A16181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */; };
 		526109C516646F4D005E4B6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C416646F4D005E4B6E /* UIKit.framework */; };
 		526109C716646F4D005E4B6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C616646F4D005E4B6E /* Foundation.framework */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28ACC0C9181E580300454F4A /* CHTCollectionViewWaterfallFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallFooter.h; sourceTree = "<group>"; };
+		28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallFooter.m; sourceTree = "<group>"; };
 		28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallHeader.h; sourceTree = "<group>"; };
 		28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallHeader.m; sourceTree = "<group>"; };
 		526109C016646F4D005E4B6E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +105,8 @@
 				526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */,
 				28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */,
 				28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */,
+				28ACC0C9181E580300454F4A /* CHTCollectionViewWaterfallFooter.h */,
+				28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */,
 				526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */,
 				526109DF16646F4D005E4B6E /* MainStoryboard_iPad.storyboard */,
 				526109E216646F4D005E4B6E /* ViewController.h */,
@@ -194,6 +199,7 @@
 			files = (
 				526109D116646F4D005E4B6E /* main.m in Sources */,
 				526109D516646F4D005E4B6E /* AppDelegate.m in Sources */,
+				28ACC0CB181E580300454F4A /* CHTCollectionViewWaterfallFooter.m in Sources */,
 				526109E416646F4D005E4B6E /* ViewController.m in Sources */,
 				526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				28FB2A16181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m in Sources */,
