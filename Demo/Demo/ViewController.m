@@ -11,8 +11,8 @@
 #import "CHTCollectionViewWaterfallHeader.h"
 #import "CHTCollectionViewWaterfallFooter.h"
 
-#define CELL_WIDTH 129
-#define CELL_COUNT 100
+#define CELL_WIDTH 140
+#define CELL_COUNT 50
 #define CELL_IDENTIFIER @"WaterfallCell"
 #define HEADER_IDENTIFIER @"WaterfallHeader"
 #define FOOTER_IDENTIFIER @"WaterfallFooter"
@@ -42,7 +42,7 @@
 		_collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		_collectionView.dataSource = self;
 		_collectionView.delegate = self;
-		_collectionView.backgroundColor = [UIColor blackColor];
+		_collectionView.backgroundColor = [UIColor whiteColor];
 		[_collectionView registerClass:[CHTCollectionViewWaterfallCell class]
 		    forCellWithReuseIdentifier:CELL_IDENTIFIER];
 		[_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
