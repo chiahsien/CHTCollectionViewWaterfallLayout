@@ -85,11 +85,9 @@ const int unionSize = 20;
     _headerAttributes =
     [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                    withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-    _headerAttributes.frame = CGRectMake(0, 0, width, headerHeight);
+    _headerAttributes.frame = CGRectMake(_sectionInset.left, 0, width, headerHeight);
   }
-  
-  width -= _sectionInset.left + _sectionInset.right;
-  
+
   _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
 
 	_itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
@@ -97,8 +95,6 @@ const int unionSize = 20;
 	for (idx = 0; idx < _columnCount; idx++) {
 		[_columnHeights addObject:@(_sectionInset.top + CGRectGetMaxY(_headerAttributes.frame))];
 	}
-
-  CGFloat maxColumnHeight = 0;
 
 	// Item will be put into shortest column.
 	for (idx = 0; idx < _itemCount; idx++) {
@@ -115,8 +111,6 @@ const int unionSize = 20;
 		attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
 		[_itemAttributes addObject:attributes];
 		_columnHeights[columnIndex] = @(yOffset + itemHeight + _interitemSpacing);
-
-    maxColumnHeight = MAX(maxColumnHeight, [_columnHeights[columnIndex] floatValue]);
 	}
 
 	idx = 0;
@@ -136,7 +130,9 @@ const int unionSize = 20;
     _footerAttributes =
     [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                    withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-    _footerAttributes.frame = CGRectMake(0, maxColumnHeight, width, footerHeight);
+    NSUInteger columnIndex = [self longestColumnIndex];
+    CGFloat yOffset = [self.columnHeights[columnIndex] floatValue] - _interitemSpacing + _sectionInset.bottom;
+    _footerAttributes.frame = CGRectMake(_sectionInset.left, yOffset, width, footerHeight);
   }
 }
 
@@ -164,8 +160,7 @@ const int unionSize = 20;
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
   if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
     return _headerAttributes;
-  }
-  else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+  } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
     return _footerAttributes;
   }
   return nil;
@@ -195,18 +190,12 @@ const int unionSize = 20;
 		}
 	}
 
-  if ([self.delegate respondsToSelector:@selector(collectionView:heightForHeaderInLayout:)]) {
-    BOOL hasHeader = [self.delegate collectionView:self.collectionView heightForHeaderInLayout:self] > 0;
-    if (hasHeader && _headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
-      [attrs addObject:_headerAttributes];
-    }
+  if (_headerAttributes && CGRectIntersectsRect(rect, [_headerAttributes frame])) {
+    [attrs addObject:_headerAttributes];
   }
   
-  if ([self.delegate respondsToSelector:@selector(collectionView:heightForFooterInLayout:)]) {
-    BOOL hasFooter = [self.delegate collectionView:self.collectionView heightForFooterInLayout:self] > 0;
-    if (hasFooter && _footerAttributes && CGRectIntersectsRect(rect, [_footerAttributes frame])) {
-      [attrs addObject:_footerAttributes];
-    }
+  if (_footerAttributes && CGRectIntersectsRect(rect, [_footerAttributes frame])) {
+    [attrs addObject:_footerAttributes];
   }
 
 	return [attrs copy];
@@ -224,10 +213,10 @@ const int unionSize = 20;
 	__block CGFloat shortestHeight = MAXFLOAT;
 
 	[self.columnHeights enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
-	    CGFloat height = [obj floatValue];
-	    if (height < shortestHeight) {
-	        shortestHeight = height;
-	        index = idx;
+    CGFloat height = [obj floatValue];
+    if (height < shortestHeight) {
+      shortestHeight = height;
+      index = idx;
 		}
 	}];
 
@@ -240,10 +229,10 @@ const int unionSize = 20;
 	__block CGFloat longestHeight = 0;
 
 	[self.columnHeights enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
-	    CGFloat height = [obj floatValue];
-	    if (height > longestHeight) {
-	        longestHeight = height;
-	        index = idx;
+    CGFloat height = [obj floatValue];
+    if (height > longestHeight) {
+      longestHeight = height;
+      index = idx;
 		}
 	}];
 
