@@ -24,4 +24,5 @@
 @property (nonatomic, assign) NSUInteger columnCount; // How many columns
 @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
 @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section
+@property (nonatomic, assign) CGFloat verticalItemSpacing; // Spacing between items vertically
 @end

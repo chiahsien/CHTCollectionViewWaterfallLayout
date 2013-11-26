@@ -21,16 +21,17 @@ How to Use
 Read the demo codes for detail information.
 
 #### Step 1
-There are four properties for you to set up.
+There are five properties for you to set up.
 
 ``` objc
 @property (nonatomic, weak) id<CHICollectionViewDelegateWaterfallLayout> delegate;
 @property (nonatomic, assign) NSUInteger columnCount; // How many columns
 @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
 @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section
+@property (nonatomic, assign) CGFloat verticalItemSpacing; // Spacing between items vertically
 ```
 
-It's your responsibility to set up `delegate`, `columnCount`, and `itemWidth`, they are required. But `sectionInset` is optional.
+It's your responsibility to set up `delegate`, `columnCount`, and `itemWidth`, they are required. But `sectionInset` and `verticalItemSpacing` are optional.
 
 #### Step 2
 And you also need to implement one method in your delegate for the `CHTCollectionViewDelegateWaterfallLayout` protocol.
