@@ -74,7 +74,16 @@ const int unionSize = 20;
   NSInteger idx = 0;
   _itemCount = [self.collectionView numberOfItemsInSection:0];
 
-  NSAssert(_columnCount > 1, @"columnCount for UICollectionViewWaterfallLayout should be greater than 1.");
+  NSAssert(_columnCount > 0, @"columnCount for UICollectionViewWaterfallLayout should be greater than 0.");
+
+  if (_columnCount == 1) {
+      // Horrible hack just to get it working till the author maybe gives it some configurability in the one column layout.
+    _interitemSpacing = _sectionInset.bottom;
+  }
+  else {
+    CGFloat width = self.collectionView.frame.size.width - _sectionInset.left - _sectionInset.right;
+    _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
+  }
   CGFloat width = self.collectionView.frame.size.width - _sectionInset.left - _sectionInset.right;
 
   _headerAttributes = nil;
@@ -87,8 +96,6 @@ const int unionSize = 20;
                                                                    withIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     _headerAttributes.frame = CGRectMake(_sectionInset.left, 0, width, headerHeight);
   }
-
-  _interitemSpacing = floorf((width - _columnCount * _itemWidth) / (_columnCount - 1));
 
   _itemAttributes = [NSMutableArray arrayWithCapacity:_itemCount];
   _columnHeights = [NSMutableArray arrayWithCapacity:_columnCount];
@@ -154,7 +161,10 @@ const int unionSize = 20;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)path {
-  return (self.itemAttributes)[path.item];
+    if (path.item != NSNotFound && path.item >= 0 && path.item < self.itemAttributes.count) {
+        return (self.itemAttributes)[path.item];
+    }
+    return nil;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
