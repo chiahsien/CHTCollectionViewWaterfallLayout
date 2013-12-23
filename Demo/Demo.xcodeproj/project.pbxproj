@@ -99,8 +99,6 @@
 			children = (
 				526109D316646F4D005E4B6E /* AppDelegate.h */,
 				526109D416646F4D005E4B6E /* AppDelegate.m */,
-				526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */,
-				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
 				526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */,
 				526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */,
 				28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */,
@@ -111,6 +109,7 @@
 				526109DF16646F4D005E4B6E /* MainStoryboard_iPad.storyboard */,
 				526109E216646F4D005E4B6E /* ViewController.h */,
 				526109E316646F4D005E4B6E /* ViewController.m */,
+				52E121B91867F53600B9DC53 /* Vender */,
 				526109CB16646F4D005E4B6E /* Supporting Files */,
 			);
 			path = Demo;
@@ -128,6 +127,15 @@
 				526109DA16646F4D005E4B6E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52E121B91867F53600B9DC53 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */,
+				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
+			);
+			name = Vender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
