@@ -53,17 +53,14 @@ Quoted from [PSTCollectionView] README file:
 
 Limitation
 ----------
-* Only one section is supported.
+* Only single section is supported.
 * Only vertical scrolling is supported.
-* No supplementary view and decoration view.
+* No decoration view.
 
 License
 -------
 CHTCollectionViewWaterfallLayout is available under the MIT license. See the LICENSE file for more info.
 
-Known Issue
------------
-None, so far.
 
 [UICollectionView]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionView_class/Reference/Reference.html
 [UICollectionViewLayout]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html
