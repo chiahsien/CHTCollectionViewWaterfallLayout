@@ -25,7 +25,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if (self = [super initWithCoder:aDecoder]) {
-    self.cellWidth = CELL_WIDTH;        // Default if not setting runtime attribute
+    self.cellWidth = CELL_WIDTH;    // Default if not setting runtime attribute
   }
   return self;
 }
@@ -36,7 +36,9 @@
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
     layout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
-    layout.delegate = self;
+    layout.verticalItemSpacing = 5;
+    layout.headerHeight = 15;
+    layout.footerHeight = 10;
 
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -46,10 +48,10 @@
     [_collectionView registerClass:[CHTCollectionViewWaterfallCell class]
         forCellWithReuseIdentifier:CELL_IDENTIFIER];
     [_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
-        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+        forSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader
                withReuseIdentifier:HEADER_IDENTIFIER];
     [_collectionView registerClass:[CHTCollectionViewWaterfallFooter class]
-        forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+        forSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter
                withReuseIdentifier:FOOTER_IDENTIFIER];
   }
   return _collectionView;
@@ -67,8 +69,8 @@
 
 #pragma mark - Life Cycle
 - (void)dealloc {
-  [_collectionView removeFromSuperview];
-  _collectionView = nil;
+  _collectionView.delegate = nil;
+  _collectionView.dataSource = nil;
 }
 
 - (void)viewDidLoad {
@@ -101,15 +103,14 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-  return 1;
+  return 2;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   CHTCollectionViewWaterfallCell *cell =
   (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
                                                                               forIndexPath:indexPath];
-  cell.displayString = [NSString stringWithFormat:@"%d", indexPath.row];
+  cell.displayString = [NSString stringWithFormat:@"%d", indexPath.item];
   return cell;
 }
 
@@ -118,11 +119,11 @@
                                  atIndexPath:(NSIndexPath *)indexPath {
   UICollectionReusableView *reusableView = nil;
 
-  if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+  if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
     reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                       withReuseIdentifier:HEADER_IDENTIFIER
                                                              forIndexPath:indexPath];
-  } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+  } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
     reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                       withReuseIdentifier:FOOTER_IDENTIFIER
                                                              forIndexPath:indexPath];
@@ -132,20 +133,10 @@
 }
 
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
- heightForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)   collectionView:(UICollectionView *)collectionView
+                      layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
+    heightForItemAtIndexPath:(NSIndexPath *)indexPath {
   return [self.cellHeights[indexPath.item] floatValue];
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-  heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
-  return 50;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-  heightForFooterInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout {
-  return 30;
 }
 
 @end
