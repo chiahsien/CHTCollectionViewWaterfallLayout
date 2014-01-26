@@ -8,21 +8,23 @@
 #import <UIKit/UIKit.h>
 
 @class CHTCollectionViewWaterfallLayout;
-@protocol CHTCollectionViewDelegateWaterfallLayout <UICollectionViewDelegate>
+
+@protocol CHTCollectionViewWaterfallLayoutDelegate <NSObject>
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
  heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 @optional
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-  heightForHeaderInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout;
+ heightForHeaderInSection:(NSUInteger)section;
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-  heightForFooterInLayout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout;
+ heightForFooterInSection:(NSUInteger)section;
 @end
 
 @interface CHTCollectionViewWaterfallLayout : UICollectionViewLayout
-@property (nonatomic, weak) IBOutlet id<CHTCollectionViewDelegateWaterfallLayout> delegate;
+@property (nonatomic, weak) IBOutlet id<CHTCollectionViewWaterfallLayoutDelegate> delegate;
 @property (nonatomic, assign) NSUInteger columnCount; // How many columns
 @property (nonatomic, assign) CGFloat itemWidth; // Width for every column
 @property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section
 @property (nonatomic, assign) CGFloat verticalItemSpacing; // Spacing between items vertically
+@property (nonatomic, assign) BOOL hideEmptySections; // Hiding headers and footers for emty sections
 @end

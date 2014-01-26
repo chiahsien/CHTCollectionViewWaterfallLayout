@@ -53,7 +53,6 @@ Quoted from [PSTCollectionView] README file:
 
 Limitation
 ----------
-* Only single section is supported.
 * Only vertical scrolling is supported.
 * No decoration view.
 
