@@ -18,27 +18,28 @@ Prerequisite
 
 How to Use
 ----------
-Read the demo codes for detail information.
+Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for more information.
 
 #### Step 1
-There are five properties for you to set up.
+There are some properties for you to set up.
 
 ``` objc
-@property (nonatomic, weak) id<CHICollectionViewDelegateWaterfallLayout> delegate;
-@property (nonatomic, assign) NSUInteger columnCount; // How many columns
-@property (nonatomic, assign) CGFloat itemWidth; // Width for every column
-@property (nonatomic, assign) UIEdgeInsets sectionInset; // The margins used to lay out content in a section
-@property (nonatomic, assign) CGFloat verticalItemSpacing; // Spacing between items vertically
+@property (nonatomic, assign) NSInteger columnCount;
+@property (nonatomic, assign) CGFloat itemWidth;
+@property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, assign) CGFloat footerHeight;
+@property (nonatomic, assign) UIEdgeInsets sectionInset;
+@property (nonatomic, assign) CGFloat verticalItemSpacically
 ```
 
-It's your responsibility to set up `delegate`, `columnCount`, and `itemWidth`, they are required. But `sectionInset` and `verticalItemSpacing` are optional.
+It's your responsibility to set up `columnCount` and `itemWidth`, they are required. Others are optional.
 
 #### Step 2
-And you also need to implement one method in your delegate for the `CHTCollectionViewDelegateWaterfallLayout` protocol.
+And your collectionView's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method:
 
 ``` objc
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(CHTCollectionViewWaterfallLayout *)collectionViewLayout
+                   layout:(UICollectionViewLayout *)collectionViewLayout
  heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 ```
 
@@ -48,8 +49,6 @@ If you need to support iOS 4.x/5.x and you have installed [PSTCollectionView], t
 Quoted from [PSTCollectionView] README file:
 > **If you want to have PSTCollectionView on iOS4.3/5.x and UICollectionView on iOS6, use PSUICollectionView (basically add PS on any UICollectionView* class to get auto-support for older iOS versions)**
 > If you always want to use PSTCollectionView, use PSTCollectionView as class names. (replace the UI with PST)
-
-*That's all! Easy, right?*
 
 Limitation
 ----------
