@@ -1,6 +1,9 @@
 CHTCollectionViewWaterfallLayout
 ===============================
 
+[![Version](https://cocoapod-badges.herokuapp.com/v/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
+[![Platform](https://cocoapod-badges.herokuapp.com/p/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
+
 iOS 6 introduced a new feature called [UICollectionView]. **CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout].
 This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectionView].
 
