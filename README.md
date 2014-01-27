@@ -4,7 +4,8 @@ CHTCollectionViewWaterfallLayout
 [![Version](https://cocoapod-badges.herokuapp.com/v/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
 [![Platform](https://cocoapod-badges.herokuapp.com/p/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
 
-iOS 6 introduced a new feature called [UICollectionView]. **CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout].
+iOS 6 introduced a new feature called [UICollectionView]. **CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout], and it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
+
 This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectionView].
 
 Screen Shots
@@ -24,7 +25,7 @@ How to Use
 Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for more information.
 
 #### Step 1
-There are some properties for you to set up.
+There are some properties for you. Although they have default values, I strongly recommand you to set up `columnCount` and `itemWidth` to suit your needs.
 
 ``` objc
 @property (nonatomic, assign) NSInteger columnCount;
@@ -35,10 +36,8 @@ There are some properties for you to set up.
 @property (nonatomic, assign) CGFloat verticalItemSpacically
 ```
 
-It's your responsibility to set up `columnCount` and `itemWidth`, they are required. Others are optional.
-
 #### Step 2
-And your collectionView's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method:
+Your collectionView's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method:
 
 ``` objc
 - (CGFloat)collectionView:(UICollectionView *)collectionView
@@ -62,8 +61,17 @@ License
 -------
 CHTCollectionViewWaterfallLayout is available under the MIT license. See the LICENSE file for more info.
 
+Changelog
+---------
+#### 0.0.5
+* [Add] Multiple sections.
+* [Add] Header and/or footer for section.
+* [Add] More properties and delegation methods.
+* [Change] Remove `delegate` property, your collectionView's delegate **MUST** conforms to `<CHTCollectionViewDelegateWaterfallLayout>` protocol.
+
 
 [UICollectionView]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionView_class/Reference/Reference.html
 [UICollectionViewLayout]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html
+[UICollectionViewFlowLayout]: https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewFlowLayout_class/Reference/Reference.html
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
