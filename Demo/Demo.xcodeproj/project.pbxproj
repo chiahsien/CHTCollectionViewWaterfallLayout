@@ -19,7 +19,6 @@
 		526109D916646F4D005E4B6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D816646F4D005E4B6E /* Default@2x.png */; };
 		526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
 		526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
-		526109E116646F4D005E4B6E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DF16646F4D005E4B6E /* MainStoryboard_iPad.storyboard */; };
 		526109E416646F4D005E4B6E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
 		526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */; };
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
@@ -44,7 +43,6 @@
 		526109D816646F4D005E4B6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		526109DA16646F4D005E4B6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		526109DD16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		526109E016646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		526109E216646F4D005E4B6E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		526109E316646F4D005E4B6E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
@@ -99,8 +97,6 @@
 			children = (
 				526109D316646F4D005E4B6E /* AppDelegate.h */,
 				526109D416646F4D005E4B6E /* AppDelegate.m */,
-				526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */,
-				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
 				526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */,
 				526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */,
 				28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */,
@@ -108,9 +104,9 @@
 				28ACC0C9181E580300454F4A /* CHTCollectionViewWaterfallFooter.h */,
 				28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */,
 				526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */,
-				526109DF16646F4D005E4B6E /* MainStoryboard_iPad.storyboard */,
 				526109E216646F4D005E4B6E /* ViewController.h */,
 				526109E316646F4D005E4B6E /* ViewController.m */,
+				52E121B91867F53600B9DC53 /* Vender */,
 				526109CB16646F4D005E4B6E /* Supporting Files */,
 			);
 			path = Demo;
@@ -128,6 +124,15 @@
 				526109DA16646F4D005E4B6E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52E121B91867F53600B9DC53 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */,
+				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
+			);
+			name = Vender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +191,6 @@
 				526109D916646F4D005E4B6E /* Default@2x.png in Resources */,
 				526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */,
 				526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */,
-				526109E116646F4D005E4B6E /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,14 +228,6 @@
 				526109DD16646F4D005E4B6E /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		526109DF16646F4D005E4B6E /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				526109E016646F4D005E4B6E /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
