@@ -129,6 +129,7 @@ const NSInteger unionSize = 20;
   self.unionRects = [NSMutableArray array];
   self.columnHeights = [NSMutableArray array];
   self.allItemAttributes = [NSMutableArray array];
+  self.sectionItemAttributes = [NSMutableArray array];
 
   for (idx = 0; idx < self.columnCount; idx++) {
     [self.columnHeights addObject:@(0)];
