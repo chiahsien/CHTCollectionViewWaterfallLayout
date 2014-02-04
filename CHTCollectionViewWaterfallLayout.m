@@ -267,6 +267,11 @@ const NSInteger unionSize = 20;
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+  CGRect oldBounds = self.collectionView.bounds;
+  if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds) ||
+      CGRectGetHeight(newBounds) != CGRectGetHeight(oldBounds)) {
+    return YES;
+  }
   return NO;
 }
 
