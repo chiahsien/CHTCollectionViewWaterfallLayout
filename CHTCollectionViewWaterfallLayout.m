@@ -81,20 +81,32 @@ const NSInteger unionSize = 20;
 }
 
 #pragma mark - Init
-- (void)commonInit {
-  _columnCount = 2;
-  _itemWidth = 140;
-  _headerHeight = 0;
-  _footerHeight = 0;
-  _verticalItemSpacing = 0;
-  _sectionInset = UIEdgeInsetsZero;
-}
 
 - (id)init {
-  if (self = [super init]) {
-    [self commonInit];
-  }
-  return self;
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (void)commonInit {
+    _columnCount = 2;
+    _itemWidth = 140;
+    _headerHeight = 0;
+    _footerHeight = 0;
+    _verticalItemSpacing = 0;
+    _sectionInset = UIEdgeInsetsZero;
 }
 
 #pragma mark - Methods to Override
