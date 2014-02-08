@@ -7,9 +7,13 @@
 
 #import <UIKit/UIKit.h>
 
-#pragma mark - Constants
+/**
+ *  Constants that specify the types of supplementary views that can be presented using a waterfall layout.
+ */
 
+/// A supplementary view that identifies the header for a given section.
 extern NSString *const CHTCollectionElementKindSectionHeader;
+/// A supplementary view that identifies the footer for a given section.
 extern NSString *const CHTCollectionElementKindSectionFooter;
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
@@ -31,9 +35,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @return
  *    The height of the specified item. Must be greater than 0.
  */
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout *)collectionViewLayout
- heightForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 /**
@@ -55,9 +57,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @see
  *    headerHeight
  */
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout *)collectionViewLayout
- heightForHeaderInSection:(NSInteger)section;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForHeaderInSection:(NSInteger)section;
 
 /**
  *  Asks the delegate for the height of the footer view in the specified section.
@@ -78,9 +78,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @see
  *    footerHeight
  */
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout *)collectionViewLayout
- heightForFooterInSection:(NSInteger)section;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section;
 @end
 
 #pragma mark - CHTCollectionViewWaterfallLayout
