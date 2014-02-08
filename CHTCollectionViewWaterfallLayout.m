@@ -92,7 +92,7 @@ const NSInteger unionSize = 20;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         [self commonInit];
     }
