@@ -11,5 +11,4 @@
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout>
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic) CGFloat cellWidth;
 @end
