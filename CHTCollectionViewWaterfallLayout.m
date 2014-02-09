@@ -136,6 +136,15 @@ const NSInteger unionSize = 20;
   if (self = [super init]) {
     [self commonInit];
   }
+
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super initWithCoder:aDecoder]) {
+    [self commonInit];
+  }
+
   return self;
 }
 
@@ -242,7 +251,7 @@ const NSInteger unionSize = 20;
     } else {
       footerHeight = self.footerHeight;
     }
-    
+
     if (footerHeight > 0) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(self.sectionInset.left, yOffset, width, footerHeight);
