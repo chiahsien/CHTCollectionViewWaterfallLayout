@@ -13,6 +13,13 @@ Screen Shots
 ![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
 ![3 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/3-columns.png)
 
+Features
+--------
+* Easy to use, it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
+* Highly customizable.
+* Outstanding performance, try 10,000+ items and see the smoothness for yourself.
+* Support header and footer views.
+
 Prerequisite
 ------------
 * ARC
@@ -25,7 +32,7 @@ How to Use
 Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for more information.
 
 #### Step 1
-There are some properties for you. Although they have default values, I strongly recommand you to set up `columnCount` to suit your needs.
+Below lists the properties for you to customize the layout. Although they have default values, I strongly recommand you to set up at least the `columnCount` property to suit your needs.
 
 ``` objc
 @property (nonatomic, assign) NSInteger columnCount;
@@ -37,7 +44,7 @@ There are some properties for you. Although they have default values, I strongly
 ```
 
 #### Step 2
-Your collectionView's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method:
+Your collection view's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method, all you need to do is return the original size of the item:
 
 ``` objc
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -61,14 +68,14 @@ CHTCollectionViewWaterfallLayout is available under the MIT license. See the LIC
 
 Changelog
 ---------
-#### 0.0.6
+#### 0.6
 * [Add] Add `minimumColumnSpacing` and `minimumInteritemSpacing` properties.
 * [Remove] Remove `itemWidth` property. The layout object will calculate a proper item width automatically.
 * [Change] Rename delegate method `- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath` to `- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath`. It should return original size for each item.
 * [Fix] Section header and/or footer should work properly.
 * [Fix] Use `sectionInset` correctly.
 
-#### 0.0.5
+#### 0.5
 * [Add] Multiple sections.
 * [Add] Header and/or footer for section.
 * [Add] More properties and delegation methods.
