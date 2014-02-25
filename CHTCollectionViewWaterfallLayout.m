@@ -85,11 +85,11 @@ const NSInteger unionSize = 20;
   return _headersAttribute;
 }
 
-- (NSMutableDictionary *)footersAttrubite {
-  if (!_footersAttrubite) {
-    _footersAttrubite = [NSMutableDictionary dictionary];
+- (NSMutableDictionary *)footersAttribute {
+  if (!_footersAttribute) {
+    _footersAttribute = [NSMutableDictionary dictionary];
   }
-  return _footersAttrubite;
+  return _footersAttribute;
 }
 
 - (NSMutableArray *)unionRects {
@@ -164,7 +164,7 @@ const NSInteger unionSize = 20;
   self.itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
 
   [self.headersAttribute removeAllObjects];
-  [self.footersAttrubite removeAllObjects];
+  [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];
   [self.columnHeights removeAllObjects];
   [self.allItemAttributes removeAllObjects];
@@ -245,7 +245,7 @@ const NSInteger unionSize = 20;
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, footerHeight);
 
-      self.footersAttrubite[@(section)] = attributes;
+      self.footersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
 
       top = CGRectGetMaxY(attributes.frame);
@@ -295,7 +295,7 @@ const NSInteger unionSize = 20;
   if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
     attribute = self.headersAttribute[@(indexPath.section)];
   } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
-    attribute = self.footersAttrubite[@(indexPath.section)];
+    attribute = self.footersAttribute[@(indexPath.section)];
   }
   return attribute;
 }
