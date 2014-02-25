@@ -22,7 +22,7 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 /// Dictionary to store section headers' attribute
 @property (nonatomic, strong) NSMutableDictionary *headersAttribute;
 /// Dictionary to store section footers' attribute
-@property (nonatomic, strong) NSMutableDictionary *footersAttrubite;
+@property (nonatomic, strong) NSMutableDictionary *footersAttribute;
 /// Array to store union rectangles
 @property (nonatomic, strong) NSMutableArray *unionRects;
 /// Width for each item
