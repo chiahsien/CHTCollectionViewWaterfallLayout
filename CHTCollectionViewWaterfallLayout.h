@@ -99,7 +99,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    The index path of the item.
  *
  *  @return
- *    The number of columns that the item spans. Must the greater than 0 and less than columnCount.
+ *    The number of columns that the item spans. Must the greater than 0 and less or equal than columnCount.
  */
 -(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpanForItemAtIndexPath:(NSIndexPath *)indexPath;
 
