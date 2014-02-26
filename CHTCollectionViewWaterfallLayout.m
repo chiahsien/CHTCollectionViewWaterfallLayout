@@ -22,7 +22,7 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 /// Dictionary to store section headers' attribute
 @property (nonatomic, strong) NSMutableDictionary *headersAttribute;
 /// Dictionary to store section footers' attribute
-@property (nonatomic, strong) NSMutableDictionary *footersAttrubite;
+@property (nonatomic, strong) NSMutableDictionary *footersAttribute;
 /// Array to store union rectangles
 @property (nonatomic, strong) NSMutableArray *unionRects;
 /// Width for each item
@@ -85,11 +85,11 @@ const NSInteger unionSize = 20;
   return _headersAttribute;
 }
 
-- (NSMutableDictionary *)footersAttrubite {
-  if (!_footersAttrubite) {
-    _footersAttrubite = [NSMutableDictionary dictionary];
+- (NSMutableDictionary *)footersAttribute {
+  if (!_footersAttribute) {
+    _footersAttribute = [NSMutableDictionary dictionary];
   }
-  return _footersAttrubite;
+  return _footersAttribute;
 }
 
 - (NSMutableArray *)unionRects {
@@ -164,7 +164,7 @@ const NSInteger unionSize = 20;
   self.itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
 
   [self.headersAttribute removeAllObjects];
-  [self.footersAttrubite removeAllObjects];
+  [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];
   [self.columnHeights removeAllObjects];
   [self.allItemAttributes removeAllObjects];
@@ -213,17 +213,53 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
-      CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
-      NSUInteger columnIndex = [self shortestColumnIndex];
-      CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
-      CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
 
+      NSInteger columnSpan;
+      
+      // Determine the number of columns this item spans
+      if ([self.delegate respondsToSelector:@selector(collectionView:layout:columnSpanForItemAtIndexPath:)]) {
+        columnSpan = [self.delegate collectionView:self.collectionView layout:self columnSpanForItemAtIndexPath:indexPath];
+      } else {
+        columnSpan = 1;
+      }
+      
+      // Make sure the column span value is valid
+      NSAssert(self.columnCount >= columnSpan, @"numberOfColumnsForItemAtIndexPath can't be greater than columnCount");
+      NSAssert(0 < columnSpan, @"numberOfColumnsForItemAtIndexPath must be greater than 0");
+      
+      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
+      
+      // Item width is determined by the number of columns it stretches
+      CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
+      CGFloat itemWidth = floorf(self.itemWidth * columnSpan + self.minimumColumnSpacing * (columnSpan - 1));
+      
+      // Find shortest column index and set offset
+      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnSpan:columnSpan];
+      
+      // Range for columns covered by the item
+      NSRange range;
+      range.location = columnIndex;
+      range.length = columnSpan;
+      
+      // The columns that the item will cover
+      NSMutableArray* itemColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
+      
+      // The longest column index that the item covers
+      NSUInteger longestItemColumnIndex = [self longestColumnIndex:itemColumns] + range.location;
+      
+      // Set item offset
+      CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
+      CGFloat yOffset = [self.columnHeights[longestItemColumnIndex] floatValue];
+      
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-      attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
+      attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
       [itemAttributes addObject:attributes];
       [self.allItemAttributes addObject:attributes];
-      self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
+      
+      // Update all affected column heights
+      for(int i = columnIndex; i < columnIndex + columnSpan; i++) {
+        self.columnHeights[i] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
+      }
     }
 
     [self.sectionItemAttributes addObject:itemAttributes];
@@ -245,7 +281,7 @@ const NSInteger unionSize = 20;
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, footerHeight);
 
-      self.footersAttrubite[@(section)] = attributes;
+      self.footersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
 
       top = CGRectGetMaxY(attributes.frame);
@@ -295,7 +331,7 @@ const NSInteger unionSize = 20;
   if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
     attribute = self.headersAttribute[@(indexPath.section)];
   } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
-    attribute = self.footersAttrubite[@(indexPath.section)];
+    attribute = self.footersAttribute[@(indexPath.section)];
   }
   return attribute;
 }
@@ -339,22 +375,48 @@ const NSInteger unionSize = 20;
 #pragma mark - Private Methods
 
 /**
+ *  Finds the index of the shortest column where an item with specified column span can fit.
+ *  
+ *  @return index of the shortest column that has room for an item with the specified column span
+ */
+-(NSUInteger)shortestColumnIndexForItemWithColumnSpan:(NSUInteger)columnSpan {
+  
+  // The range of possible columns
+  NSRange range;
+  range.location = 0;
+  range.length = self.columnHeights.count - columnSpan + 1;
+  
+  NSMutableArray* possibleColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
+  
+  return [self shortestColumnIndex:possibleColumns];
+}
+
+/**
  *  Find the shortest column.
  *
  *  @return index for the shortest column
  */
 - (NSUInteger)shortestColumnIndex {
+  return [self shortestColumnIndex:self.columnHeights];
+}
+
+/**
+ *  Find the shortest column in the specified columnHeights array.
+ *
+ *  @return index for the longest column
+ */
+- (NSUInteger)shortestColumnIndex:(NSMutableArray*)columnHeights {
   __block NSUInteger index = 0;
   __block CGFloat shortestHeight = MAXFLOAT;
-
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  
+  [columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height < shortestHeight) {
       shortestHeight = height;
       index = idx;
     }
   }];
-
+  
   return index;
 }
 
@@ -364,17 +426,26 @@ const NSInteger unionSize = 20;
  *  @return index for the longest column
  */
 - (NSUInteger)longestColumnIndex {
+  return [self longestColumnIndex:self.columnHeights];
+}
+
+/**
+ *  Find the longest column in the specified columnHeights array.
+ *  
+ *  @return index for the longest column
+ */
+- (NSUInteger)longestColumnIndex:(NSMutableArray*)columnHeights {
   __block NSUInteger index = 0;
   __block CGFloat longestHeight = 0;
-
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  
+  [columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height > longestHeight) {
       longestHeight = height;
       index = idx;
     }
   }];
-
+  
   return index;
 }
 

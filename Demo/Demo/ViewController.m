@@ -29,10 +29,11 @@
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.headerHeight = 15;
+    layout.headerHeight = 25;
     layout.footerHeight = 10;
     layout.minimumColumnSpacing = 20;
     layout.minimumInteritemSpacing = 30;
+    layout.columnCount = 4;
 
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -87,7 +88,7 @@
 - (void)updateLayoutForOrientation:(UIInterfaceOrientation)orientation {
   CHTCollectionViewWaterfallLayout *layout =
     (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
-  layout.columnCount = UIInterfaceOrientationIsPortrait(orientation) ? 2 : 3;
+  layout.columnCount = UIInterfaceOrientationIsPortrait(orientation) ? 4 : 5;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -128,5 +129,18 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   return [self.cellSizes[indexPath.item] CGSizeValue];
 }
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpanForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.item == 6) {
+        return 2;
+    } else if (indexPath.item == 9) {
+        return 2;
+    } else if (indexPath.item == 13) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
 
 @end

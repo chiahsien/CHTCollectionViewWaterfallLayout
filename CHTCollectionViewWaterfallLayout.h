@@ -87,6 +87,22 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    footerHeight
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section;
+
+/**
+ *  Asks the delegate for the column span of the specified item’s cell.
+ *
+ *  @param collectionView
+ *    The collection view object displaying the waterfall layout.
+ *  @param collectionViewLayout
+ *    The layout object requesting the information.
+ *  @param indexPath
+ *    The index path of the item.
+ *
+ *  @return
+ *    The number of columns that the item spans. Must the greater than 0 and less or equal than columnCount.
+ */
+-(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpanForItemAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - CHTCollectionViewWaterfallLayout
