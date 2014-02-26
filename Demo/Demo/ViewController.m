@@ -132,7 +132,11 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpanForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.item == 6) {
-        return 3;
+        return 2;
+    } else if (indexPath.item == 9) {
+        return 2;
+    } else if (indexPath.item == 13) {
+        return 2;
     } else {
         return 1;
     }

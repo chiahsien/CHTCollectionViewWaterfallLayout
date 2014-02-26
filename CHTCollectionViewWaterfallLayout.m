@@ -214,24 +214,32 @@ const NSInteger unionSize = 20;
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
 
-      // The number of columns this item needs
-      NSInteger numColumnsNeeded = [self.delegate collectionView:self.collectionView layout:self columnSpanForItemAtIndexPath:indexPath];
+      NSInteger columnSpan;
       
-      NSAssert(self.columnCount > numColumnsNeeded, @"numberOfColumnsForItemAtIndexPath can't be greater than columnCount");
-        
+      // Determine the number of columns this item spans
+      if ([self.delegate respondsToSelector:@selector(collectionView:layout:columnSpanForItemAtIndexPath:)]) {
+        columnSpan = [self.delegate collectionView:self.collectionView layout:self columnSpanForItemAtIndexPath:indexPath];
+      } else {
+        columnSpan = 1;
+      }
+      
+      // Make sure the column span value is valid
+      NSAssert(self.columnCount >= columnSpan, @"numberOfColumnsForItemAtIndexPath can't be greater than columnCount");
+      NSAssert(0 < columnSpan, @"numberOfColumnsForItemAtIndexPath must be greater than 0");
+      
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       
       // Item width is determined by the number of columns it stretches
       CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
-      CGFloat itemWidth = floorf(self.itemWidth * numColumnsNeeded + self.minimumColumnSpacing * (numColumnsNeeded - 1));
+      CGFloat itemWidth = floorf(self.itemWidth * columnSpan + self.minimumColumnSpacing * (columnSpan - 1));
       
       // Find shortest column index and set offset
-      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnWidth:numColumnsNeeded];
+      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnWidth:columnSpan];
       
       // Range for columns covered by the item
       NSRange range;
       range.location = columnIndex;
-      range.length = numColumnsNeeded;
+      range.length = columnSpan;
       
       // The columns that the item will cover
       NSMutableArray* itemColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
@@ -249,7 +257,7 @@ const NSInteger unionSize = 20;
       [self.allItemAttributes addObject:attributes];
       
       // Update all affected column heights
-      for(int i = columnIndex; i < columnIndex + numColumnsNeeded; i++) {
+      for(int i = columnIndex; i < columnIndex + columnSpan; i++) {
         self.columnHeights[i] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
       }
     }
