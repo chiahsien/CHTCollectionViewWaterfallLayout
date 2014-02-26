@@ -215,7 +215,9 @@ const NSInteger unionSize = 20;
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
 
       // The number of columns this item needs
-      NSInteger numColumnsNeeded = [self.delegate collectionView:self.collectionView layout:self numberOfColumnsForItemAtIndexPath:indexPath];
+      NSInteger numColumnsNeeded = [self.delegate collectionView:self.collectionView layout:self columnSpanForItemAtIndexPath:indexPath];
+      
+      NSAssert(self.columnCount > numColumnsNeeded, @"numberOfColumnsForItemAtIndexPath can't be greater than columnCount");
         
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       

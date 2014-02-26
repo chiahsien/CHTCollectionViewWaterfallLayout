@@ -130,9 +130,9 @@
   return [self.cellSizes[indexPath.item] CGSizeValue];
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout numberOfColumnsForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpanForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.item == 6) {
-        return 4;
+        return 3;
     } else {
         return 1;
     }
