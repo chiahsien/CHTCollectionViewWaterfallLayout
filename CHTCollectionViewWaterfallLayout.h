@@ -87,6 +87,10 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    footerHeight
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section;
+
+/* How many columns this item will need */
+-(NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout numberOfColumnsForItemAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - CHTCollectionViewWaterfallLayout

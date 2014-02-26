@@ -213,17 +213,43 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
-      CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
-      NSUInteger columnIndex = [self shortestColumnIndex];
-      CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
-      CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
 
+      // The number of columns this item needs
+      NSInteger numColumnsNeeded = [self.delegate collectionView:self.collectionView layout:self numberOfColumnsForItemAtIndexPath:indexPath];
+        
+      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
+      
+      // Item width is determined by the number of columns it stretches
+      CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
+      CGFloat itemWidth = floorf(self.itemWidth * numColumnsNeeded + self.minimumColumnSpacing * (numColumnsNeeded - 1));
+      
+      // Find shortest column index and set offset
+      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnWidth:numColumnsNeeded];
+      
+      // Range for columns covered by the item
+      NSRange range;
+      range.location = columnIndex;
+      range.length = numColumnsNeeded;
+      
+      // The columns that the item will cover
+      NSMutableArray* itemColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
+      
+      // The longest column index that the item covers
+      NSUInteger longestItemColumnIndex = [self longestColumnIndex:itemColumns] + range.location;
+      
+      // Set item offset
+      CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
+      CGFloat yOffset = [self.columnHeights[longestItemColumnIndex] floatValue];
+      
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-      attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
+      attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
       [itemAttributes addObject:attributes];
       [self.allItemAttributes addObject:attributes];
-      self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
+      
+      // Update all affected column heights
+      for(int i = columnIndex; i < columnIndex + numColumnsNeeded; i++) {
+        self.columnHeights[i] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
+      }
     }
 
     [self.sectionItemAttributes addObject:itemAttributes];
@@ -339,22 +365,48 @@ const NSInteger unionSize = 20;
 #pragma mark - Private Methods
 
 /**
+ *  Finds the index of the shortest column that has 'numColumns' to the right side
+ *  
+ *  @return index of the shortest column that has room for an item that takes 'numColumns'
+ */
+-(NSUInteger)shortestColumnIndexForItemWithColumnWidth:(NSUInteger)columnWidth {
+  
+  // The range of possible columns
+  NSRange range;
+  range.location = 0;
+  range.length = self.columnHeights.count - columnWidth + 1;
+  
+  NSMutableArray* possibleColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
+  
+  return [self shortestColumnIndex:possibleColumns];
+}
+
+/**
  *  Find the shortest column.
  *
  *  @return index for the shortest column
  */
 - (NSUInteger)shortestColumnIndex {
+  return [self shortestColumnIndex:self.columnHeights];
+}
+
+/**
+ *  Find the shortest column in the specified columnHeights array.
+ *
+ *  @return index for the longest column
+ */
+- (NSUInteger)shortestColumnIndex:(NSMutableArray*)columnHeights {
   __block NSUInteger index = 0;
   __block CGFloat shortestHeight = MAXFLOAT;
-
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  
+  [columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height < shortestHeight) {
       shortestHeight = height;
       index = idx;
     }
   }];
-
+  
   return index;
 }
 
@@ -364,17 +416,26 @@ const NSInteger unionSize = 20;
  *  @return index for the longest column
  */
 - (NSUInteger)longestColumnIndex {
+  return [self longestColumnIndex:self.columnHeights];
+}
+
+/**
+ *  Find the longest column in the specified columnHeights array.
+ *  
+ *  @return index for the longest column
+ */
+- (NSUInteger)longestColumnIndex:(NSMutableArray*)columnHeights {
   __block NSUInteger index = 0;
   __block CGFloat longestHeight = 0;
-
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  
+  [columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height > longestHeight) {
       longestHeight = height;
       index = idx;
     }
   }];
-
+  
   return index;
 }
 
