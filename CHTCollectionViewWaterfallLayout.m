@@ -234,7 +234,7 @@ const NSInteger unionSize = 20;
       CGFloat itemWidth = floorf(self.itemWidth * columnSpan + self.minimumColumnSpacing * (columnSpan - 1));
       
       // Find shortest column index and set offset
-      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnWidth:columnSpan];
+      NSUInteger columnIndex = [self shortestColumnIndexForItemWithColumnSpan:columnSpan];
       
       // Range for columns covered by the item
       NSRange range;
@@ -375,16 +375,16 @@ const NSInteger unionSize = 20;
 #pragma mark - Private Methods
 
 /**
- *  Finds the index of the shortest column that has 'numColumns' to the right side
+ *  Finds the index of the shortest column where an item with specified column span can fit.
  *  
- *  @return index of the shortest column that has room for an item that takes 'numColumns'
+ *  @return index of the shortest column that has room for an item with the specified column span
  */
--(NSUInteger)shortestColumnIndexForItemWithColumnWidth:(NSUInteger)columnWidth {
+-(NSUInteger)shortestColumnIndexForItemWithColumnSpan:(NSUInteger)columnSpan {
   
   // The range of possible columns
   NSRange range;
   range.location = 0;
-  range.length = self.columnHeights.count - columnWidth + 1;
+  range.length = self.columnHeights.count - columnSpan + 1;
   
   NSMutableArray* possibleColumns = [[NSMutableArray alloc] initWithArray:[self.columnHeights subarrayWithRange:range]];
   
