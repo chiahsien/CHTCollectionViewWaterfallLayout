@@ -22,7 +22,7 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 /// Dictionary to store section headers' attribute
 @property (nonatomic, strong) NSMutableDictionary *headersAttribute;
 /// Dictionary to store section footers' attribute
-@property (nonatomic, strong) NSMutableDictionary *footersAttrubite;
+@property (nonatomic, strong) NSMutableDictionary *footersAttribute;
 /// Array to store union rectangles
 @property (nonatomic, strong) NSMutableArray *unionRects;
 /// Width for each item
@@ -85,11 +85,11 @@ const NSInteger unionSize = 20;
   return _headersAttribute;
 }
 
-- (NSMutableDictionary *)footersAttrubite {
-  if (!_footersAttrubite) {
-    _footersAttrubite = [NSMutableDictionary dictionary];
+- (NSMutableDictionary *)footersAttribute {
+  if (!_footersAttribute) {
+    _footersAttribute = [NSMutableDictionary dictionary];
   }
-  return _footersAttrubite;
+  return _footersAttribute;
 }
 
 - (NSMutableArray *)unionRects {
@@ -164,7 +164,7 @@ const NSInteger unionSize = 20;
   self.itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
 
   [self.headersAttribute removeAllObjects];
-  [self.footersAttrubite removeAllObjects];
+  [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];
   [self.columnHeights removeAllObjects];
   [self.allItemAttributes removeAllObjects];
@@ -213,11 +213,14 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
-      CGFloat itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
       NSUInteger columnIndex = [self shortestColumnIndex];
       CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
+      CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
+      CGFloat itemHeight = 0;
+      if (itemSize.height > 0 && itemSize.width > 0) {
+        itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
+      }
 
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
       attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
@@ -245,7 +248,7 @@ const NSInteger unionSize = 20;
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, footerHeight);
 
-      self.footersAttrubite[@(section)] = attributes;
+      self.footersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
 
       top = CGRectGetMaxY(attributes.frame);
@@ -295,7 +298,7 @@ const NSInteger unionSize = 20;
   if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
     attribute = self.headersAttribute[@(indexPath.section)];
   } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
-    attribute = self.footersAttrubite[@(indexPath.section)];
+    attribute = self.footersAttribute[@(indexPath.section)];
   }
   return attribute;
 }

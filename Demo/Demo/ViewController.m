@@ -104,7 +104,7 @@
   CHTCollectionViewWaterfallCell *cell =
     (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
                                                                                 forIndexPath:indexPath];
-  cell.displayString = [NSString stringWithFormat:@"%d", indexPath.item];
+  cell.displayString = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
   return cell;
 }
 
