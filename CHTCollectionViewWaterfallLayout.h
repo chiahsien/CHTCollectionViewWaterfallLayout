@@ -92,15 +92,15 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 #pragma mark - CHTCollectionViewWaterfallLayout
 
 /**
- *  The CHTCollectionViewWaterfallLayout class is a concrete layout object that organizes items into waterfall-based grids 
+ *  The CHTCollectionViewWaterfallLayout class is a concrete layout object that organizes items into waterfall-based grids
  *  with optional header and footer views for each section.
  *
- *  A waterfall layout works with the collection view’s delegate object to determine the size of items, headers, and footers 
+ *  A waterfall layout works with the collection view’s delegate object to determine the size of items, headers, and footers
  *  in each section. That delegate object must conform to the `CHTCollectionViewDelegateWaterfallLayout` protocol.
  *
- *  Each section in a waterfall layout can have its own custom header and footer. To configure the header or footer for a view, 
- *  you must configure the height of the header or footer to be non zero. You can do this by implementing the appropriate delegate 
- *  methods or by assigning appropriate values to the `headerHeight` and `footerHeight` properties. 
+ *  Each section in a waterfall layout can have its own custom header and footer. To configure the header or footer for a view,
+ *  you must configure the height of the header or footer to be non zero. You can do this by implementing the appropriate delegate
+ *  methods or by assigning appropriate values to the `headerHeight` and `footerHeight` properties.
  *  If the header or footer height is 0, the corresponding view is not added to the collection view.
  *
  *  @note CHTCollectionViewWaterfallLayout doesn't support decoration view, and it supports vertical scrolling direction only.
@@ -149,8 +149,8 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 /**
  *  @brief The margins that are used to lay out content in each section.
  *  @discussion
- *    Section insets are margins applied only to the items in the section. 
- *    They represent the distance between the header view and the columns and between the columns and the footer view. 
+ *    Section insets are margins applied only to the items in the section.
+ *    They represent the distance between the header view and the columns and between the columns and the footer view.
  *    They also indicate the spacing on either side of columns. They do not affect the size of the headers or footers themselves.
  *
  *    Default: UIEdgeInsetsZero
@@ -158,10 +158,9 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
 /**
- *  @brief The calculated width for each section
+ *  @brief The calculated width for each cell item
  *  @discussion
- *    Based on the current number of columns and the collection view width
- *
+ *    Based on the current number of columns and the collection view width.
  */
 @property (nonatomic, readonly) CGFloat itemWidth;
 
