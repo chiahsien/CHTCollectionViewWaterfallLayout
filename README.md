@@ -11,7 +11,6 @@ This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectio
 Screen Shots
 ------------
 ![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
-![3 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/3-columns.png)
 
 Features
 --------
@@ -26,6 +25,13 @@ Prerequisite
 * Xcode 4.4+, which supports literals syntax.
 * iOS 6+, or
 * iOS 4.x/5.x, with [PSTCollectionView].
+
+How to install
+--------------
+* [Cocoapods]  
+  Add `pod 'CHTCollectionViewWaterfallLayout'` to your podfile.
+* Manual  
+  Copy `CHTCollectionViewWaterfallLayout.h/m` to your project.
 
 How to Use
 ----------
@@ -68,21 +74,11 @@ CHTCollectionViewWaterfallLayout is available under the MIT license. See the LIC
 
 Changelog
 ---------
-#### 0.6
-* [Add] Add `minimumColumnSpacing` and `minimumInteritemSpacing` properties.
-* [Remove] Remove `itemWidth` property. The layout object will calculate a proper item width automatically.
-* [Change] Rename delegate method `- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath` to `- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath`. It should return original size for each item.
-* [Fix] Section header and/or footer should work properly.
-* [Fix] Use `sectionInset` correctly.
-
-#### 0.5
-* [Add] Multiple sections.
-* [Add] Header and/or footer for section.
-* [Add] More properties and delegation methods.
-* [Change] Remove `delegate` property, your collectionView's delegate **MUST** conforms to `<CHTCollectionViewDelegateWaterfallLayout>` protocol.
-
+Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/releases).
 
 [UICollectionViewLayout]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html
 [UICollectionViewFlowLayout]: https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewFlowLayout_class/Reference/Reference.html
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
+[Cocoapods]: http://cocoapods.org/
+
