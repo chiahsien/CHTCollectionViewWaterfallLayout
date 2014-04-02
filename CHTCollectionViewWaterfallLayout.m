@@ -25,8 +25,6 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 @property (nonatomic, strong) NSMutableDictionary *footersAttribute;
 /// Array to store union rectangles
 @property (nonatomic, strong) NSMutableArray *unionRects;
-/// Width for each item
-@property (nonatomic, assign) CGFloat itemWidth;
 @end
 
 @implementation CHTCollectionViewWaterfallLayout
@@ -144,6 +142,11 @@ const NSInteger unionSize = 20;
   return self;
 }
 
+-(CGFloat)itemWidth{
+    CGFloat width = self.collectionView.frame.size.width - self.sectionInset.left - self.sectionInset.right;
+    return floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+}
+
 #pragma mark - Methods to Override
 - (void)prepareLayout {
   [super prepareLayout];
@@ -159,9 +162,7 @@ const NSInteger unionSize = 20;
 
   // Initialize variables
   NSInteger idx = 0;
-  CGFloat width = self.collectionView.frame.size.width - self.sectionInset.left - self.sectionInset.right;
-
-  self.itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+  
 
   [self.headersAttribute removeAllObjects];
   [self.footersAttribute removeAllObjects];
@@ -176,6 +177,7 @@ const NSInteger unionSize = 20;
 
   // Create attributes
   CGFloat top = 0;
+  CGFloat itemWidth = [self itemWidth];
   UICollectionViewLayoutAttributes *attributes;
 
   for (NSInteger section = 0; section < numberOfSections; ++section) {
@@ -214,16 +216,16 @@ const NSInteger unionSize = 20;
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
       NSUInteger columnIndex = [self shortestColumnIndex];
-      CGFloat xOffset = self.sectionInset.left + (self.itemWidth + self.minimumColumnSpacing) * columnIndex;
+      CGFloat xOffset = self.sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
       if (itemSize.height > 0 && itemSize.width > 0) {
-        itemHeight = floorf(itemSize.height * self.itemWidth / itemSize.width);
+        itemHeight = floorf(itemSize.height * itemWidth / itemSize.width);
       }
 
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-      attributes.frame = CGRectMake(xOffset, yOffset, self.itemWidth, itemHeight);
+      attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
       [itemAttributes addObject:attributes];
       [self.allItemAttributes addObject:attributes];
       self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);

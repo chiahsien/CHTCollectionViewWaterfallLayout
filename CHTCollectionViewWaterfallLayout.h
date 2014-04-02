@@ -156,4 +156,13 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    Default: UIEdgeInsetsZero
  */
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
+
+/**
+ *  @brief The calculated width for each section
+ *  @discussion
+ *    Based on the current number of columns and the collection view width
+ *
+ */
+@property (nonatomic, readonly) CGFloat itemWidth;
+
 @end
