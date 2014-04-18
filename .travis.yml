@@ -1,6 +1,5 @@
 language: objective-c
 before_install:
-- gem i cocoapods --no-ri --no-rdoc
 - cd Demo
 script:
-- xctool -project Demo.xcodeproj -scheme Demo
+- xctool -project Demo.xcodeproj -scheme Demo -sdk iphonesimulator
