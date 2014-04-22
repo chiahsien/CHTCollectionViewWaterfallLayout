@@ -195,4 +195,11 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    Default: UIEdgeInsetsZero
  */
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
+
+/**
+ *  @brief The calculated width of an item in the specified section.
+ *  @discussion
+ *    The width of an item is calculated based on number of columns, the collection view width, and the horizontal insets for that section.
+ */
+- (CGFloat)itemWidthInSectionAtIndex:(NSInteger) section;
 @end

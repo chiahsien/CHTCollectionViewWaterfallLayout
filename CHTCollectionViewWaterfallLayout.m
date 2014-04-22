@@ -118,6 +118,20 @@ const NSInteger unionSize = 20;
   return _sectionItemAttributes;
 }
 
+- (CGFloat)itemWidthInSectionAtIndex:(NSInteger) section {
+  UIEdgeInsets sectionInset;
+  if ([_delegate
+       respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
+    sectionInset = [_delegate collectionView:self.collectionView
+                                      layout:self
+                      insetForSectionAtIndex:section];
+  } else {
+    sectionInset = self.sectionInset;
+  }
+  CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
+  return floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+}
+
 #pragma mark - Init
 - (void)commonInit {
   _columnCount = 2;
