@@ -142,11 +142,6 @@ const NSInteger unionSize = 20;
   return self;
 }
 
--(CGFloat)itemWidth{
-    CGFloat width = self.collectionView.frame.size.width - self.sectionInset.left - self.sectionInset.right;
-    return floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
-}
-
 #pragma mark - Methods to Override
 - (void)prepareLayout {
   [super prepareLayout];
@@ -162,7 +157,6 @@ const NSInteger unionSize = 20;
 
   // Initialize variables
   NSInteger idx = 0;
-  
 
   [self.headersAttribute removeAllObjects];
   [self.footersAttribute removeAllObjects];
@@ -177,12 +171,39 @@ const NSInteger unionSize = 20;
 
   // Create attributes
   CGFloat top = 0;
-  CGFloat itemWidth = [self itemWidth];
   UICollectionViewLayoutAttributes *attributes;
 
   for (NSInteger section = 0; section < numberOfSections; ++section) {
     /*
-     * 1. Section header
+     * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
+     */
+    CGFloat minimumInteritemSpacing;
+    if ([_delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
+      minimumInteritemSpacing = [_delegate collectionView:self.collectionView
+                                                   layout:self
+                 minimumInteritemSpacingForSectionAtIndex:section];
+    } else {
+      minimumInteritemSpacing = self.minimumInteritemSpacing;
+    }
+
+    UIEdgeInsets sectionInset;
+    if ([_delegate
+         respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
+      sectionInset = [_delegate collectionView:self.collectionView
+                                        layout:self
+                        insetForSectionAtIndex:section];
+    } else {
+      sectionInset = self.sectionInset;
+    }
+
+    CGFloat width = self.collectionView.frame.size.width
+        - sectionInset.left - sectionInset.right;
+
+    CGFloat itemWidth = floorf((width - (self.columnCount - 1)
+                                * self.minimumColumnSpacing) / self.columnCount);
+
+    /*
+     * 2. Section header
      */
     CGFloat headerHeight;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:heightForHeaderInSection:)]) {
@@ -201,13 +222,13 @@ const NSInteger unionSize = 20;
       top = CGRectGetMaxY(attributes.frame);
     }
 
-    top += self.sectionInset.top;
+    top += sectionInset.top;
     for (idx = 0; idx < self.columnCount; idx++) {
       self.columnHeights[idx] = @(top);
     }
 
     /*
-     * 2. Section items
+     * 3. Section items
      */
     NSInteger itemCount = [self.collectionView numberOfItemsInSection:section];
     NSMutableArray *itemAttributes = [NSMutableArray arrayWithCapacity:itemCount];
@@ -216,7 +237,7 @@ const NSInteger unionSize = 20;
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
       NSUInteger columnIndex = [self shortestColumnIndex];
-      CGFloat xOffset = self.sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
+      CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
@@ -228,17 +249,19 @@ const NSInteger unionSize = 20;
       attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
       [itemAttributes addObject:attributes];
       [self.allItemAttributes addObject:attributes];
-      self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) + self.minimumInteritemSpacing);
+      self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) +
+          minimumInteritemSpacing);
     }
 
     [self.sectionItemAttributes addObject:itemAttributes];
 
     /*
-     * Section footer
+     * 4. Section footer
      */
     CGFloat footerHeight;
     NSUInteger columnIndex = [self longestColumnIndex];
-    top = [self.columnHeights[columnIndex] floatValue] - self.minimumInteritemSpacing + self.sectionInset.bottom;
+    top = [self.columnHeights[columnIndex] floatValue]
+        - minimumInteritemSpacing + sectionInset.bottom;
 
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:heightForFooterInSection:)]) {
       footerHeight = [self.delegate collectionView:self.collectionView layout:self heightForFooterInSection:section];
