@@ -3,6 +3,7 @@ CHTCollectionViewWaterfallLayout
 
 [![Version](https://cocoapod-badges.herokuapp.com/v/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
 [![Platform](https://cocoapod-badges.herokuapp.com/p/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
+[![Build Status](https://travis-ci.org/chiahsien/CHTCollectionViewWaterfallLayout.svg?branch=master)](https://travis-ci.org/chiahsien/CHTCollectionViewWaterfallLayout)
 
 **CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout], and it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
 
@@ -28,7 +29,7 @@ Prerequisite
 
 How to install
 --------------
-* [Cocoapods]  
+* [CocoaPods]  
   Add `pod 'CHTCollectionViewWaterfallLayout'` to your podfile.
 * Manual  
   Copy `CHTCollectionViewWaterfallLayout.h/m` to your project.
@@ -80,5 +81,5 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [UICollectionViewFlowLayout]: https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewFlowLayout_class/Reference/Reference.html
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
-[Cocoapods]: http://cocoapods.org/
+[CocoaPods]: http://cocoapods.org/
 
