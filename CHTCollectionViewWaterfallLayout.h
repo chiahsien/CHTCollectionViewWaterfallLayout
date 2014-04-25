@@ -87,6 +87,45 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    footerHeight
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section;
+
+/**
+ * Asks the delegate for the insets in the specified section.
+ *
+ * @param collectionView
+ *   The collection view object displaying the waterfall layout.
+ * @param collectionViewLayout
+ *   The layout object requesting the information.
+ * @param section
+ *   The index of the section whose insets are being requested.
+ *
+ * @discussion
+ *   If you do not implement this method, the waterfall layout uses the value in its sectionInset property.
+ *
+ * @return
+ *   The insets for the section.
+ */
+- (UIEdgeInsets) collectionView:(UICollectionView *) collectionView layout:(UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+
+/**
+ * Asks the delegate for the minimum spacing between two items in the same column
+ * in the specified section. If this method is not implemented, the
+ * minimumInteritemSpacing property is used for all sections.
+ *
+ * @param collectionView
+ *   The collection view object displaying the waterfall layout.
+ * @param collectionViewLayout
+ *   The layout object requesting the information.
+ * @param section
+ *   The index of the section whose minimum interitem spacing is being requested.
+ *
+ * @discussion
+ *   If you do not implement this method, the waterfall layout uses the value in its minimumInteritemSpacing property to determine the amount of space between items in the same column.
+ *
+ * @return
+ *   The minimum interitem spacing.
+ */
+- (CGFloat) collectionView:(UICollectionView *) collectionView layout:(UICollectionViewLayout *) collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger) section;
+
 @end
 
 #pragma mark - CHTCollectionViewWaterfallLayout
@@ -158,10 +197,9 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
 /**
- *  @brief The calculated width for each cell item
+ *  @brief The calculated width of an item in the specified section.
  *  @discussion
- *    Based on the current number of columns and the collection view width.
+ *    The width of an item is calculated based on number of columns, the collection view width, and the horizontal insets for that section.
  */
-@property (nonatomic, readonly) CGFloat itemWidth;
-
+- (CGFloat)itemWidthInSectionAtIndex:(NSInteger) section;
 @end
