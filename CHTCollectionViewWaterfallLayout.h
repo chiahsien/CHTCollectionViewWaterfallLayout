@@ -104,7 +104,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  * @return
  *   The insets for the section.
  */
-- (UIEdgeInsets) collectionView:(UICollectionView *) collectionView layout:(UICollectionViewLayout *) collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
 
 /**
  * Asks the delegate for the minimum spacing between two items in the same column
@@ -124,7 +124,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  * @return
  *   The minimum interitem spacing.
  */
-- (CGFloat) collectionView:(UICollectionView *) collectionView layout:(UICollectionViewLayout *) collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger) section;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section;
 
 @end
 
@@ -201,5 +201,5 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @discussion
  *    The width of an item is calculated based on number of columns, the collection view width, and the horizontal insets for that section.
  */
-- (CGFloat)itemWidthInSectionAtIndex:(NSInteger) section;
+- (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section;
 @end
