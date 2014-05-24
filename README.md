@@ -40,6 +40,7 @@ Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for mor
 
 #### Step 1
 Below lists the properties for you to customize the layout. Although they have default values, I strongly recommand you to set up at least the `columnCount` property to suit your needs.
+The 'itemRenderDirection' property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
 
 ``` objc
 @property (nonatomic, assign) NSInteger columnCount;
@@ -48,6 +49,7 @@ Below lists the properties for you to customize the layout. Although they have d
 @property (nonatomic, assign) CGFloat headerHeight;
 @property (nonatomic, assign) CGFloat footerHeight;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
+@property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
 ```
 
 #### Step 2

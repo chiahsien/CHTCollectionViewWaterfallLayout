@@ -75,6 +75,13 @@ const NSInteger unionSize = 20;
   }
 }
 
+- (void)setItemRenderDirection:(ItemRenderDirection)itemRenderDirection {
+    if (_itemRenderDirection != itemRenderDirection) {
+        _itemRenderDirection = itemRenderDirection;
+        [self invalidateLayout];
+    }
+}
+
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section {
   UIEdgeInsets sectionInset;
   if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
@@ -141,6 +148,7 @@ const NSInteger unionSize = 20;
   _headerHeight = 0;
   _footerHeight = 0;
   _sectionInset = UIEdgeInsetsZero;
+  _itemRenderDirection = kItemRenderDirectionShortestFirst;
 }
 
 - (id)init {
@@ -242,7 +250,7 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-      NSUInteger columnIndex = [self shortestColumnIndex];
+        NSUInteger columnIndex = [self nextColumnIndexFor:idx];
       CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
@@ -407,6 +415,22 @@ const NSInteger unionSize = 20;
   }];
 
   return index;
+}
+
+/**
+ *  Find the index for the next column.
+ *
+ *  @return index for the next column
+ */
+- (NSUInteger)nextColumnIndexFor:(int)idx {
+    NSUInteger index = 0;
+    switch (_itemRenderDirection) {
+        case kItemRenderDirectionShortestFirst: index = [self shortestColumnIndex];   break;
+        case kItemRenderDirectionLTR: index = (idx % _columnCount);   break;
+        case kItemRenderDirectionRTL: index = (_columnCount - 1) - (idx % _columnCount);   break;
+        default: index = [self shortestColumnIndex];    break;
+    }
+    return index;
 }
 
 @end
