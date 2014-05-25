@@ -8,6 +8,15 @@
 #import <UIKit/UIKit.h>
 
 /**
+ *  Enumerated structure to define direction in which items can be rendered.
+ */
+typedef NS_ENUM(NSUInteger, ItemRenderDirection) {
+    kItemRenderDirectionShortestFirst,
+    kItemRenderDirectionLTR,
+    kItemRenderDirectionRTL
+};
+
+/**
  *  Constants that specify the types of supplementary views that can be presented using a waterfall layout.
  */
 
@@ -197,9 +206,22 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
 /**
+ *  @brief The direction in which items will be rendered in subsequent rows.
+ *  @discussion
+ *    The direction in which each item is rendered. This could be left to right (kItemRenderDirectionLTR), right to left (kItemRenderDirectionRTL), or shortest column fills first (kItemRenderDirectionShortestFirst).
+ *
+ *    Default: kItemRenderDirectionShortestFirst
+ */
+@property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
+
+/**
  *  @brief The calculated width of an item in the specified section.
  *  @discussion
  *    The width of an item is calculated based on number of columns, the collection view width, and the horizontal insets for that section.
  */
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section;
+
 @end
+
+
+
