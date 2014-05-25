@@ -75,11 +75,11 @@ const NSInteger unionSize = 20;
   }
 }
 
-- (void)setItemRenderDirection:(ItemRenderDirection)itemRenderDirection {
-    if (_itemRenderDirection != itemRenderDirection) {
-        _itemRenderDirection = itemRenderDirection;
-        [self invalidateLayout];
-    }
+- (void)setItemRenderDirection:(CHTCollectionViewWaterfallLayoutItemRenderDirection)itemRenderDirection {
+  if (_itemRenderDirection != itemRenderDirection) {
+    _itemRenderDirection = itemRenderDirection;
+    [self invalidateLayout];
+  }
 }
 
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section {
@@ -148,7 +148,7 @@ const NSInteger unionSize = 20;
   _headerHeight = 0;
   _footerHeight = 0;
   _sectionInset = UIEdgeInsetsZero;
-  _itemRenderDirection = kItemRenderDirectionShortestFirst;
+  _itemRenderDirection = CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst;
 }
 
 - (id)init {
@@ -250,7 +250,7 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-        NSUInteger columnIndex = [self nextColumnIndexFor:idx];
+      NSUInteger columnIndex = [self nextColumnIndexForItem:idx];
       CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
@@ -422,15 +422,26 @@ const NSInteger unionSize = 20;
  *
  *  @return index for the next column
  */
-- (NSUInteger)nextColumnIndexFor:(int)idx {
-    NSUInteger index = 0;
-    switch (_itemRenderDirection) {
-        case kItemRenderDirectionShortestFirst: index = [self shortestColumnIndex];   break;
-        case kItemRenderDirectionLTR: index = (idx % _columnCount);   break;
-        case kItemRenderDirectionRTL: index = (_columnCount - 1) - (idx % _columnCount);   break;
-        default: index = [self shortestColumnIndex];    break;
-    }
-    return index;
+- (NSUInteger)nextColumnIndexForItem:(NSInteger)item {
+  NSUInteger index = 0;
+  switch (self.itemRenderDirection) {
+    case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst:
+      index = [self shortestColumnIndex];
+      break;
+
+    case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight:
+      index = (item % self.columnCount);
+      break;
+
+    case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft:
+      index = (self.columnCount - 1) - (item % self.columnCount);
+      break;
+
+    default:
+      index = [self shortestColumnIndex];
+      break;
+  }
+  return index;
 }
 
 @end

@@ -10,10 +10,10 @@
 /**
  *  Enumerated structure to define direction in which items can be rendered.
  */
-typedef NS_ENUM(NSUInteger, ItemRenderDirection) {
-    kItemRenderDirectionShortestFirst,
-    kItemRenderDirectionLTR,
-    kItemRenderDirectionRTL
+typedef NS_ENUM (NSUInteger, CHTCollectionViewWaterfallLayoutItemRenderDirection) {
+  CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst,
+  CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight,
+  CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 };
 
 /**
@@ -208,11 +208,11 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 /**
  *  @brief The direction in which items will be rendered in subsequent rows.
  *  @discussion
- *    The direction in which each item is rendered. This could be left to right (kItemRenderDirectionLTR), right to left (kItemRenderDirectionRTL), or shortest column fills first (kItemRenderDirectionShortestFirst).
+ *    The direction in which each item is rendered. This could be left to right (CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight), right to left (CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft), or shortest column fills first (CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst).
  *
- *    Default: kItemRenderDirectionShortestFirst
+ *    Default: CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
  */
-@property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
+@property (nonatomic, assign) CHTCollectionViewWaterfallLayoutItemRenderDirection itemRenderDirection;
 
 /**
  *  @brief The calculated width of an item in the specified section.
@@ -222,6 +222,3 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section;
 
 @end
-
-
-
