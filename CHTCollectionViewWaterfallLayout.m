@@ -229,6 +229,7 @@ const NSInteger unionSize = 20;
     if (headerHeight > 0) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, headerHeight);
+      attributes.zIndex = 100;
 
       self.headersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
