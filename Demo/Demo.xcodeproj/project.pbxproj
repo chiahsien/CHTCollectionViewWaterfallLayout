@@ -22,6 +22,10 @@
 		526109E416646F4D005E4B6E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
 		526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */; };
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
+		E5E7073B195E341500773FD3 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
+		E5E7073C195E341500773FD3 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
+		E5E7073D195E341500773FD3 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70739195E341500773FD3 /* cat3.jpg */; };
+		E5E7073E195E341500773FD3 /* cat4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E7073A195E341500773FD3 /* cat4.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,10 @@
 		526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallCell.h; sourceTree = "<group>"; };
 		526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallCell.m; sourceTree = "<group>"; };
+		E5E70737195E341500773FD3 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
+		E5E70738195E341500773FD3 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
+		E5E70739195E341500773FD3 /* cat3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat3.jpg; sourceTree = "<group>"; };
+		E5E7073A195E341500773FD3 /* cat4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat4.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		526109CB16646F4D005E4B6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E5E70736195E341500773FD3 /* images */,
 				526109CC16646F4D005E4B6E /* Demo-Info.plist */,
 				526109CD16646F4D005E4B6E /* InfoPlist.strings */,
 				526109D016646F4D005E4B6E /* main.m */,
@@ -133,6 +142,17 @@
 				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
 			);
 			name = Vender;
+			sourceTree = "<group>";
+		};
+		E5E70736195E341500773FD3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E5E70737195E341500773FD3 /* cat1.jpg */,
+				E5E70738195E341500773FD3 /* cat2.jpg */,
+				E5E70739195E341500773FD3 /* cat3.jpg */,
+				E5E7073A195E341500773FD3 /* cat4.jpg */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,10 +206,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E7073C195E341500773FD3 /* cat2.jpg in Resources */,
 				526109CF16646F4D005E4B6E /* InfoPlist.strings in Resources */,
+				E5E7073D195E341500773FD3 /* cat3.jpg in Resources */,
 				526109D716646F4D005E4B6E /* Default.png in Resources */,
+				E5E7073E195E341500773FD3 /* cat4.jpg in Resources */,
 				526109D916646F4D005E4B6E /* Default@2x.png in Resources */,
 				526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */,
+				E5E7073B195E341500773FD3 /* cat1.jpg in Resources */,
 				526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
