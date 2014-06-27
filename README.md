@@ -11,7 +11,7 @@ This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectio
 
 Screen Shots
 ------------
-![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
+![2 columns](https://cloud.githubusercontent.com/assets/474/3419095/25b4de9e-fe56-11e3-9b98-690319d736ce.png)
 
 Features
 --------
