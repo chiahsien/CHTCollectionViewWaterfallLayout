@@ -283,7 +283,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return attribute
     }
     
-    override func layoutAttributesForElementsInRect (rect : CGRect) -> AnyObject[]! {
+    override func layoutAttributesForElementsInRect (rect : CGRect) -> [AnyObject]! {
         var i = 0
         var begin = 0, end = self.unionRects.count
         var attrs = NSMutableArray()
@@ -328,7 +328,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var index = 0
         var shorestHeight = MAXFLOAT
         
-        self.columnHeights.enumerateObjectsUsingBlock({(object : AnyObject!, idx : NSInteger,pointer :CMutablePointer<ObjCBool>) in
+        self.columnHeights.enumerateObjectsUsingBlock({(object : AnyObject!, idx : NSInteger,pointer :UnsafePointer<ObjCBool>) in
             let height = object.floatValue
             if (height<shorestHeight){
                 shorestHeight = height
@@ -348,7 +348,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var index = 0
         var longestHeight:CGFloat = 0.0
         
-        self.columnHeights.enumerateObjectsUsingBlock({(object : AnyObject!, idx : NSInteger,pointer :CMutablePointer<ObjCBool>) in
+        self.columnHeights.enumerateObjectsUsingBlock({(object : AnyObject!, idx : NSInteger,pointer :UnsafePointer<ObjCBool>) in
             let height = object.floatValue as CGFloat
             if (height > longestHeight){
                 longestHeight = height
