@@ -68,6 +68,20 @@ const NSInteger unionSize = 20;
   }
 }
 
+- (void)setHeaderInset:(UIEdgeInsets)headerInset{
+  if (!UIEdgeInsetsEqualToEdgeInsets(_headerInset, headerInset)) {
+    _headerInset = headerInset;
+    [self invalidateLayout];
+  }
+}
+
+- (void)setFooterInset:(UIEdgeInsets)footerInset {
+  if (!UIEdgeInsetsEqualToEdgeInsets(_footerInset, footerInset)) {
+    _footerInset = footerInset;
+    [self invalidateLayout];
+  }
+}
+
 - (void)setSectionInset:(UIEdgeInsets)sectionInset {
   if (!UIEdgeInsetsEqualToEdgeInsets(_sectionInset, sectionInset)) {
     _sectionInset = sectionInset;
@@ -148,6 +162,8 @@ const NSInteger unionSize = 20;
   _headerHeight = 0;
   _footerHeight = 0;
   _sectionInset = UIEdgeInsetsZero;
+  _headerInset  = UIEdgeInsetsZero;
+  _footerInset  = UIEdgeInsetsZero;
   _itemRenderDirection = CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst;
 }
 
@@ -225,15 +241,27 @@ const NSInteger unionSize = 20;
     } else {
       headerHeight = self.headerHeight;
     }
+    
+    UIEdgeInsets headerInset;
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForHeaderInSection:)]) {
+      headerInset = [self.delegate collectionView:self.collectionView layout:self insetForHeaderInSection:section];
+    } else {
+      headerInset = self.headerInset;
+    }
+    
+    top += headerInset.top;
 
     if (headerHeight > 0) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
-      attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, headerHeight);
+      attributes.frame = CGRectMake(headerInset.left,
+                                    top,
+                                    self.collectionView.frame.size.width - (headerInset.left + headerInset.right),
+                                    headerHeight);
 
       self.headersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
 
-      top = CGRectGetMaxY(attributes.frame);
+      top = CGRectGetMaxY(attributes.frame) + headerInset.bottom;
     }
 
     top += sectionInset.top;
@@ -280,15 +308,27 @@ const NSInteger unionSize = 20;
     } else {
       footerHeight = self.footerHeight;
     }
+    
+    UIEdgeInsets footerInset;
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForFooterInSection:)]) {
+      footerInset = [self.delegate collectionView:self.collectionView layout:self insetForFooterInSection:section];
+    } else {
+      footerInset = self.footerInset;
+    }
+    
+    top += footerInset.top;
 
     if (footerHeight > 0) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
-      attributes.frame = CGRectMake(0, top, self.collectionView.frame.size.width, footerHeight);
+      attributes.frame = CGRectMake(footerInset.left,
+                                    top,
+                                    self.collectionView.frame.size.width - (footerInset.left + footerInset.right),
+                                    footerHeight);
 
       self.footersAttribute[@(section)] = attributes;
       [self.allItemAttributes addObject:attributes];
 
-      top = CGRectGetMaxY(attributes.frame);
+      top = CGRectGetMaxY(attributes.frame) + footerInset.bottom;
     }
 
     for (idx = 0; idx < self.columnCount; idx++) {

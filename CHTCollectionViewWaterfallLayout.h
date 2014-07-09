@@ -116,6 +116,42 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
 
 /**
+ * Asks the delegate for the header insets in the specified section.
+ *
+ * @param collectionView
+ *   The collection view object displaying the waterfall layout.
+ * @param collectionViewLayout
+ *   The layout object requesting the information.
+ * @param section
+ *   The index of the section whose header insets are being requested.
+ *
+ * @discussion
+ *   If you do not implement this method, the waterfall layout uses the value in its headerInset property.
+ *
+ * @return
+ *   The headerInsets for the section.
+ */
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForHeaderInSection:(NSInteger)section;
+
+/**
+ * Asks the delegate for the footer insets in the specified section.
+ *
+ * @param collectionView
+ *   The collection view object displaying the waterfall layout.
+ * @param collectionViewLayout
+ *   The layout object requesting the information.
+ * @param section
+ *   The index of the section whose footer insets are being requested.
+ *
+ * @discussion
+ *   If you do not implement this method, the waterfall layout uses the value in its footerInset property.
+ *
+ * @return
+ *   The footerInsets for the section.
+ */
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForFooterInSection:(NSInteger)section;
+
+/**
  * Asks the delegate for the minimum spacing between two items in the same column
  * in the specified section. If this method is not implemented, the
  * minimumInteritemSpacing property is used for all sections.
@@ -193,6 +229,28 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    Default: 0
  */
 @property (nonatomic, assign) CGFloat footerHeight;
+
+/**
+ *  @brief The margins that are used to lay out the header for each section.
+ *  @discussion
+ *    These insets are applied to the headers in each section.
+ *    They represent the distance between the top of the collection view and the top of the content items
+ *    They also indicate the spacing on either side of the header. They do not affect the size of the headers or footers themselves.
+ *
+ *    Default: UIEdgeInsetsZero
+ */
+@property (nonatomic, assign) UIEdgeInsets headerInset;
+
+/**
+ *  @brief The margins that are used to lay out the footer for each section.
+ *  @discussion
+ *    These insets are applied to the footers in each section.
+ *    They represent the distance between the top of the collection view and the top of the content items
+ *    They also indicate the spacing on either side of the footer. They do not affect the size of the headers or footers themselves.
+ *
+ *    Default: UIEdgeInsetsZero
+ */
+@property (nonatomic, assign) UIEdgeInsets footerInset;
 
 /**
  *  @brief The margins that are used to lay out content in each section.
