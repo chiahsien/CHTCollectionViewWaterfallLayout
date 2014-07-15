@@ -116,7 +116,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             insets = self.sectionInset
         }
         let width = self.collectionView.frame.size.width - sectionInset.left-sectionInset.right
-        return floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+        return floor((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
     }
     
     override func prepareLayout(){
@@ -162,7 +162,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             let width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right
-            let itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount)
+            let itemWidth = floor((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount)
             
             /*
             * 2. Section header
@@ -199,15 +199,15 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 
                 let columnIndex = self.nextColumnIndexForItem(idx)
                 let xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex
-                let yOffset = self.columnHeights.objectAtIndex(columnIndex).floatValue
+                let yOffset = self.columnHeights.objectAtIndex(columnIndex).doubleValue
                 let itemSize = self.delegate?.collectionView(self.collectionView, layout: self, sizeForItemAtIndexPath: indexPath)
                 var itemHeight : CGFloat = 0.0
                 if itemSize?.height > 0 && itemSize?.width > 0 {
-                    itemHeight = floorf(itemSize!.height*itemWidth/itemSize!.width)
+                    itemHeight = floor(itemSize!.height*itemWidth/itemSize!.width)
                 }
 
                 attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-                attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight)
+                attributes.frame = CGRectMake(xOffset, CGFloat(yOffset), itemWidth, itemHeight)
                 itemAttributes.addObject(attributes)
                 self.allItemAttributes.addObject(attributes)
                 self.columnHeights.setObject(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing, atIndexedSubscript: columnIndex)
@@ -257,8 +257,9 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             return CGSizeZero
         }
         
-        var contentSize = self.collectionView.bounds.size
-        contentSize.height = self.columnHeights.objectAtIndex(0).floatValue
+        var contentSize = self.collectionView.bounds.size as CGSize
+        let height = self.columnHeights.objectAtIndex(0) as NSNumber
+        contentSize.height = CGFloat(height.doubleValue)
         return  contentSize
     }
     
@@ -349,7 +350,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var longestHeight:CGFloat = 0.0
         
         self.columnHeights.enumerateObjectsUsingBlock({(object : AnyObject!, idx : NSInteger,pointer :UnsafePointer<ObjCBool>) in
-            let height = object.floatValue as CGFloat
+            let height = CGFloat(object.floatValue)
             if (height > longestHeight){
                 longestHeight = height
                 index = idx
