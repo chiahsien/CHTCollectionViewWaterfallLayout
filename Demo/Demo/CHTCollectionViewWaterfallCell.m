@@ -47,6 +47,7 @@
         // Scale the imageview to fit inside the contentView with the image centered:
         CGRect imageViewFrame = CGRectMake(0.f, 0.f, CGRectGetMaxX(self.contentView.bounds), CGRectGetMaxY(self.contentView.bounds));
         imageView.frame = imageViewFrame;
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         imageView.clipsToBounds = YES;
         [self.contentView addSubview:imageView];
 	}
