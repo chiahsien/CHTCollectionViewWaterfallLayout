@@ -39,7 +39,7 @@
 	if (self = [super initWithFrame:frame]) {
         // Pick a cat at random.
         NSUInteger pickACat = arc4random_uniform(4) + 1; // Vary from 1 to 4.
-        NSString *catFilename = [NSString stringWithFormat:@"cat%i.jpg", pickACat];
+        NSString *catFilename = [NSString stringWithFormat:@"cat%lu.jpg", (unsigned long)pickACat];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:catFilename]];
         // Scale with fill for contents when we resize.
         imageView.contentMode = UIViewContentModeScaleAspectFill;

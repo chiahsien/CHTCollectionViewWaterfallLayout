@@ -18,7 +18,7 @@
 		526109D716646F4D005E4B6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D616646F4D005E4B6E /* Default.png */; };
 		526109D916646F4D005E4B6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D816646F4D005E4B6E /* Default@2x.png */; };
 		526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
-		526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
+		526109DE16646F4D005E4B6E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard.storyboard */; };
 		526109E416646F4D005E4B6E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
 		526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */; };
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
@@ -46,7 +46,7 @@
 		526109D616646F4D005E4B6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		526109D816646F4D005E4B6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		526109DA16646F4D005E4B6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		526109DD16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		526109DD16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		526109E216646F4D005E4B6E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		526109E316646F4D005E4B6E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */,
 				28ACC0C9181E580300454F4A /* CHTCollectionViewWaterfallFooter.h */,
 				28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */,
-				526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */,
+				526109DC16646F4D005E4B6E /* MainStoryboard.storyboard */,
 				526109E216646F4D005E4B6E /* ViewController.h */,
 				526109E316646F4D005E4B6E /* ViewController.m */,
 				52E121B91867F53600B9DC53 /* Vender */,
@@ -214,7 +214,7 @@
 				526109D916646F4D005E4B6E /* Default@2x.png in Resources */,
 				526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */,
 				E5E7073B195E341500773FD3 /* cat1.jpg in Resources */,
-				526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */,
+				526109DE16646F4D005E4B6E /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,12 +246,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */ = {
+		526109DC16646F4D005E4B6E /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				526109DD16646F4D005E4B6E /* en */,
 			);
-			name = MainStoryboard_iPhone.storyboard;
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -315,6 +315,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -326,6 +327,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
