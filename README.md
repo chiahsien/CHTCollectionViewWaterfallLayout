@@ -40,7 +40,7 @@ Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for mor
 
 #### Step 1
 Below lists the properties for you to customize the layout. Although they have default values, I strongly recommand you to set up at least the `columnCount` property to suit your needs.
-The 'itemRenderDirection' property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
+The `itemRenderDirection` property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
 
 ``` objc
 @property (nonatomic, assign) NSInteger columnCount;
@@ -70,6 +70,13 @@ Limitation
 ----------
 * Only vertical scrolling is supported.
 * No decoration view.
+
+Who is using it
+---------------
+Please let me know if your app is using this library. I'm glad to put your app on the list :-)
+
+* [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)  
+F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
 
 License
 -------
