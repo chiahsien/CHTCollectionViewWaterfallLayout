@@ -96,6 +96,14 @@ const NSInteger unionSize = 20;
   }
 }
 
+-(NSInteger)columnCountForSection:(NSInteger)section{
+    if([self.delegate respondsToSelector:@selector(collectionView:layout:columnCountForSection:)]){
+        return [self.delegate collectionView:self.collectionView layout:self columnCountForSection:section];
+    }else{
+        return self.columnCount;
+    }
+}
+
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section {
   UIEdgeInsets sectionInset;
   if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
@@ -104,7 +112,8 @@ const NSInteger unionSize = 20;
     sectionInset = self.sectionInset;
   }
   CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
-  return floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+    NSInteger columnCount = [self columnCountForSection:section];
+  return floorf((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
 }
 
 #pragma mark - Private Accessors
@@ -191,7 +200,7 @@ const NSInteger unionSize = 20;
   }
 
   NSAssert([self.delegate conformsToProtocol:@protocol(CHTCollectionViewDelegateWaterfallLayout)], @"UICollectionView's delegate should conform to CHTCollectionViewDelegateWaterfallLayout protocol");
-  NSAssert(self.columnCount > 0, @"UICollectionViewWaterfallLayout's columnCount should be greater than 0");
+  NSAssert(self.columnCount > 0 || [self.delegate respondsToSelector:@selector(collectionView:layout:columnCountForSection:)], @"UICollectionViewWaterfallLayout's columnCount should be greater than 0, or delegate must implement columnCountForSection:");
 
   // Initialize variables
   NSInteger idx = 0;
@@ -203,10 +212,14 @@ const NSInteger unionSize = 20;
   [self.allItemAttributes removeAllObjects];
   [self.sectionItemAttributes removeAllObjects];
 
-  for (idx = 0; idx < self.columnCount; idx++) {
-    [self.columnHeights addObject:@(0)];
-  }
-
+    for(NSInteger section = 0; section < numberOfSections; section++){
+        NSInteger columnCount = [self columnCountForSection:section];
+        NSMutableArray *sectionColumnHeights = [NSMutableArray arrayWithCapacity:columnCount];
+        for (idx = 0; idx < columnCount; idx++) {
+            [sectionColumnHeights addObject:@(0)];
+        }
+        [self.columnHeights addObject:sectionColumnHeights];
+    }
   // Create attributes
   CGFloat top = 0;
   UICollectionViewLayoutAttributes *attributes;
@@ -230,7 +243,8 @@ const NSInteger unionSize = 20;
     }
 
     CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
-    CGFloat itemWidth = floorf((width - (self.columnCount - 1) * self.minimumColumnSpacing) / self.columnCount);
+    NSInteger columnCount = [self columnCountForSection:section];
+    CGFloat itemWidth = floorf((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
 
     /*
      * 2. Section header
@@ -265,8 +279,8 @@ const NSInteger unionSize = 20;
     }
 
     top += sectionInset.top;
-    for (idx = 0; idx < self.columnCount; idx++) {
-      self.columnHeights[idx] = @(top);
+    for (idx = 0; idx < columnCount; idx++) {
+      self.columnHeights[section][idx] = @(top);
     }
 
     /*
@@ -278,9 +292,9 @@ const NSInteger unionSize = 20;
     // Item will be put into shortest column.
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
-      NSUInteger columnIndex = [self nextColumnIndexForItem:idx];
+      NSUInteger columnIndex = [self nextColumnIndexForItem:idx inSection:section];
       CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
-      CGFloat yOffset = [self.columnHeights[columnIndex] floatValue];
+      CGFloat yOffset = [self.columnHeights[section][columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
       if (itemSize.height > 0 && itemSize.width > 0) {
@@ -291,7 +305,7 @@ const NSInteger unionSize = 20;
       attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
       [itemAttributes addObject:attributes];
       [self.allItemAttributes addObject:attributes];
-      self.columnHeights[columnIndex] = @(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing);
+      self.columnHeights[section][columnIndex] = @(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing);
     }
 
     [self.sectionItemAttributes addObject:itemAttributes];
@@ -300,8 +314,8 @@ const NSInteger unionSize = 20;
      * 4. Section footer
      */
     CGFloat footerHeight;
-    NSUInteger columnIndex = [self longestColumnIndex];
-    top = [self.columnHeights[columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
+    NSUInteger columnIndex = [self longestColumnIndexInSection:section];
+    top = [self.columnHeights[section][columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
 
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:heightForFooterInSection:)]) {
       footerHeight = [self.delegate collectionView:self.collectionView layout:self heightForFooterInSection:section];
@@ -331,8 +345,8 @@ const NSInteger unionSize = 20;
       top = CGRectGetMaxY(attributes.frame) + footerInset.bottom;
     }
 
-    for (idx = 0; idx < self.columnCount; idx++) {
-      self.columnHeights[idx] = @(top);
+    for (idx = 0; idx < columnCount; idx++) {
+      self.columnHeights[section][idx] = @(top);
     }
   } // end of for (NSInteger section = 0; section < numberOfSections; ++section)
 
@@ -355,7 +369,7 @@ const NSInteger unionSize = 20;
   }
 
   CGSize contentSize = self.collectionView.bounds.size;
-  contentSize.height = [self.columnHeights[0] floatValue];
+  contentSize.height = [[[self.columnHeights lastObject] firstObject] floatValue];
 
   return contentSize;
 }
@@ -422,11 +436,11 @@ const NSInteger unionSize = 20;
  *
  *  @return index for the shortest column
  */
-- (NSUInteger)shortestColumnIndex {
+- (NSUInteger)shortestColumnIndexInSection:(NSInteger)section {
   __block NSUInteger index = 0;
   __block CGFloat shortestHeight = MAXFLOAT;
 
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.columnHeights[section] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height < shortestHeight) {
       shortestHeight = height;
@@ -442,11 +456,11 @@ const NSInteger unionSize = 20;
  *
  *  @return index for the longest column
  */
-- (NSUInteger)longestColumnIndex {
+- (NSUInteger)longestColumnIndexInSection:(NSInteger)section {
   __block NSUInteger index = 0;
   __block CGFloat longestHeight = 0;
 
-  [self.columnHeights enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.columnHeights[section] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     CGFloat height = [obj floatValue];
     if (height > longestHeight) {
       longestHeight = height;
@@ -462,23 +476,24 @@ const NSInteger unionSize = 20;
  *
  *  @return index for the next column
  */
-- (NSUInteger)nextColumnIndexForItem:(NSInteger)item {
+- (NSUInteger)nextColumnIndexForItem:(NSInteger)item inSection:(NSInteger)section{
   NSUInteger index = 0;
+  NSInteger columnCount = [self columnCountForSection:section];
   switch (self.itemRenderDirection) {
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst:
-      index = [self shortestColumnIndex];
+      index = [self shortestColumnIndexInSection:section];
       break;
 
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight:
-      index = (item % self.columnCount);
+      index = (item % columnCount);
       break;
 
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft:
-      index = (self.columnCount - 1) - (item % self.columnCount);
+      index = (columnCount - 1) - (item % columnCount);
       break;
 
     default:
-      index = [self shortestColumnIndex];
+      index = [self shortestColumnIndexInSection:section];
       break;
   }
   return index;
