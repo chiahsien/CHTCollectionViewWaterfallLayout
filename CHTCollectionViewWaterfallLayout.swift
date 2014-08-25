@@ -34,7 +34,7 @@ enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
 }
 
 class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
-    let  CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
+    let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
     let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
     
     var columnCount : NSInteger{
@@ -121,7 +121,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         }
         let width:CGFloat = self.collectionView.frame.size.width - sectionInset.left-sectionInset.right
         let spaceColumCount:CGFloat = CGFloat(self.columnCount-1)
-        return floor(width - (spaceColumCount*self.minimumColumnSpacing) / CGFloat(self.columnCount))
+        return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(self.columnCount))
     }
     
     override func prepareLayout(){
@@ -168,7 +168,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             
             let width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right
             let spaceColumCount = CGFloat(self.columnCount-1)
-            let itemWidth = floor(width - (spaceColumCount*self.minimumColumnSpacing) / CGFloat(self.columnCount))
+            let itemWidth = floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(self.columnCount))
             
             /*
             * 2. Section header
