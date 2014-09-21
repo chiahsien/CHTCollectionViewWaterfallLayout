@@ -86,7 +86,7 @@
 
 - (void)updateLayoutForOrientation:(UIInterfaceOrientation)orientation {
   CHTCollectionViewWaterfallLayout *layout =
-    (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
+  (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
   layout.columnCount = UIInterfaceOrientationIsPortrait(orientation) ? 2 : 3;
 }
 
@@ -102,8 +102,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   CHTCollectionViewWaterfallCell *cell =
-    (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
-                                                                                forIndexPath:indexPath];
+  (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
+                                                                              forIndexPath:indexPath];
   cell.displayString = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
   return cell;
 }

@@ -68,7 +68,7 @@ const NSInteger unionSize = 20;
   }
 }
 
-- (void)setHeaderInset:(UIEdgeInsets)headerInset{
+- (void)setHeaderInset:(UIEdgeInsets)headerInset {
   if (!UIEdgeInsetsEqualToEdgeInsets(_headerInset, headerInset)) {
     _headerInset = headerInset;
     [self invalidateLayout];
@@ -96,12 +96,12 @@ const NSInteger unionSize = 20;
   }
 }
 
--(NSInteger)columnCountForSection:(NSInteger)section{
-    if([self.delegate respondsToSelector:@selector(collectionView:layout:columnCountForSection:)]){
-        return [self.delegate collectionView:self.collectionView layout:self columnCountForSection:section];
-    }else{
-        return self.columnCount;
-    }
+- (NSInteger)columnCountForSection:(NSInteger)section {
+  if ([self.delegate respondsToSelector:@selector(collectionView:layout:columnCountForSection:)]) {
+    return [self.delegate collectionView:self.collectionView layout:self columnCountForSection:section];
+  } else {
+    return self.columnCount;
+  }
 }
 
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section {
@@ -112,7 +112,7 @@ const NSInteger unionSize = 20;
     sectionInset = self.sectionInset;
   }
   CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
-    NSInteger columnCount = [self columnCountForSection:section];
+  NSInteger columnCount = [self columnCountForSection:section];
   return floorf((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
 }
 
@@ -159,8 +159,8 @@ const NSInteger unionSize = 20;
   return _sectionItemAttributes;
 }
 
-- (id<CHTCollectionViewDelegateWaterfallLayout>)delegate {
-  return (id<CHTCollectionViewDelegateWaterfallLayout>)self.collectionView.delegate;
+- (id <CHTCollectionViewDelegateWaterfallLayout> )delegate {
+  return (id <CHTCollectionViewDelegateWaterfallLayout> )self.collectionView.delegate;
 }
 
 #pragma mark - Init
@@ -212,14 +212,14 @@ const NSInteger unionSize = 20;
   [self.allItemAttributes removeAllObjects];
   [self.sectionItemAttributes removeAllObjects];
 
-    for(NSInteger section = 0; section < numberOfSections; section++){
-        NSInteger columnCount = [self columnCountForSection:section];
-        NSMutableArray *sectionColumnHeights = [NSMutableArray arrayWithCapacity:columnCount];
-        for (idx = 0; idx < columnCount; idx++) {
-            [sectionColumnHeights addObject:@(0)];
-        }
-        [self.columnHeights addObject:sectionColumnHeights];
+  for (NSInteger section = 0; section < numberOfSections; section++) {
+    NSInteger columnCount = [self columnCountForSection:section];
+    NSMutableArray *sectionColumnHeights = [NSMutableArray arrayWithCapacity:columnCount];
+    for (idx = 0; idx < columnCount; idx++) {
+      [sectionColumnHeights addObject:@(0)];
     }
+    [self.columnHeights addObject:sectionColumnHeights];
+  }
   // Create attributes
   CGFloat top = 0;
   UICollectionViewLayoutAttributes *attributes;
@@ -255,14 +255,14 @@ const NSInteger unionSize = 20;
     } else {
       headerHeight = self.headerHeight;
     }
-    
+
     UIEdgeInsets headerInset;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForHeaderInSection:)]) {
       headerInset = [self.delegate collectionView:self.collectionView layout:self insetForHeaderInSection:section];
     } else {
       headerInset = self.headerInset;
     }
-    
+
     top += headerInset.top;
 
     if (headerHeight > 0) {
@@ -322,14 +322,14 @@ const NSInteger unionSize = 20;
     } else {
       footerHeight = self.footerHeight;
     }
-    
+
     UIEdgeInsets footerInset;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForFooterInSection:)]) {
       footerInset = [self.delegate collectionView:self.collectionView layout:self insetForFooterInSection:section];
     } else {
       footerInset = self.footerInset;
     }
-    
+
     top += footerInset.top;
 
     if (footerHeight > 0) {
@@ -476,7 +476,7 @@ const NSInteger unionSize = 20;
  *
  *  @return index for the next column
  */
-- (NSUInteger)nextColumnIndexForItem:(NSInteger)item inSection:(NSInteger)section{
+- (NSUInteger)nextColumnIndexForItem:(NSInteger)item inSection:(NSInteger)section {
   NSUInteger index = 0;
   NSInteger columnCount = [self columnCountForSection:section];
   switch (self.itemRenderDirection) {
