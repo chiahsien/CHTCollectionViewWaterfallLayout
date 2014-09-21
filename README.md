@@ -19,6 +19,7 @@ Features
 * Highly customizable.
 * Outstanding performance, try 10,000+ items and see the smoothness for yourself.
 * Support header and footer views.
+* Different column counts in different sections.
 
 Prerequisite
 ------------
@@ -77,6 +78,8 @@ Please let me know if your app is using this library. I'm glad to put your app o
 
 * [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)  
 F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
+* [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)  
+GroupMe - A Home for All the Groups in Your Life.
 
 License
 -------
