@@ -11,7 +11,7 @@ This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectio
 
 Screen Shots
 ------------
-![2 columns](https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png)
+![2 columns](https://cloud.githubusercontent.com/assets/474/3419095/25b4de9e-fe56-11e3-9b98-690319d736ce.png)
 
 Features
 --------
@@ -19,6 +19,7 @@ Features
 * Highly customizable.
 * Outstanding performance, try 10,000+ items and see the smoothness for yourself.
 * Support header and footer views.
+* Different column counts in different sections.
 
 Prerequisite
 ------------
@@ -40,6 +41,7 @@ Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for mor
 
 #### Step 1
 Below lists the properties for you to customize the layout. Although they have default values, I strongly recommand you to set up at least the `columnCount` property to suit your needs.
+The `itemRenderDirection` property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
 
 ``` objc
 @property (nonatomic, assign) NSInteger columnCount;
@@ -48,6 +50,7 @@ Below lists the properties for you to customize the layout. Although they have d
 @property (nonatomic, assign) CGFloat headerHeight;
 @property (nonatomic, assign) CGFloat footerHeight;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
+@property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
 ```
 
 #### Step 2
@@ -68,6 +71,15 @@ Limitation
 ----------
 * Only vertical scrolling is supported.
 * No decoration view.
+
+Who is using it
+---------------
+Please let me know if your app is using this library. I'm glad to put your app on the list :-)
+
+* [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)  
+F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
+* [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)  
+GroupMe - A Home for All the Groups in Your Life.
 
 License
 -------
