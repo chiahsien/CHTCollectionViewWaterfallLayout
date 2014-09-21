@@ -56,6 +56,21 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 
 @optional
 /**
+ *  Asks the delegate for the column count in a section
+ *
+ *  @param collectionView
+ *    The collection view object displaying the waterfall layout.
+ *  @param collectionViewLayout
+ *    The layout object requesting the information.
+ *  @param section
+ *    The section.
+ *
+ *  @return
+ *    The original column count for that section. Must be greater than 0.
+ */
+- (NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnCountForSection:(NSInteger)section;
+
+/**
  *  Asks the delegate for the height of the header view in the specified section.
  *
  *  @param collectionView
