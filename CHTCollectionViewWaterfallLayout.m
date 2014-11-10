@@ -354,11 +354,16 @@ const NSInteger unionSize = 20;
   idx = 0;
   NSInteger itemCounts = [self.allItemAttributes count];
   while (idx < itemCounts) {
-    CGRect rect1 = ((UICollectionViewLayoutAttributes *)self.allItemAttributes[idx]).frame;
-    idx = MIN(idx + unionSize, itemCounts) - 1;
-    CGRect rect2 = ((UICollectionViewLayoutAttributes *)self.allItemAttributes[idx]).frame;
-    [self.unionRects addObject:[NSValue valueWithCGRect:CGRectUnion(rect1, rect2)]];
-    idx++;
+    CGRect unionRect = ((UICollectionViewLayoutAttributes *)self.allItemAttributes[idx]).frame;
+    NSInteger rectEndIndex = MIN(idx + unionSize, itemCounts);
+      
+    for (NSInteger i = idx + 1; i < rectEndIndex; i++) {
+      unionRect = CGRectUnion(unionRect, ((UICollectionViewLayoutAttributes *)self.allItemAttributes[i]).frame);
+    }
+      
+    idx = rectEndIndex;
+      
+    [self.unionRects addObject:[NSValue valueWithCGRect:unionRect]];
   }
 }
 
