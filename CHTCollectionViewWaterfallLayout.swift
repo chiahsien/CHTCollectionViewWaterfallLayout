@@ -186,7 +186,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 self.headersAttributes.setObject(attributes, forKey: (section))
                 self.allItemAttributes.addObject(attributes)
             
-                top = CGRectGetMaxX(attributes.frame)
+                top = CGRectGetMaxY(attributes.frame)
             }
             top += sectionInset.top
             for var idx = 0; idx < self.columnCount; idx++ {
