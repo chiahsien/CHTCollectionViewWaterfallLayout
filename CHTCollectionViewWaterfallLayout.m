@@ -31,7 +31,7 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 @implementation CHTCollectionViewWaterfallLayout
 
 /// How many items to be union into a single rectangle
-const NSInteger unionSize = 20;
+static const NSInteger unionSize = 20;
 
 static CGFloat CHTFloorCGFloat(CGFloat value) {
   CGFloat scale = [UIScreen mainScreen].scale;
