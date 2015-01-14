@@ -6,6 +6,7 @@
 //
 
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "tgmath.h"
 
 NSString *const CHTCollectionElementKindSectionHeader = @"CHTCollectionElementKindSectionHeader";
 NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKindSectionFooter";
@@ -30,7 +31,12 @@ NSString *const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKi
 @implementation CHTCollectionViewWaterfallLayout
 
 /// How many items to be union into a single rectangle
-const NSInteger unionSize = 20;
+static const NSInteger unionSize = 20;
+
+static CGFloat CHTFloorCGFloat(CGFloat value) {
+  CGFloat scale = [UIScreen mainScreen].scale;
+  return floor(value * scale) / scale;
+}
 
 #pragma mark - Public Accessors
 - (void)setColumnCount:(NSInteger)columnCount {
@@ -113,7 +119,7 @@ const NSInteger unionSize = 20;
   }
   CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
   NSInteger columnCount = [self columnCountForSection:section];
-  return floorf((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
+  return CHTFloorCGFloat((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
 }
 
 #pragma mark - Private Accessors
@@ -244,7 +250,7 @@ const NSInteger unionSize = 20;
 
     CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
     NSInteger columnCount = [self columnCountForSection:section];
-    CGFloat itemWidth = floorf((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
+    CGFloat itemWidth = CHTFloorCGFloat((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
 
     /*
      * 2. Section header
@@ -298,7 +304,7 @@ const NSInteger unionSize = 20;
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
       if (itemSize.height > 0 && itemSize.width > 0) {
-        itemHeight = floorf(itemSize.height * itemWidth / itemSize.width);
+        itemHeight = CHTFloorCGFloat(itemSize.height * itemWidth / itemSize.width);
       }
 
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
