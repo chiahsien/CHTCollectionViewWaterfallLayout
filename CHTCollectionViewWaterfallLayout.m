@@ -119,7 +119,13 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   }
   CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
   NSInteger columnCount = [self columnCountForSection:section];
-  return CHTFloorCGFloat((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
+    
+    CGFloat columnSpacing = self.minimumColumnSpacing;
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]){
+        columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
+    }
+    
+  return CHTFloorCGFloat((width - (columnCount - 1) * columnSpacing) / columnCount);
 }
 
 #pragma mark - Private Accessors
@@ -240,6 +246,11 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     } else {
       minimumInteritemSpacing = self.minimumInteritemSpacing;
     }
+      
+      CGFloat columnSpacing = self.minimumColumnSpacing;
+      if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]){
+          columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
+      }
 
     UIEdgeInsets sectionInset;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
@@ -250,7 +261,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 
     CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
     NSInteger columnCount = [self columnCountForSection:section];
-    CGFloat itemWidth = CHTFloorCGFloat((width - (columnCount - 1) * self.minimumColumnSpacing) / columnCount);
+    CGFloat itemWidth = CHTFloorCGFloat((width - (columnCount - 1) * columnSpacing) / columnCount);
 
     /*
      * 2. Section header
@@ -299,7 +310,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     for (idx = 0; idx < itemCount; idx++) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
       NSUInteger columnIndex = [self nextColumnIndexForItem:idx inSection:section];
-      CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
+      CGFloat xOffset = sectionInset.left + (itemWidth + columnSpacing) * columnIndex;
       CGFloat yOffset = [self.columnHeights[section][columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
