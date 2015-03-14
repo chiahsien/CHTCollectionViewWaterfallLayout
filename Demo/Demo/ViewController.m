@@ -28,11 +28,13 @@
   if (!_collectionView) {
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
-    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.headerHeight = 15;
+    layout.sectionInset = UIEdgeInsetsMake(0, 5, 10, 5);
+    layout.headerHeight = 30;
     layout.footerHeight = 10;
-    layout.minimumColumnSpacing = 20;
-    layout.minimumInteritemSpacing = 30;
+      layout.headerInset = UIEdgeInsetsMake(0, 0, 5, 0);
+    layout.minimumColumnSpacing = 5;
+    layout.minimumInteritemSpacing = 5;
+      layout.floatHeaders = YES;
 
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -97,7 +99,7 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-  return 2;
+  return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

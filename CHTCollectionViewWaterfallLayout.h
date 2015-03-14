@@ -11,9 +11,9 @@
  *  Enumerated structure to define direction in which items can be rendered.
  */
 typedef NS_ENUM (NSUInteger, CHTCollectionViewWaterfallLayoutItemRenderDirection) {
-  CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst,
-  CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight,
-  CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
+    CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst,
+    CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight,
+    CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 };
 
 /**
@@ -293,5 +293,13 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *    The width of an item is calculated based on number of columns, the collection view width, and the horizontal insets for that section.
  */
 - (CGFloat)itemWidthInSectionAtIndex:(NSInteger)section;
+
+/**
+ *  @brief Set the headers to float when scrolling
+ *  @discussion
+ *    EXPERIMENTAL!! if YES, will float headers, where available
+ *    Default: NO
+ */
+@property (nonatomic, assign) BOOL floatHeaders;
 
 @end
