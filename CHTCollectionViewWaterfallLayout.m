@@ -381,6 +381,10 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 
   CGSize contentSize = self.collectionView.bounds.size;
   contentSize.height = [[[self.columnHeights lastObject] firstObject] floatValue];
+  
+  if (contentSize.height < self.minimumContentHeight) {
+    contentSize.height = self.minimumContentHeight;
+  }
 
   return contentSize;
 }
