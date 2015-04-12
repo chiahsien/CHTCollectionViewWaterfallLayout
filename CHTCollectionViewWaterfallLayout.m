@@ -119,12 +119,12 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   }
   CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
   NSInteger columnCount = [self columnCountForSection:section];
-    
-    CGFloat columnSpacing = self.minimumColumnSpacing;
-    if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]){
-        columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
-    }
-    
+
+  CGFloat columnSpacing = self.minimumColumnSpacing;
+  if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]) {
+    columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
+  }
+
   return CHTFloorCGFloat((width - (columnCount - 1) * columnSpacing) / columnCount);
 }
 
@@ -205,7 +205,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 #pragma mark - Methods to Override
 - (void)prepareLayout {
   [super prepareLayout];
-    
+
   [self.headersAttribute removeAllObjects];
   [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];
@@ -246,11 +246,11 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     } else {
       minimumInteritemSpacing = self.minimumInteritemSpacing;
     }
-      
-      CGFloat columnSpacing = self.minimumColumnSpacing;
-      if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]){
-          columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
-      }
+
+    CGFloat columnSpacing = self.minimumColumnSpacing;
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumColumnSpacingForSectionAtIndex:)]) {
+      columnSpacing = [self.delegate collectionView:self.collectionView layout:self minimumColumnSpacingForSectionAtIndex:section];
+    }
 
     UIEdgeInsets sectionInset;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
@@ -373,13 +373,13 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   while (idx < itemCounts) {
     CGRect unionRect = ((UICollectionViewLayoutAttributes *)self.allItemAttributes[idx]).frame;
     NSInteger rectEndIndex = MIN(idx + unionSize, itemCounts);
-      
+
     for (NSInteger i = idx + 1; i < rectEndIndex; i++) {
       unionRect = CGRectUnion(unionRect, ((UICollectionViewLayoutAttributes *)self.allItemAttributes[i]).frame);
     }
-      
+
     idx = rectEndIndex;
-      
+
     [self.unionRects addObject:[NSValue valueWithCGRect:unionRect]];
   }
 }
@@ -392,7 +392,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 
   CGSize contentSize = self.collectionView.bounds.size;
   contentSize.height = [[[self.columnHeights lastObject] firstObject] floatValue];
-  
+
   if (contentSize.height < self.minimumContentHeight) {
     contentSize.height = self.minimumContentHeight;
   }

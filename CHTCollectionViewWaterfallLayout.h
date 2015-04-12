@@ -186,7 +186,6 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section;
 
-
 /**
  * Asks the delegate for the minimum spacing between colums in a secified section. If this method is not implemented, the
  * minimumColumnSpacing property is used for all sections.
@@ -205,8 +204,6 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *   The minimum spacing between each column.
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumColumnSpacingForSectionAtIndex:(NSInteger)section;
-
-
 
 @end
 
