@@ -186,6 +186,28 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section;
 
+
+/**
+ * Asks the delegate for the minimum spacing between colums in a secified section. If this method is not implemented, the
+ * minimumColumnSpacing property is used for all sections.
+ *
+ * @param collectionView
+ *   The collection view object displaying the waterfall layout.
+ * @param collectionViewLayout
+ *   The layout object requesting the information.
+ * @param section
+ *   The index of the section whose minimum interitem spacing is being requested.
+ *
+ * @discussion
+ *   If you do not implement this method, the waterfall layout uses the value in its minimumColumnSpacing property to determine the amount of space between columns in each section.
+ *
+ * @return
+ *   The minimum spacing between each column.
+ */
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumColumnSpacingForSectionAtIndex:(NSInteger)section;
+
+
+
 @end
 
 #pragma mark - CHTCollectionViewWaterfallLayout
