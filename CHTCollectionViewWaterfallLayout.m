@@ -193,13 +193,6 @@ const NSInteger unionSize = 20;
 #pragma mark - Methods to Override
 - (void)prepareLayout {
   [super prepareLayout];
-    
-  [self.headersAttribute removeAllObjects];
-  [self.footersAttribute removeAllObjects];
-  [self.unionRects removeAllObjects];
-  [self.columnHeights removeAllObjects];
-  [self.allItemAttributes removeAllObjects];
-  [self.sectionItemAttributes removeAllObjects];
 
   NSInteger numberOfSections = [self.collectionView numberOfSections];
   if (numberOfSections == 0) {
@@ -211,6 +204,13 @@ const NSInteger unionSize = 20;
 
   // Initialize variables
   NSInteger idx = 0;
+
+  [self.headersAttribute removeAllObjects];
+  [self.footersAttribute removeAllObjects];
+  [self.unionRects removeAllObjects];
+  [self.columnHeights removeAllObjects];
+  [self.allItemAttributes removeAllObjects];
+  [self.sectionItemAttributes removeAllObjects];
 
   for (NSInteger section = 0; section < numberOfSections; section++) {
     NSInteger columnCount = [self columnCountForSection:section];
