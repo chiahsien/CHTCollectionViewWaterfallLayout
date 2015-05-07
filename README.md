@@ -80,6 +80,8 @@ Please let me know if your app is using this library. I'm glad to put your app o
 F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
 * [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)  
 GroupMe - A Home for All the Groups in Your Life.
+* [Flickr](https://itunes.apple.com/us/app/id328407587)  
+Access and organize your photos from anywhere.
 
 License
 -------

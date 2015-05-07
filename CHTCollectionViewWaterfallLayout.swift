@@ -11,19 +11,19 @@ import UIKit
 
 @objc protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
     
-    func collectionView (collectionView: UICollectionView!,layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     
-    optional func colletionView (collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout,
+    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForHeaderInSection section: NSInteger) -> CGFloat
     
-    optional func colletionView (collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout,
+    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForFooterInSection section: NSInteger) -> CGFloat
     
-    optional func colletionView (collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout,
+    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets
     
-    optional func colletionView (collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout,
+    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat
 }
 
@@ -186,11 +186,11 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 self.headersAttributes.setObject(attributes, forKey: (section))
                 self.allItemAttributes.addObject(attributes)
             
-                top = CGRectGetMaxX(attributes.frame)
+                top = CGRectGetMaxY(attributes.frame)
             }
             top += sectionInset.top
             for var idx = 0; idx < self.columnCount; idx++ {
-                self.columnHeights.setObject(top, atIndexedSubscript: idx)
+                self.columnHeights[idx]=top;
             }
             
             /*
@@ -216,7 +216,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 attributes.frame = CGRectMake(xOffset, CGFloat(yOffset), itemWidth, itemHeight)
                 itemAttributes.addObject(attributes)
                 self.allItemAttributes.addObject(attributes)
-                self.columnHeights.setObject(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing, atIndexedSubscript: columnIndex)
+                self.columnHeights[columnIndex]=CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing;
             }
             self.sectionItemAttributes.addObject(itemAttributes)
             
@@ -242,7 +242,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             for var idx = 0; idx < self.columnCount; idx++ {
-                self.columnHeights.setObject(top, atIndexedSubscript: idx)
+                self.columnHeights[idx] = top
             }
         }
         
@@ -280,7 +280,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return list.objectAtIndex(indexPath.item) as UICollectionViewLayoutAttributes
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes!{
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CHTCollectionElementKindSectionHeader{
             attribute = self.headersAttributes.objectForKey(indexPath.section) as UICollectionViewLayoutAttributes
