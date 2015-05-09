@@ -14,16 +14,16 @@ import UIKit
     func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     
-    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForHeaderInSection section: NSInteger) -> CGFloat
     
-    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForFooterInSection section: NSInteger) -> CGFloat
     
-    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets
     
-    optional func colletionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat
 }
 
@@ -114,7 +114,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     
     func itemWidthInSectionAtIndex (section : NSInteger) -> CGFloat {
         var insets : UIEdgeInsets
-        if let sectionInsets = self.delegate?.colletionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section){
+        if let sectionInsets = self.delegate?.collectionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section){
             insets = sectionInsets
         }else{
             insets = self.sectionInset
@@ -153,14 +153,14 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
             */
             var minimumInteritemSpacing : CGFloat
-            if let miniumSpaceing = self.delegate?.colletionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
+            if let miniumSpaceing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
                 minimumInteritemSpacing = miniumSpaceing
             }else{
                 minimumInteritemSpacing = self.minimumColumnSpacing
             }
             
             var sectionInsets :  UIEdgeInsets
-            if let insets = self.delegate?.colletionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section){
+            if let insets = self.delegate?.collectionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section){
                 sectionInsets = insets
             }else{
                 sectionInsets = self.sectionInset
@@ -174,7 +174,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             * 2. Section header
             */
             var heightHeader : CGFloat
-            if let height = self.delegate?.colletionView?(self.collectionView!, layout: self, heightForHeaderInSection: section){
+            if let height = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForHeaderInSection: section){
                 heightHeader = height
             }else{
                 heightHeader = self.headerHeight
@@ -227,7 +227,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             let columnIndex  = self.longestColumnIndex()
             top = CGFloat(self.columnHeights.objectAtIndex(columnIndex).floatValue) - minimumInteritemSpacing + sectionInset.bottom
     
-            if let height = self.delegate?.colletionView?(self.collectionView!, layout: self, heightForFooterInSection: section){
+            if let height = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForFooterInSection: section){
                 footerHeight = height
             }else{
                 footerHeight = self.footerHeight
