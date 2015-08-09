@@ -117,7 +117,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   } else {
     sectionInset = self.sectionInset;
   }
-  CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
+  CGFloat width = self.collectionView.bounds.size.width - sectionInset.left - sectionInset.right;
   NSInteger columnCount = [self columnCountForSection:section];
 
   CGFloat columnSpacing = self.minimumColumnSpacing;
@@ -259,7 +259,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       sectionInset = self.sectionInset;
     }
 
-    CGFloat width = self.collectionView.frame.size.width - sectionInset.left - sectionInset.right;
+    CGFloat width = self.collectionView.bounds.size.width - sectionInset.left - sectionInset.right;
     NSInteger columnCount = [self columnCountForSection:section];
     CGFloat itemWidth = CHTFloorCGFloat((width - (columnCount - 1) * columnSpacing) / columnCount);
 
@@ -286,7 +286,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(headerInset.left,
                                     top,
-                                    self.collectionView.frame.size.width - (headerInset.left + headerInset.right),
+                                    self.collectionView.bounds.size.width - (headerInset.left + headerInset.right),
                                     headerHeight);
 
       self.headersAttribute[@(section)] = attributes;
@@ -353,7 +353,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
       attributes.frame = CGRectMake(footerInset.left,
                                     top,
-                                    self.collectionView.frame.size.width - (footerInset.left + footerInset.right),
+                                    self.collectionView.bounds.size.width - (footerInset.left + footerInset.right),
                                     footerHeight);
 
       self.footersAttribute[@(section)] = attributes;

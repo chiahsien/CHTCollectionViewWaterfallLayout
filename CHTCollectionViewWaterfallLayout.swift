@@ -119,7 +119,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         }else{
             insets = self.sectionInset
         }
-        let width:CGFloat = self.collectionView!.frame.size.width - sectionInset.left-sectionInset.right
+        let width:CGFloat = self.collectionView!.bounds.size.width - sectionInset.left-sectionInset.right
         let spaceColumCount:CGFloat = CGFloat(self.columnCount-1)
         return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(self.columnCount))
     }
@@ -166,7 +166,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 sectionInsets = self.sectionInset
             }
             
-            let width = self.collectionView!.frame.size.width - sectionInset.left - sectionInset.right
+            let width = self.collectionView!.bounds.size.width - sectionInset.left - sectionInset.right
             let spaceColumCount = CGFloat(self.columnCount-1)
             let itemWidth = floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(self.columnCount))
             
@@ -182,7 +182,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             
             if heightHeader > 0 {
                 attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
-                attributes.frame = CGRectMake(0, top, self.collectionView!.frame.size.width, heightHeader)
+                attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, heightHeader)
                 self.headersAttributes.setObject(attributes, forKey: (section))
                 self.allItemAttributes.addObject(attributes)
             
@@ -235,7 +235,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             
             if footerHeight > 0 {
                 attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
-                attributes.frame = CGRectMake(0, top, self.collectionView!.frame.size.width, footerHeight)
+                attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, footerHeight)
                 self.footersAttributes.setObject(attributes, forKey: section)
                 self.allItemAttributes.addObject(attributes)
                 top = CGRectGetMaxY(attributes.frame)
