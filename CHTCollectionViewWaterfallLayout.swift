@@ -223,7 +223,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
                 
                 let columnIndex = self.nextColumnIndexForItem(idx, section: section)
                 let xOffset = sectionInsets.left + (itemWidth + self.minimumColumnSpacing) * CGFloat(columnIndex)
-                let yOffset = CGFloat(self.columnHeights[section].objectAtIndex(columnIndex).floatValue) - minimumInteritemSpacing + sectionInsets.bottom
+                let yOffset = self.columnHeights[section].objectAtIndex(columnIndex).doubleValue
                 let itemSize = self.delegate?.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
                 var itemHeight : CGFloat = 0.0
                 if itemSize?.height > 0 && itemSize?.width > 0 {
