@@ -312,22 +312,26 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         }
         return attribute
     }
-    
-    override func layoutAttributesForElementsInRect (rect : CGRect) -> [AnyObject] {
+
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var i = 0
         var begin = 0, end = self.unionRects.count
         var attrs = NSMutableArray()
         
         for var i = 0; i < end; i++ {
-            if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue()){
-                begin = i * unionSize;
-                break
+            if let unionRect = self.unionRects.objectAtIndex(i) as? NSValue {
+                if CGRectIntersectsRect(rect, unionRect.CGRectValue()) {
+                    begin = i * unionSize;
+                    break
+                }
             }
         }
         for var i = self.unionRects.count - 1; i>=0; i-- {
-            if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue()){
-                end = min((i+1)*unionSize,self.allItemAttributes.count)
-                break
+            if let unionRect = self.unionRects.objectAtIndex(i) as? NSValue {
+                if CGRectIntersectsRect(rect, unionRect.CGRectValue()){
+                    end = min((i+1)*unionSize,self.allItemAttributes.count)
+                    break
+                }
             }
         }
         for var i = begin; i < end; i++ {
@@ -337,7 +341,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
         }
             
-        return NSArray(array: attrs) as [AnyObject]
+        return NSArray(array: attrs) as! [UICollectionViewLayoutAttributes]
     }
     
     override func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
