@@ -153,7 +153,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         
         for var section = 0; section < numberOfSections; ++section{
             let columnCount = self.columnCountForSection(section)
-            var sectionColumnHeights = NSMutableArray(capacity: columnCount)
+            let sectionColumnHeights = NSMutableArray(capacity: columnCount)
             for var idx = 0; idx < columnCount; idx++ {
                 sectionColumnHeights.addObject(idx)
             }
@@ -272,16 +272,16 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var idx = 0
         let itemCounts = self.allItemAttributes.count
         while(idx < itemCounts){
-            var rect1 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
+            let rect1 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
             idx = min(idx + unionSize, itemCounts) - 1
-            var rect2 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
+            let rect2 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
             self.unionRects.addObject(NSValue(CGRect:CGRectUnion(rect1,rect2)))
             idx++
         }
     }
     
     override func collectionViewContentSize() -> CGSize{
-        var numberOfSections = self.collectionView!.numberOfSections()
+        let numberOfSections = self.collectionView!.numberOfSections()
         if numberOfSections == 0{
             return CGSizeZero
         }
@@ -291,16 +291,16 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         contentSize.height = CGFloat(height.doubleValue)
         return contentSize
     }
-    
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes!{
+
+    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if indexPath.section >= self.sectionItemAttributes.count{
             return nil
         }
         if indexPath.item >= self.sectionItemAttributes.objectAtIndex(indexPath.section).count{
             return nil;
         }
-        var list = self.sectionItemAttributes.objectAtIndex(indexPath.section) as! NSArray
-        return list.objectAtIndex(indexPath.item) as! UICollectionViewLayoutAttributes
+        let list = self.sectionItemAttributes.objectAtIndex(indexPath.section) as! NSArray
+        return list.objectAtIndex(indexPath.item) as? UICollectionViewLayoutAttributes
     }
     
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
@@ -314,9 +314,8 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     }
 
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var i = 0
         var begin = 0, end = self.unionRects.count
-        var attrs = NSMutableArray()
+        let attrs = NSMutableArray()
         
         for var i = 0; i < end; i++ {
             if let unionRect = self.unionRects.objectAtIndex(i) as? NSValue {
@@ -335,17 +334,17 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
         }
         for var i = begin; i < end; i++ {
-            var attr = self.allItemAttributes.objectAtIndex(i) as! UICollectionViewLayoutAttributes
+            let attr = self.allItemAttributes.objectAtIndex(i) as! UICollectionViewLayoutAttributes
             if CGRectIntersectsRect(rect, attr.frame) {
                 attrs.addObject(attr)
             }
         }
             
-        return NSArray(array: attrs) as! [UICollectionViewLayoutAttributes]
+        return NSArray(array: attrs) as? [UICollectionViewLayoutAttributes]
     }
     
     override func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
-        var oldBounds = self.collectionView!.bounds
+        let oldBounds = self.collectionView!.bounds
         if CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds){
             return true
         }
@@ -407,8 +406,6 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             index = (item%columnCount)
         case .CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft:
             index = (columnCount - 1) - (item % columnCount);
-        default:
-            index = self.shortestColumnIndexInSection(section)
         }
         return index
     }
