@@ -17,7 +17,8 @@
 #define FOOTER_IDENTIFIER @"WaterfallFooter"
 
 @interface ViewController ()
-@property (nonatomic, strong) NSMutableArray *cellSizes;
+@property (nonatomic, strong) NSArray *cellSizes;
+@property (nonatomic, strong) NSArray *cats;
 @end
 
 @implementation ViewController
@@ -51,15 +52,23 @@
   return _collectionView;
 }
 
-- (NSMutableArray *)cellSizes {
+- (NSArray *)cellSizes {
   if (!_cellSizes) {
-    _cellSizes = [NSMutableArray array];
-    for (NSInteger i = 0; i < CELL_COUNT; i++) {
-      CGSize size = CGSizeMake(arc4random() % 50 + 50, arc4random() % 50 + 50);
-      _cellSizes[i] = [NSValue valueWithCGSize:size];
-    }
+    _cellSizes = @[
+      [NSValue valueWithCGSize:CGSizeMake(400, 550)],
+      [NSValue valueWithCGSize:CGSizeMake(1000, 665)],
+      [NSValue valueWithCGSize:CGSizeMake(1024, 689)],
+      [NSValue valueWithCGSize:CGSizeMake(640, 427)]
+    ];
   }
   return _cellSizes;
+}
+
+- (NSArray *)cats {
+  if (!_cats) {
+    _cats = @[@"cat1.jpg", @"cat2.jpg", @"cat3.jpg", @"cat4.jpg"];
+  }
+  return _cats;
 }
 
 #pragma mark - Life Cycle
@@ -104,7 +113,7 @@
   CHTCollectionViewWaterfallCell *cell =
   (CHTCollectionViewWaterfallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER
                                                                               forIndexPath:indexPath];
-  cell.displayString = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
+  cell.imageView.image = [UIImage imageNamed:self.cats[indexPath.item % 4]];
   return cell;
 }
 
@@ -126,7 +135,7 @@
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-  return [self.cellSizes[indexPath.item] CGSizeValue];
+  return [self.cellSizes[indexPath.item % 4] CGSizeValue];
 }
 
 @end
