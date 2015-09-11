@@ -84,6 +84,8 @@ GroupMe - A Home for All the Groups in Your Life.
 Access and organize your photos from anywhere.
 * [Tumblr](https://www.tumblr.com/policy/en/ios-credits)  
 Post whatever you want to your Tumblr. Follow other people who are doing the same. You’ll probably never be bored again.
+* [Funliday](https://itunes.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)  
+The best trip planning app in the world!
 
 License
 -------
