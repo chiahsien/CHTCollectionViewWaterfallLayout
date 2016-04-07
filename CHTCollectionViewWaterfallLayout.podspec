@@ -7,7 +7,17 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = { "Nelson" => "chiahsien@gmail.com" }
   s.source       = { :git => "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", :tag => "#{s.version}" }
-  s.platform     = :ios, '6.0'
-  s.source_files = '*.{h,m}'
+  s.ios.deployment_target = '6.0'
+  s.tvos.deployment_target = '9.0'
   s.requires_arc = true
+
+  s.default_subspec = 'ObjC'
+
+  s.subspec 'ObjC' do |ss|
+      ss.source_files = '*.{h,m}'
+  end
+
+  s.subspec 'Swift' do |ss|
+      ss.source_files = '*.swift'
+  end
 end
