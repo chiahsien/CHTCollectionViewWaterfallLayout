@@ -82,6 +82,14 @@ F3PiX is a series of apps which gives you a concise, curated collection of pictu
 GroupMe - A Home for All the Groups in Your Life.
 * [Flickr](https://itunes.apple.com/us/app/id328407587)  
 Access and organize your photos from anywhere.
+* [Tumblr](https://www.tumblr.com/policy/en/ios-credits)  
+Post whatever you want to your Tumblr. Follow other people who are doing the same. You’ll probably never be bored again.
+* [Funliday](https://itunes.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)  
+The best trip planning app in the world!
+* [Imgur](https://itunes.apple.com/us/app/imgur-funny-gifs-memes-images/id639881495?mt=8)  
+Funny GIFs, Memes, and Images!
+* [DealPad](https://itunes.apple.com/us/app/dealpad-bargains-freebies/id949294107?mt=8)  
+DealPad gives you access to the UK’s hottest Deals, Voucher Codes and Freebies in the palm of your hand.
 
 License
 -------

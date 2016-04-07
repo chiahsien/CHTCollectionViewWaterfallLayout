@@ -41,14 +41,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func setupCollectionView(){
         
         // Create a waterfall layout
-        var layout = CHTCollectionViewWaterfallLayout()
+        let layout = CHTCollectionViewWaterfallLayout()
         
         // Change individual layout attributes for the spacing between cells
         layout.minimumColumnSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         
         // Collection view attributes
-        self.collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+        self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         
         // Add the waterfall layout to your collection view
@@ -59,7 +59,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func registerNibs(){
         
         // attach the UI nib file for the ImageUICollectionViewCell to the collectionview 
-        var viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
+        let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.registerNib(viewNib, forCellWithReuseIdentifier: "cell")
     }
     
@@ -78,7 +78,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         // Create the cell and return the cell
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageUICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageUICollectionViewCell
         
         // Add image to cell
         cell.image.image = model.images[indexPath.row]
@@ -89,15 +89,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - CollectionView Waterfall Layout Delegate Methods (Required)
     
     //** Size for the cells in the Waterfall Layout */
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
-        
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         // create a cell size from the image size, and return the size
         let imageSize = model.images[indexPath.row].size
         
         return imageSize
     }
-    
-    
-    
 }
 

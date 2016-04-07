@@ -20,8 +20,8 @@
 		526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
 		526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
 		526109E416646F4D005E4B6E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
-		526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */; };
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
+		52FADF371CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */; };
 		E5E7073B195E341500773FD3 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
 		E5E7073C195E341500773FD3 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
 		E5E7073D195E341500773FD3 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70739195E341500773FD3 /* cat3.jpg */; };
@@ -49,10 +49,10 @@
 		526109DD16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		526109E216646F4D005E4B6E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		526109E316646F4D005E4B6E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
-		526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallCell.h; sourceTree = "<group>"; };
 		526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallCell.m; sourceTree = "<group>"; };
+		52FADF351CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../../CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		E5E70737195E341500773FD3 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
 		E5E70738195E341500773FD3 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
 		E5E70739195E341500773FD3 /* cat3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat3.jpg; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		52E121B91867F53600B9DC53 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
-				526109EE1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.h */,
-				526109EF1664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m */,
+				52FADF351CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.h */,
+				52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */,
 			);
 			name = Vender;
 			sourceTree = "<group>";
@@ -181,7 +181,7 @@
 		526109B716646F4D005E4B6E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Nelson;
 			};
 			buildConfigurationList = 526109BA16646F4D005E4B6E /* Build configuration list for PBXProject "Demo" */;
@@ -228,8 +228,8 @@
 				526109D116646F4D005E4B6E /* main.m in Sources */,
 				526109D516646F4D005E4B6E /* AppDelegate.m in Sources */,
 				28ACC0CB181E580300454F4A /* CHTCollectionViewWaterfallFooter.m in Sources */,
+				52FADF371CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				526109E416646F4D005E4B6E /* ViewController.m in Sources */,
-				526109F01664709D005E4B6E /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				28FB2A16181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m in Sources */,
 				526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */,
 			);
@@ -268,6 +268,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -315,6 +316,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -326,6 +328,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
