@@ -15,7 +15,7 @@ Screen Shots
 
 Features
 --------
-* Easy to use, it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
+* Easy to use, it tries to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
 * Highly customizable.
 * Outstanding performance, try 10,000+ items and see the smoothness for yourself.
 * Support header and footer views.
@@ -31,16 +31,17 @@ Prerequisite
 How to install
 --------------
 * [CocoaPods]  
-  Add `pod 'CHTCollectionViewWaterfallLayout'` to your podfile.
+  - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
+  - If you prefer Swift, `pod 'CHTCollectionViewWaterfallLayout/Swift'` is ready for you.
 * Manual  
-  Copy `CHTCollectionViewWaterfallLayout.h/m` to your project.
+  - Copy `CHTCollectionViewWaterfallLayout.h/m` or `CHTCollectionViewWaterfallLayout.swift` to your project.
 
 How to Use
 ----------
 Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for more information.
 
 #### Step 1
-Below lists the properties for you to customize the layout. Although they have default values, I strongly recommand you to set up at least the `columnCount` property to suit your needs.
+Below lists the properties for you to customize the layout. Although they have default values, I strongly recommend you to set up at least the `columnCount` property to suit your needs.
 The `itemRenderDirection` property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
 
 ``` objc
@@ -104,4 +105,3 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
 [CocoaPods]: http://cocoapods.org/
-
