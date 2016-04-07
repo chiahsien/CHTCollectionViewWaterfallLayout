@@ -89,15 +89,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - CollectionView Waterfall Layout Delegate Methods (Required)
     
     //** Size for the cells in the Waterfall Layout */
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
-        
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         // create a cell size from the image size, and return the size
         let imageSize = model.images[indexPath.row].size
         
         return imageSize
     }
-    
-    
-    
 }
 
