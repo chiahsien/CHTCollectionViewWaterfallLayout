@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52FADF3B1CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FADF3A1CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.m */; };
 		62C26FDF1ABE01840027F8D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */; };
 		62C26FE61ABE01840027F8D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE51ABE01840027F8D4 /* Images.xcassets */; };
 		62C26FE91ABE01840027F8D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE71ABE01840027F8D4 /* LaunchScreen.xib */; };
@@ -16,7 +17,6 @@
 		62C270031ABE01D70027F8D4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270021ABE01D70027F8D4 /* Model.swift */; };
 		62C270061ABE01E70027F8D4 /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */; };
 		62C270071ABE01E70027F8D4 /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */; };
-		62C2700B1ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C2700A1ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52FADF391CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		52FADF3A1CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../../CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHTWaterfallSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C26FDD1ABE01840027F8D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,8 +46,6 @@
 		62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUICollectionViewCell.swift; sourceTree = "<group>"; };
 		62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUICollectionViewCell.xib; sourceTree = "<group>"; };
 		62C270081ABE020D0027F8D4 /* CHTWaterfallSwiftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CHTWaterfallSwiftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		62C270091ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
-		62C2700A1ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52FADF381CB64FA20097FB12 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				52FADF391CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.h */,
+				52FADF3A1CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.m */,
+			);
+			name = Vender;
+			sourceTree = "<group>";
+		};
 		62C26FD01ABE01840027F8D4 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +96,7 @@
 		62C26FDB1ABE01840027F8D4 /* CHTWaterfallSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				52FADF381CB64FA20097FB12 /* Vender */,
 				62C26FFE1ABE01B20027F8D4 /* Main.storyboard */,
 				62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */,
 				62C270001ABE01BA0027F8D4 /* ViewController.swift */,
@@ -94,8 +104,6 @@
 				62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */,
 				62C270021ABE01D70027F8D4 /* Model.swift */,
 				62C26FE71ABE01840027F8D4 /* LaunchScreen.xib */,
-				62C270091ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.h */,
-				62C2700A1ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.m */,
 				62C26FE51ABE01840027F8D4 /* Images.xcassets */,
 				62C26FDC1ABE01840027F8D4 /* Supporting Files */,
 				62C270081ABE020D0027F8D4 /* CHTWaterfallSwiftDemo-Bridging-Header.h */,
@@ -231,7 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C2700B1ABE020D0027F8D4 /* CHTCollectionViewWaterfallLayout.m in Sources */,
+				52FADF3B1CB64FB00097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				62C270031ABE01D70027F8D4 /* Model.swift in Sources */,
 				62C270011ABE01BA0027F8D4 /* ViewController.swift in Sources */,
 				62C270061ABE01E70027F8D4 /* ImageUICollectionViewCell.swift in Sources */,
