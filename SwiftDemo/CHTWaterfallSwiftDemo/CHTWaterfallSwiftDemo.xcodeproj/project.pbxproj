@@ -172,6 +172,8 @@
 		62C26FD11ABE01840027F8D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Sophie Fader";
 				TargetAttributes = {
@@ -424,6 +426,7 @@
 				62C26FFA1ABE01850027F8D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62C26FFB1ABE01850027F8D4 /* Build configuration list for PBXNativeTarget "CHTWaterfallSwiftDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +435,7 @@
 				62C26FFD1ABE01850027F8D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
