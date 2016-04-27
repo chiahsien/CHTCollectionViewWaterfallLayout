@@ -36,7 +36,7 @@ enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 }
 
-class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
+public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
     let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
     
