@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
+@objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
     
     func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
@@ -36,7 +36,7 @@ enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 }
 
-class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
+public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
     let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
     
@@ -91,7 +91,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     var unionRects : NSMutableArray
     let unionSize = 20
     
-    override init(){
+    override public init(){
         self.headerHeight = 0.0
         self.footerHeight = 0.0
         self.columnCount = 2
@@ -111,7 +111,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         super.init()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
   
@@ -136,7 +136,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(columnCount))
     }
     
-    override func prepareLayout(){
+    override public func prepareLayout(){
         super.prepareLayout()
         
         let numberOfSections = self.collectionView!.numberOfSections()
@@ -280,7 +280,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         }
     }
     
-    override func collectionViewContentSize() -> CGSize{
+    override public func collectionViewContentSize() -> CGSize{
         let numberOfSections = self.collectionView!.numberOfSections()
         if numberOfSections == 0{
             return CGSizeZero
@@ -292,7 +292,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return contentSize
     }
 
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if indexPath.section >= self.sectionItemAttributes.count {
             return nil
         }
@@ -304,7 +304,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return list.objectAtIndex(indexPath.item) as? UICollectionViewLayoutAttributes
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
+    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CHTCollectionElementKindSectionHeader{
             attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
@@ -314,7 +314,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return attribute
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var begin = 0, end = self.unionRects.count
         let attrs = NSMutableArray()
         
@@ -344,7 +344,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return NSArray(array: attrs) as? [UICollectionViewLayoutAttributes]
     }
     
-    override func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
+    override public func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
         let oldBounds = self.collectionView!.bounds
         if CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds){
             return true
