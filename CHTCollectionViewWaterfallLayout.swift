@@ -30,7 +30,7 @@ import UIKit
         columnCountForSection section: NSInteger) -> NSInteger
 }
 
-enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
@@ -40,56 +40,55 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
     let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
     
-    var columnCount : NSInteger{
+    public var columnCount : NSInteger{
     didSet{
         invalidateLayout()
     }}
     
-    var minimumColumnSpacing : CGFloat{
+    public var minimumColumnSpacing : CGFloat{
     didSet{
         invalidateLayout()
     }}
     
-    var minimumInteritemSpacing : CGFloat{
+    public var minimumInteritemSpacing : CGFloat{
     didSet{
         invalidateLayout()
     }}
     
-    var headerHeight : CGFloat{
-    didSet{
-        invalidateLayout()
-    }}
-
-    var footerHeight : CGFloat{
+    public var headerHeight : CGFloat{
     didSet{
         invalidateLayout()
     }}
 
-    var sectionInset : UIEdgeInsets{
+    public var footerHeight : CGFloat{
+    didSet{
+        invalidateLayout()
+    }}
+
+    public var sectionInset : UIEdgeInsets{
     didSet{
         invalidateLayout()
     }}
     
     
-    var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
+    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
     didSet{
         invalidateLayout()
     }}
     
-    
-//    private property and method above.
-    weak var delegate : CHTCollectionViewDelegateWaterfallLayout?{
+    public weak var delegate : CHTCollectionViewDelegateWaterfallLayout?{
     get{
         return self.collectionView!.delegate as? CHTCollectionViewDelegateWaterfallLayout
     }
     }
-    var columnHeights : NSMutableArray
-    var sectionItemAttributes : NSMutableArray
-    var allItemAttributes : NSMutableArray
-    var headersAttributes : NSMutableDictionary
-    var footersAttributes : NSMutableDictionary
-    var unionRects : NSMutableArray
-    let unionSize = 20
+    
+    private var columnHeights : NSMutableArray
+    private var sectionItemAttributes : NSMutableArray
+    private var allItemAttributes : NSMutableArray
+    private var headersAttributes : NSMutableDictionary
+    private var footersAttributes : NSMutableDictionary
+    private  var unionRects : NSMutableArray
+    private let unionSize = 20
     
     override public init(){
         self.headerHeight = 0.0
