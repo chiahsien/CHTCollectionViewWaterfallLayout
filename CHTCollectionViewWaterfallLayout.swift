@@ -36,10 +36,10 @@ public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 }
 
+public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
+public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
+
 public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
-    let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
-    let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
-    
     public var columnCount : NSInteger{
     didSet{
         invalidateLayout()
