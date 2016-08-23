@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
+@objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
     
     func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
@@ -30,68 +30,67 @@ import UIKit
         columnCountForSection section: NSInteger) -> NSInteger
 }
 
-enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 }
 
-class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
-    let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
-    let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
-    
-    var columnCount : NSInteger{
+public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
+public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
+
+public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
+    public var columnCount : NSInteger{
     didSet{
         invalidateLayout()
     }}
     
-    var minimumColumnSpacing : CGFloat{
+    public var minimumColumnSpacing : CGFloat{
     didSet{
         invalidateLayout()
     }}
     
-    var minimumInteritemSpacing : CGFloat{
+    public var minimumInteritemSpacing : CGFloat{
     didSet{
         invalidateLayout()
     }}
     
-    var headerHeight : CGFloat{
+    public var headerHeight : CGFloat{
     didSet{
         invalidateLayout()
     }}
 
-    var footerHeight : CGFloat{
+    public var footerHeight : CGFloat{
     didSet{
         invalidateLayout()
     }}
 
-    var sectionInset : UIEdgeInsets{
+    public var sectionInset : UIEdgeInsets{
     didSet{
         invalidateLayout()
     }}
     
     
-    var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
+    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
     didSet{
         invalidateLayout()
     }}
     
-    
-//    private property and method above.
-    weak var delegate : CHTCollectionViewDelegateWaterfallLayout?{
+    public weak var delegate : CHTCollectionViewDelegateWaterfallLayout?{
     get{
         return self.collectionView!.delegate as? CHTCollectionViewDelegateWaterfallLayout
     }
     }
-    var columnHeights : NSMutableArray
-    var sectionItemAttributes : NSMutableArray
-    var allItemAttributes : NSMutableArray
-    var headersAttributes : NSMutableDictionary
-    var footersAttributes : NSMutableDictionary
-    var unionRects : NSMutableArray
-    let unionSize = 20
     
-    override init(){
+    private var columnHeights : NSMutableArray
+    private var sectionItemAttributes : NSMutableArray
+    private var allItemAttributes : NSMutableArray
+    private var headersAttributes : NSMutableDictionary
+    private var footersAttributes : NSMutableDictionary
+    private  var unionRects : NSMutableArray
+    private let unionSize = 20
+    
+    override public init(){
         self.headerHeight = 0.0
         self.footerHeight = 0.0
         self.columnCount = 2
@@ -111,7 +110,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         super.init()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
   
@@ -136,7 +135,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(columnCount))
     }
     
-    override func prepareLayout(){
+    override public func prepareLayout(){
         super.prepareLayout()
         
         let numberOfSections = self.collectionView!.numberOfSections()
@@ -280,7 +279,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         }
     }
     
-    override func collectionViewContentSize() -> CGSize{
+    override public func collectionViewContentSize() -> CGSize{
         let numberOfSections = self.collectionView!.numberOfSections()
         if numberOfSections == 0{
             return CGSizeZero
@@ -292,7 +291,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return contentSize
     }
 
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if indexPath.section >= self.sectionItemAttributes.count {
             return nil
         }
@@ -304,7 +303,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return list.objectAtIndex(indexPath.item) as? UICollectionViewLayoutAttributes
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
+    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CHTCollectionElementKindSectionHeader{
             attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
@@ -314,7 +313,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return attribute
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var begin = 0, end = self.unionRects.count
         let attrs = NSMutableArray()
         
@@ -344,7 +343,7 @@ class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         return NSArray(array: attrs) as? [UICollectionViewLayoutAttributes]
     }
     
-    override func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
+    override public func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
         let oldBounds = self.collectionView!.bounds
         if CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds){
             return true
