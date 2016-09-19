@@ -40,38 +40,38 @@ public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSect
 public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
 
 public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
-    public var columnCount : NSInteger{
+    public var columnCount : NSInteger = 2 {
     didSet{
         invalidateLayout()
     }}
     
-    public var minimumColumnSpacing : CGFloat{
+    public var minimumColumnSpacing : CGFloat = 10 {
     didSet{
         invalidateLayout()
     }}
     
-    public var minimumInteritemSpacing : CGFloat{
+    public var minimumInteritemSpacing : CGFloat = 10 {
     didSet{
         invalidateLayout()
     }}
     
-    public var headerHeight : CGFloat{
+    public var headerHeight : CGFloat = 0 {
     didSet{
         invalidateLayout()
     }}
 
-    public var footerHeight : CGFloat{
+    public var footerHeight : CGFloat = 0 {
     didSet{
         invalidateLayout()
     }}
 
-    public var sectionInset : UIEdgeInsets{
+    public var sectionInset = UIEdgeInsets() {
     didSet{
         invalidateLayout()
     }}
     
     
-    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
+    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection = .CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst {
     didSet{
         invalidateLayout()
     }}
@@ -82,37 +82,21 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     }
     }
     
-    private var columnHeights : NSMutableArray
-    private var sectionItemAttributes : NSMutableArray
-    private var allItemAttributes : NSMutableArray
-    private var headersAttributes : NSMutableDictionary
-    private var footersAttributes : NSMutableDictionary
-    private  var unionRects : NSMutableArray
+    private var columnHeights = NSMutableArray()
+    private var sectionItemAttributes = NSMutableArray()
+    private var allItemAttributes = NSMutableArray()
+    private var headersAttributes = NSMutableDictionary()
+    private var footersAttributes = NSMutableDictionary()
+    private  var unionRects = NSMutableArray()
     private let unionSize = 20
     
     override public init(){
-        self.headerHeight = 0.0
-        self.footerHeight = 0.0
-        self.columnCount = 2
-        self.minimumInteritemSpacing = 10
-        self.minimumColumnSpacing = 10
-        self.sectionInset = UIEdgeInsetsZero
-        self.itemRenderDirection =
-        CHTCollectionViewWaterfallLayoutItemRenderDirection.CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
-
-        headersAttributes = NSMutableDictionary()
-        footersAttributes = NSMutableDictionary()
-        unionRects = NSMutableArray()
-        columnHeights = NSMutableArray()
-        allItemAttributes = NSMutableArray()
-        sectionItemAttributes = NSMutableArray()
-        
         super.init()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+      super.init(coder: aDecoder)
+  }
   
     func columnCountForSection (section : NSInteger) -> NSInteger {
         if let columnCount = self.delegate?.collectionView?(self.collectionView!, layout: self, columnCountForSection: section){
