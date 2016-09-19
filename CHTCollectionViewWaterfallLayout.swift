@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Nicholas Tau. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 @objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
@@ -30,14 +29,14 @@ import UIKit
         columnCountForSection section: NSInteger) -> NSInteger
 }
 
-public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger {
+    case shortestFirst, leftToRight, rightToLeft
 }
 
-public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
-public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
+public enum CHTCollectionElementKind {
+  public static var sectionHeader: String { return "CHTCollectionElementKindSectionHeader" }
+  public static var sectionFooter: String { return "CHTCollectionElementKindSectionFooter" }
+}
 
 public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     public var columnCount : NSInteger = 2 {
@@ -71,7 +70,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     }}
     
     
-    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection = .CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst {
+    public var itemRenderDirection = CHTCollectionViewWaterfallLayoutItemRenderDirection.shortestFirst {
     didSet{
         invalidateLayout()
     }}
@@ -151,8 +150,8 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
             */
             var minimumInteritemSpacing : CGFloat
-            if let miniumSpaceing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
-                minimumInteritemSpacing = miniumSpaceing
+            if let minimumSpacing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
+                minimumInteritemSpacing = minimumSpacing
             }else{
                 minimumInteritemSpacing = self.minimumColumnSpacing
             }
@@ -180,7 +179,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             if heightHeader > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKind.sectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, heightHeader)
                 self.headersAttributes.setObject(attributes, forKey: (section))
                 self.allItemAttributes.addObject(attributes)
@@ -238,7 +237,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             if footerHeight > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKind.sectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, footerHeight)
                 self.footersAttributes.setObject(attributes, forKey: section)
                 self.allItemAttributes.addObject(attributes)
@@ -289,9 +288,9 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     
     override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
-        if elementKind == CHTCollectionElementKindSectionHeader{
+        if elementKind == CHTCollectionElementKind.sectionHeader {
             attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
-        }else if elementKind == CHTCollectionElementKindSectionFooter{
+        }else if elementKind == CHTCollectionElementKind.sectionFooter {
             attribute = self.footersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
         }
         return attribute
@@ -384,11 +383,11 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var index = 0
         let columnCount = self.columnCountForSection(section)
         switch (self.itemRenderDirection){
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst :
+        case .shortestFirst :
             index = self.shortestColumnIndexInSection(section)
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight :
+        case .leftToRight :
             index = (item%columnCount)
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft:
+        case .rightToLeft:
             index = (columnCount - 1) - (item % columnCount);
         }
         return index
