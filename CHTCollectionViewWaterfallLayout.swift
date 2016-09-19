@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Nicholas Tau. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 @objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate{
@@ -30,48 +29,48 @@ import UIKit
         columnCountForSection section: NSInteger) -> NSInteger
 }
 
-public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger{
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection : NSInteger {
+    case shortestFirst, leftToRight, rightToLeft
 }
 
-public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
-public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
+public enum CHTCollectionElementKind {
+  public static var sectionHeader: String { return "CHTCollectionElementKindSectionHeader" }
+  public static var sectionFooter: String { return "CHTCollectionElementKindSectionFooter" }
+}
 
 public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
-    public var columnCount : NSInteger{
+    public var columnCount : NSInteger = 2 {
     didSet{
         invalidateLayout()
     }}
     
-    public var minimumColumnSpacing : CGFloat{
+    public var minimumColumnSpacing : CGFloat = 10 {
     didSet{
         invalidateLayout()
     }}
     
-    public var minimumInteritemSpacing : CGFloat{
+    public var minimumInteritemSpacing : CGFloat = 10 {
     didSet{
         invalidateLayout()
     }}
     
-    public var headerHeight : CGFloat{
+    public var headerHeight : CGFloat = 0 {
     didSet{
         invalidateLayout()
     }}
 
-    public var footerHeight : CGFloat{
+    public var footerHeight : CGFloat = 0 {
     didSet{
         invalidateLayout()
     }}
 
-    public var sectionInset : UIEdgeInsets{
+    public var sectionInset = UIEdgeInsets() {
     didSet{
         invalidateLayout()
     }}
     
     
-    public var itemRenderDirection : CHTCollectionViewWaterfallLayoutItemRenderDirection{
+    public var itemRenderDirection = CHTCollectionViewWaterfallLayoutItemRenderDirection.shortestFirst {
     didSet{
         invalidateLayout()
     }}
@@ -82,37 +81,21 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     }
     }
     
-    private var columnHeights : NSMutableArray
-    private var sectionItemAttributes : NSMutableArray
-    private var allItemAttributes : NSMutableArray
-    private var headersAttributes : NSMutableDictionary
-    private var footersAttributes : NSMutableDictionary
-    private  var unionRects : NSMutableArray
+    private var columnHeights = NSMutableArray()
+    private var sectionItemAttributes = NSMutableArray()
+    private var allItemAttributes = NSMutableArray()
+    private var headersAttributes = NSMutableDictionary()
+    private var footersAttributes = NSMutableDictionary()
+    private  var unionRects = NSMutableArray()
     private let unionSize = 20
     
     override public init(){
-        self.headerHeight = 0.0
-        self.footerHeight = 0.0
-        self.columnCount = 2
-        self.minimumInteritemSpacing = 10
-        self.minimumColumnSpacing = 10
-        self.sectionInset = UIEdgeInsetsZero
-        self.itemRenderDirection =
-        CHTCollectionViewWaterfallLayoutItemRenderDirection.CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
-
-        headersAttributes = NSMutableDictionary()
-        footersAttributes = NSMutableDictionary()
-        unionRects = NSMutableArray()
-        columnHeights = NSMutableArray()
-        allItemAttributes = NSMutableArray()
-        sectionItemAttributes = NSMutableArray()
-        
         super.init()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+      super.init(coder: aDecoder)
+  }
   
     func columnCountForSection (section : NSInteger) -> NSInteger {
         if let columnCount = self.delegate?.collectionView?(self.collectionView!, layout: self, columnCountForSection: section){
@@ -167,8 +150,8 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
             */
             var minimumInteritemSpacing : CGFloat
-            if let miniumSpaceing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
-                minimumInteritemSpacing = miniumSpaceing
+            if let minimumSpacing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
+                minimumInteritemSpacing = minimumSpacing
             }else{
                 minimumInteritemSpacing = self.minimumColumnSpacing
             }
@@ -196,7 +179,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             if heightHeader > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKind.sectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, heightHeader)
                 self.headersAttributes.setObject(attributes, forKey: (section))
                 self.allItemAttributes.addObject(attributes)
@@ -254,7 +237,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             }
             
             if footerHeight > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKind.sectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, footerHeight)
                 self.footersAttributes.setObject(attributes, forKey: section)
                 self.allItemAttributes.addObject(attributes)
@@ -305,9 +288,9 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
     
     override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
-        if elementKind == CHTCollectionElementKindSectionHeader{
+        if elementKind == CHTCollectionElementKind.sectionHeader {
             attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
-        }else if elementKind == CHTCollectionElementKindSectionFooter{
+        }else if elementKind == CHTCollectionElementKind.sectionFooter {
             attribute = self.footersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
         }
         return attribute
@@ -400,11 +383,11 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
         var index = 0
         let columnCount = self.columnCountForSection(section)
         switch (self.itemRenderDirection){
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst :
+        case .shortestFirst :
             index = self.shortestColumnIndexInSection(section)
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight :
+        case .leftToRight :
             index = (item%columnCount)
-        case .CHTCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft:
+        case .rightToLeft:
             index = (columnCount - 1) - (item % columnCount);
         }
         return index
