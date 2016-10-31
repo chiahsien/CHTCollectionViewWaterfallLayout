@@ -318,12 +318,11 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         if (indexPath as NSIndexPath).section >= self.sectionItemAttributes.count {
             return nil
         }
-        let list = self.sectionItemAttributes[indexPath.section]//.object(at: (indexPath as NSIndexPath).section) as! NSArray
-
+        let list = self.sectionItemAttributes[indexPath.section]
         if (indexPath as NSIndexPath).item >= list.count {
             return nil
         }
-        return list[indexPath.item]//.object(at: (indexPath as NSIndexPath).item) as? UICollectionViewLayoutAttributes
+        return list[indexPath.item]
     }
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
