@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30CCE20D1C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CCE20C1C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30CCE2161C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CCE2141C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C2340CA1DC7E6000077FA16 /* CHTCollectionViewWaterfallLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CCE2141C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30CCE2171C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCE2151C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30CCE2091C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CHTCollectionViewWaterfallLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30CCE20C1C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		30CCE20E1C9A8F7500429C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30CCE2141C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		30CCE2151C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 			children = (
 				30CCE2141C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h */,
 				30CCE2151C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m */,
-				30CCE20C1C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.h */,
 				30CCE20E1C9A8F7500429C17 /* Info.plist */,
 			);
 			path = CHTCollectionViewWaterfallLayout;
@@ -65,8 +62,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30CCE2161C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h in Headers */,
-				30CCE20D1C9A8F7500429C17 /* CHTCollectionViewWaterfallLayout.h in Headers */,
+				0C2340CA1DC7E6000077FA16 /* CHTCollectionViewWaterfallLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +278,7 @@
 				30CCE2131C9A8F7500429C17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
