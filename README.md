@@ -34,6 +34,10 @@ How to install
 * [CocoaPods]  
   - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
   - If you prefer Swift, `pod 'CHTCollectionViewWaterfallLayout/Swift'` is ready for you.
+
+* [Carthage]
+  - Add `github chiahsien/CHTCollectionViewWaterfallLayout` to your Cartfile.
+
 * Manual  
   - Copy `CHTCollectionViewWaterfallLayout.h/m` or `CHTCollectionViewWaterfallLayout.swift` to your project.
 
@@ -106,3 +110,4 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
 [CocoaPods]: http://cocoapods.org/
+[Carthage]: https://github.com/Carthage/Carthage
