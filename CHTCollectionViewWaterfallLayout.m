@@ -506,10 +506,6 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   NSUInteger index = 0;
   NSInteger columnCount = [self columnCountForSection:section];
   switch (self.itemRenderDirection) {
-    case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst:
-      index = [self shortestColumnIndexInSection:section];
-      break;
-
     case CHTCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight:
       index = (item % columnCount);
       break;
@@ -518,9 +514,10 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       index = (columnCount - 1) - (item % columnCount);
       break;
 
-    default:
-      index = [self shortestColumnIndexInSection:section];
-      break;
+      case CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst:
+      default:
+          index = [self shortestColumnIndexInSection:section];
+          break;
   }
   return index;
 }
