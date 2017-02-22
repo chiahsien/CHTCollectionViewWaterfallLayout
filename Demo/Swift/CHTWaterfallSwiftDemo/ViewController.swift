@@ -48,7 +48,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.minimumInteritemSpacing = 1.0
         
         // Collection view attributes
-        self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        self.collectionView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         
         // Add the waterfall layout to your collection view
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // attach the UI nib file for the ImageUICollectionViewCell to the collectionview 
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
-        collectionView.registerNib(viewNib, forCellWithReuseIdentifier: "cell")
+        collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
     }
     
     
@@ -69,16 +69,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - CollectionView Delegate Methods
     
      //** Number of Cells in the CollectionView */
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.images.count
     }
     
     
     //** Create a basic CollectionView Cell */
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Create the cell and return the cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageUICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! ImageUICollectionViewCell
         
         // Add image to cell
         cell.image.image = model.images[indexPath.row]
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - CollectionView Waterfall Layout Delegate Methods (Required)
     
     //** Size for the cells in the Waterfall Layout */
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         // create a cell size from the image size, and return the size
         let imageSize = model.images[indexPath.row].size
         
