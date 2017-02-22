@@ -322,7 +322,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
       if (_keepOriginalItemHeight) {
-        itemHeight = itemSize.height
+        itemHeight = itemSize.height;
       }
       else if (itemSize.height > 0 && itemSize.width > 0) {
         itemHeight = CHTFloorCGFloat(itemSize.height * itemWidth / itemSize.width);
