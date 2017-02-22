@@ -57,6 +57,7 @@ The `itemRenderDirection` property is an enum which decides the order in which y
 @property (nonatomic, assign) CGFloat footerHeight;
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 @property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
+@property (nonatomic, assign) BOOL keepOriginalItemHeight;
 ```
 
 #### Step 2
