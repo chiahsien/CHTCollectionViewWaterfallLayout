@@ -307,6 +307,16 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
 @property (nonatomic, assign) CHTCollectionViewWaterfallLayoutItemRenderDirection itemRenderDirection;
 
 /**
+ *  @brief Controls whether the original height of the items should be kept.
+ *  @discussion
+ *    When set to YES, the original height returned by collectionView:layout:sizeForItemAtIndexPath: will be used for each cell.
+ *
+ *    Default: NO
+ */
+@property (nonatomic, assign) BOOL keepOriginalItemHeight;
+
+
+/**
  *  @brief The minimum height of the collection view's content.
  *  @discussion
  *    The minimum height of the collection view's content. This could be used to allow hidden headers with no content.

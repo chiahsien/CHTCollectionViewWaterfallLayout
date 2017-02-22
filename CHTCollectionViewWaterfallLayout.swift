@@ -95,6 +95,12 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
             invalidateLayout()
         }
     }
+    
+    var keepOriginalItemHeight = false {
+        didSet {
+            invalidateLayout()
+        }
+    }
 
 
     //    private property and method above.
@@ -245,7 +251,9 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
                 let yOffset = ((self.columnHeights[section] as AnyObject).object (at: columnIndex) as AnyObject).doubleValue
                 let itemSize = self.delegate?.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
                 var itemHeight: CGFloat = 0.0
-                if itemSize?.height > 0 && itemSize?.width > 0 {
+                if keepOriginalItemHeight {
+                    itemHeight = itemSize!.height
+                } else if itemSize?.height > 0 && itemSize?.width > 0 {
                     itemHeight = floor(itemSize!.height * itemWidth / itemSize!.width)
                 }
 
