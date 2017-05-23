@@ -166,14 +166,14 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             /*
             * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
             */
-            var minimumInteritemSpacing : CGFloat
+            let minimumInteritemSpacing : CGFloat
             if let miniumSpaceing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section){
                 minimumInteritemSpacing = miniumSpaceing
             }else{
-                minimumInteritemSpacing = self.minimumColumnSpacing
+                minimumInteritemSpacing = self.minimumInteritemSpacing
             }
             
-            var sectionInsets :  UIEdgeInsets
+            let sectionInsets :  UIEdgeInsets
             if let insets = self.delegate?.collectionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section){
                 sectionInsets = insets
             }else{
@@ -188,7 +188,7 @@ public class CHTCollectionViewWaterfallLayout : UICollectionViewLayout{
             /*
             * 2. Section header
             */
-            var heightHeader : CGFloat
+            let heightHeader : CGFloat
             if let height = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForHeaderInSection: section){
                 heightHeader = height
             }else{
