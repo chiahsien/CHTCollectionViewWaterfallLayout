@@ -332,8 +332,12 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
      */
     CGFloat footerHeight;
     NSUInteger columnIndex = [self longestColumnIndexInSection:section];
-    top = [self.columnHeights[section][columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
-
+    if (((NSArray *)self.columnHeights[section]).count > 0) {
+      top = [self.columnHeights[section][columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
+    } else {
+		  top = 0;
+	  }
+	  
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:heightForFooterInSection:)]) {
       footerHeight = [self.delegate collectionView:self.collectionView layout:self heightForFooterInSection:section];
     } else {
