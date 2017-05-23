@@ -29,7 +29,7 @@ fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-@objc protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate {
+@objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate {
 
     func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                          sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
@@ -50,7 +50,7 @@ fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
                                         columnCountForSection section: Int) -> Int
 }
 
-enum CHTCollectionViewWaterfallLayoutItemRenderDirection: Int {
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection: Int {
     case chtCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst
     case chtCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight
     case chtCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
@@ -58,39 +58,39 @@ enum CHTCollectionViewWaterfallLayoutItemRenderDirection: Int {
 
 public  let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
 public  let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
-class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
-    var columnCount: Int {
+public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
+    public var columnCount: Int {
         didSet {
             invalidateLayout()
         }}
 
-    var minimumColumnSpacing: CGFloat {
+    public var minimumColumnSpacing: CGFloat {
         didSet {
             invalidateLayout()
         }}
 
-    var minimumInteritemSpacing: CGFloat {
+    public var minimumInteritemSpacing: CGFloat {
         didSet {
             invalidateLayout()
         }}
 
-    var headerHeight: CGFloat {
+    public var headerHeight: CGFloat {
         didSet {
             invalidateLayout()
         }}
 
-    var footerHeight: CGFloat {
+    public var footerHeight: CGFloat {
         didSet {
             invalidateLayout()
         }}
 
-    var sectionInset: UIEdgeInsets {
+    public var sectionInset: UIEdgeInsets {
         didSet {
             invalidateLayout()
         }}
 
 
-    var itemRenderDirection: CHTCollectionViewWaterfallLayoutItemRenderDirection {
+    public var itemRenderDirection: CHTCollectionViewWaterfallLayoutItemRenderDirection {
         didSet {
             invalidateLayout()
         }
@@ -98,20 +98,20 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
 
     //    private property and method above.
-    weak var delegate: CHTCollectionViewDelegateWaterfallLayout? {
+    public weak var delegate: CHTCollectionViewDelegateWaterfallLayout? {
         get {
             return self.collectionView!.delegate as? CHTCollectionViewDelegateWaterfallLayout
         }
     }
-    var columnHeights: [[CGFloat]]
-    var sectionItemAttributes: [[UICollectionViewLayoutAttributes]]
-    var allItemAttributes: [UICollectionViewLayoutAttributes]
-    var headersAttributes: [Int: UICollectionViewLayoutAttributes]
-    var footersAttributes: [Int: UICollectionViewLayoutAttributes]
-    var unionRects: [NSValue]
-    let unionSize = 20
+    public var columnHeights: [[CGFloat]]
+    public var sectionItemAttributes: [[UICollectionViewLayoutAttributes]]
+    public var allItemAttributes: [UICollectionViewLayoutAttributes]
+    public var headersAttributes: [Int: UICollectionViewLayoutAttributes]
+    public var footersAttributes: [Int: UICollectionViewLayoutAttributes]
+    public var unionRects: [NSValue]
+    public let unionSize = 20
 
-    override init() {
+    override public init() {
         self.headerHeight = 0.0
         self.footerHeight = 0.0
         self.columnCount = 2
@@ -131,11 +131,11 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         super.init()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func columnCountForSection (_ section: Int) -> Int {
+    public func columnCountForSection (_ section: Int) -> Int {
         if let columnCount = self.delegate?.collectionView?(self.collectionView!, layout: self, columnCountForSection: section) {
             return columnCount
         } else {
@@ -143,7 +143,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         }
     }
 
-    func itemWidthInSectionAtIndex (_ section: Int) -> CGFloat {
+    public func itemWidthInSectionAtIndex (_ section: Int) -> CGFloat {
         var insets: UIEdgeInsets
         if let sectionInsets = self.delegate?.collectionView?(self.collectionView!, layout: self, insetForSectionAtIndex: section) {
             insets = sectionInsets
@@ -156,7 +156,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         return floor((width - (spaceColumCount * self.minimumColumnSpacing)) / CGFloat(columnCount))
     }
 
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
 
         let numberOfSections = self.collectionView!.numberOfSections
@@ -296,7 +296,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         }
     }
 
-    override var collectionViewContentSize: CGSize {
+    override public var collectionViewContentSize: CGSize {
         let numberOfSections = self.collectionView!.numberOfSections
         if numberOfSections == 0 {
             return CGSize.zero
@@ -313,7 +313,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         return CGSize.zero
     }
 
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if (indexPath as NSIndexPath).section >= self.sectionItemAttributes.count {
             return nil
         }
@@ -324,7 +324,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         return list[indexPath.item]
     }
 
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
+    override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
         var attribute: UICollectionViewLayoutAttributes?
         if elementKind == CHTCollectionElementKindSectionHeader {
             attribute = self.headersAttributes[indexPath.section]
@@ -337,7 +337,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         return returnAttribute
     }
 
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var begin = 0, end = self.unionRects.count
         var attrs: [UICollectionViewLayoutAttributes] = []
 
@@ -365,7 +365,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         return attrs
     }
 
-    override func shouldInvalidateLayout (forBoundsChange newBounds: CGRect) -> Bool {
+    override public func shouldInvalidateLayout (forBoundsChange newBounds: CGRect) -> Bool {
         let oldBounds = self.collectionView!.bounds
         if newBounds.width != oldBounds.width {
             return true
@@ -379,7 +379,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
      *
      *  @return index for the shortest column
      */
-    func shortestColumnIndexInSection (_ section: Int) -> Int {
+    public func shortestColumnIndexInSection (_ section: Int) -> Int {
         var index = 0
         var shorestHeight = CGFloat.greatestFiniteMagnitude
         for (idx, height) in self.columnHeights[section].enumerated() {
@@ -397,7 +397,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
      *  @return index for the longest column
      */
 
-    func longestColumnIndexInSection (_ section: Int) -> Int {
+    public func longestColumnIndexInSection (_ section: Int) -> Int {
         var index = 0
         var longestHeight: CGFloat = 0.0
 
@@ -416,7 +416,7 @@ class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
      *
      *  @return index for the next column
      */
-    func nextColumnIndexForItem (_ item: Int, section: Int) -> Int {
+    public func nextColumnIndexForItem (_ item: Int, section: Int) -> Int {
         var index = 0
         let columnCount = self.columnCountForSection(section)
         switch self.itemRenderDirection {
