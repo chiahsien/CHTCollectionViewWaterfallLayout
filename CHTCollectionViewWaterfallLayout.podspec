@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CHTCollectionViewWaterfallLayout"
-  s.version      = "0.9.5"
+  s.version      = "0.9.6"
   s.summary      = "The waterfall (i.e., Pinterest-like) layout for UICollectionView."
   s.homepage     = "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout"
   s.screenshots  = "https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png"
