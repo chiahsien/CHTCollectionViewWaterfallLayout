@@ -332,8 +332,12 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
      */
     CGFloat footerHeight;
     NSUInteger columnIndex = [self longestColumnIndexInSection:section];
-    top = [self.columnHeights[section][columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
-
+    if (((NSArray *)self.columnHeights[section]).count > 0) {
+      top = [self.columnHeights[section][columnIndex] floatValue] - minimumInteritemSpacing + sectionInset.bottom;
+    } else {
+		  top = 0;
+	  }
+	  
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:heightForFooterInSection:)]) {
       footerHeight = [self.delegate collectionView:self.collectionView layout:self heightForFooterInSection:section];
     } else {
@@ -423,7 +427,9 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
   NSInteger i;
   NSInteger begin = 0, end = self.unionRects.count;
-  NSMutableArray *attrs = [NSMutableArray array];
+  NSMutableDictionary *cellAttrDict = [NSMutableDictionary dictionary];
+  NSMutableDictionary *supplAttrDict = [NSMutableDictionary dictionary];
+  NSMutableDictionary *decorAttrDict = [NSMutableDictionary dictionary];
 
   for (i = 0; i < self.unionRects.count; i++) {
     if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue])) {
@@ -440,11 +446,23 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   for (i = begin; i < end; i++) {
     UICollectionViewLayoutAttributes *attr = self.allItemAttributes[i];
     if (CGRectIntersectsRect(rect, attr.frame)) {
-      [attrs addObject:attr];
+      switch (attr.representedElementCategory) {
+        case UICollectionElementCategorySupplementaryView:
+          supplAttrDict[attr.indexPath] = attr;
+          break;
+        case UICollectionElementCategoryDecorationView:
+          decorAttrDict[attr.indexPath] = attr;
+          break;
+        case UICollectionElementCategoryCell:
+          cellAttrDict[attr.indexPath] = attr;
+          break;
+      }
     }
   }
 
-  return [NSArray arrayWithArray:attrs];
+  NSArray *result = [cellAttrDict.allValues arrayByAddingObjectsFromArray:supplAttrDict.allValues];
+  result = [result arrayByAddingObjectsFromArray:decorAttrDict.allValues];
+  return result;
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {

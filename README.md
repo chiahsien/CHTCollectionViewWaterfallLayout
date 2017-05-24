@@ -34,6 +34,10 @@ How to install
 * [CocoaPods]  
   - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
   - If you prefer Swift, `pod 'CHTCollectionViewWaterfallLayout/Swift'` is ready for you.
+
+* [Carthage]
+  - Add `github chiahsien/CHTCollectionViewWaterfallLayout` to your Cartfile.
+
 * Manual  
   - Copy `CHTCollectionViewWaterfallLayout.h/m` or `CHTCollectionViewWaterfallLayout.swift` to your project.
 
@@ -92,6 +96,8 @@ The best trip planning app in the world!
 Funny GIFs, Memes, and Images!
 * [DealPad](https://itunes.apple.com/us/app/dealpad-bargains-freebies/id949294107?mt=8)  
 DealPad gives you access to the UK’s hottest Deals, Voucher Codes and Freebies in the palm of your hand.
+* [Teespring Shopping](https://itunes.apple.com/app/apple-store/id1144693237?pt=117854047&ct=CHTCollectionViewWaterfallLayout%20README&mt=8)  
+Browse and purchase shirts, mugs, totes and more!
 
 License
 -------
@@ -106,3 +112,4 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [Pinterest]: http://pinterest.com/
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
 [CocoaPods]: http://cocoapods.org/
+[Carthage]: https://github.com/Carthage/Carthage
