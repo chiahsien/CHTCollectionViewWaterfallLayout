@@ -428,7 +428,8 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
   NSInteger i;
   NSInteger begin = 0, end = self.unionRects.count;
   NSMutableDictionary *cellAttrDict = [NSMutableDictionary dictionary];
-  NSMutableDictionary *supplAttrDict = [NSMutableDictionary dictionary];
+  NSMutableDictionary *supplHeaderAttrDict = [NSMutableDictionary dictionary];
+  NSMutableDictionary *supplFooterAttrDict = [NSMutableDictionary dictionary];
   NSMutableDictionary *decorAttrDict = [NSMutableDictionary dictionary];
 
   for (i = 0; i < self.unionRects.count; i++) {
@@ -448,7 +449,11 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     if (CGRectIntersectsRect(rect, attr.frame)) {
       switch (attr.representedElementCategory) {
         case UICollectionElementCategorySupplementaryView:
-          supplAttrDict[attr.indexPath] = attr;
+          if ([attr.representedElementKind isEqualToString:CHTCollectionElementKindSectionHeader]) {
+            supplHeaderAttrDict[attr.indexPath] = attr;
+          } else if ([attr.representedElementKind isEqualToString:CHTCollectionElementKindSectionFooter]) {
+            supplFooterAttrDict[attr.indexPath] = attr;
+          }
           break;
         case UICollectionElementCategoryDecorationView:
           decorAttrDict[attr.indexPath] = attr;
@@ -460,7 +465,8 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     }
   }
 
-  NSArray *result = [cellAttrDict.allValues arrayByAddingObjectsFromArray:supplAttrDict.allValues];
+  NSArray *result = [cellAttrDict.allValues arrayByAddingObjectsFromArray:supplHeaderAttrDict.allValues];
+  result = [result arrayByAddingObjectsFromArray:supplFooterAttrDict.allValues];
   result = [result arrayByAddingObjectsFromArray:decorAttrDict.allValues];
   return result;
 }
