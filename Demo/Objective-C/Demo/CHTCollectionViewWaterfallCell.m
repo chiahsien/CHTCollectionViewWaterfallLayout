@@ -15,7 +15,8 @@
   if (!_imageView) {
     _imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
     _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [_imageView.layer setMasksToBounds:YES];
   }
   return _imageView;
 }
