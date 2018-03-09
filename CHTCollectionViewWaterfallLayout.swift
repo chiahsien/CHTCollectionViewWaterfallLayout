@@ -191,7 +191,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
             if let miniumSpaceing = self.delegate?.collectionView?(self.collectionView!, layout: self, minimumInteritemSpacingForSectionAtIndex: section) {
                 minimumInteritemSpacing = miniumSpaceing
             } else {
-                minimumInteritemSpacing = self.minimumColumnSpacing
+                minimumInteritemSpacing = self.minimumInteritemSpacing
             }
 
             var sectionInsets: UIEdgeInsets
