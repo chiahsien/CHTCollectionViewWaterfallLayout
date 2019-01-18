@@ -28,7 +28,7 @@
 - (UICollectionView *)collectionView {
   if (!_collectionView) {
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
-
+      layout.enableStickyHeader = YES;
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     layout.headerHeight = 15;
     layout.footerHeight = 10;

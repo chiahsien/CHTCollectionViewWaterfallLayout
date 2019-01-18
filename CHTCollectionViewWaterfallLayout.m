@@ -465,6 +465,27 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     }
   }
 
+    if (self.enableStickyHeader) {
+        for (int i = 0; i < self.allItemAttributes.count; i++) {
+            UICollectionViewLayoutAttributes *attr = self.allItemAttributes[i];
+            if ([attr.representedElementKind isEqualToString:CHTCollectionElementKindSectionHeader]) {
+                NSInteger section =  attr.indexPath.section;
+                NSInteger numberOfItemsInSection = [self.collectionView numberOfItemsInSection:section];
+                NSIndexPath *firstCellIndexPath =  [NSIndexPath indexPathForItem:0 inSection:section];
+                NSIndexPath *lastCellIndexPath = [NSIndexPath indexPathForItem:MAX(0, numberOfItemsInSection - 1) inSection:section];
+                UICollectionViewLayoutAttributes *firstCellAttributes = [self layoutAttributesForItemAtIndexPath:firstCellIndexPath];
+                UICollectionViewLayoutAttributes *lastCellAttributes = [self layoutAttributesForItemAtIndexPath:lastCellIndexPath];
+                CGFloat headerHeight = CGRectGetHeight(attr.frame);
+                CGPoint origin = attr.frame.origin;
+                CGFloat y1 =  MAX(self.collectionView.contentOffset.y, (CGRectGetMinY(firstCellAttributes.frame) - headerHeight));
+                CGFloat y2 = CGRectGetMaxY(lastCellAttributes.frame) - headerHeight;
+                origin.y = MIN(y1, y2);
+                attr.zIndex = 1024;
+                attr.frame = CGRectMake(origin.x, origin.y, CGRectGetWidth(attr.frame), CGRectGetHeight(attr.frame));
+                supplHeaderAttrDict[attr.indexPath] = attr;
+            }
+        }
+    }
   NSArray *result = [cellAttrDict.allValues arrayByAddingObjectsFromArray:supplHeaderAttrDict.allValues];
   result = [result arrayByAddingObjectsFromArray:supplFooterAttrDict.allValues];
   result = [result arrayByAddingObjectsFromArray:decorAttrDict.allValues];
@@ -472,11 +493,14 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
-  CGRect oldBounds = self.collectionView.bounds;
-  if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
-    return YES;
-  }
-  return NO;
+    if (self.enableStickyHeader) {
+        return YES;
+    }
+    CGRect oldBounds = self.collectionView.bounds;
+    if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Private Methods

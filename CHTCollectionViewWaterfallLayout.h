@@ -297,6 +297,16 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  */
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
+
+/**
+ * @brief control when user scroll the collecitonView , sectionHeader stay at top the screen
+ *
+ *  
+ */
+@property (nonatomic, assign) BOOL enableStickyHeader;
+
+
+
 /**
  *  @brief The direction in which items will be rendered in subsequent rows.
  *  @discussion
