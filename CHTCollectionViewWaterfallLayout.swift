@@ -256,13 +256,12 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
                 let yOffset = columnHeights[section][columnIndex]
                 var itemHeight: CGFloat = 0.0
-                if let itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAt: indexPath) {
-                    if itemSize.height > 0 {
-                        itemHeight = itemSize.height
-                        if itemSize.width > 0 {
-                            itemHeight = floor(itemHeight * itemWidth / itemSize.width)
-                        }
-                    }
+                if let itemSize = delegate?.collectionView(collectionView!, layout: self, sizeForItemAt: indexPath),
+                    itemSize.height > 0 {
+                    itemHeight = itemSize.height
+                    if itemSize.width > 0 {
+                        itemHeight = floor(itemHeight * itemWidth / itemSize.width)
+                    } // else use default item width based on other parameters
                 }
 
                 attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -303,8 +302,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     }
 
     override public var collectionViewContentSize: CGSize {
-        let numberOfSections = collectionView!.numberOfSections
-        if numberOfSections == 0 {
+        if collectionView!.numberOfSections == 0 {
             return .zero
         }
 
@@ -336,38 +334,20 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         } else if elementKind == UICollectionView.elementKindSectionFooter {
             attribute = footersAttributes[indexPath.section]
         }
-        guard let returnAttribute = attribute else {
-            return UICollectionViewLayoutAttributes()
-        }
-        return returnAttribute
+        return attribute ?? UICollectionViewLayoutAttributes()
     }
 
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var begin = 0, end = unionRects.count
-        var attrs: [UICollectionViewLayoutAttributes] = []
 
-        for i in 0 ..< end {
-            let unionRect = unionRects[i]
-            if rect.intersects(unionRect) {
-                begin = i * unionSize
-                break
-            }
+        if let i = unionRects.firstIndex(where: { rect.intersects($0) }) {
+            begin = i * unionSize
         }
-        for i in (0 ..< unionRects.count).reversed() {
-            let unionRect = unionRects[i]
-            if rect.intersects(unionRect) {
-                end = min((i + 1) * unionSize, allItemAttributes.count)
-                break
-            }
+        if let i = unionRects.lastIndex(where: { rect.intersects($0) }) {
+            end = min((i + 1) * unionSize, allItemAttributes.count)
         }
-        for i in begin ..< end {
-            let attr = allItemAttributes[i]
-            if rect.intersects(attr.frame) {
-                attrs.append(attr)
-            }
-        }
-
-        return attrs
+        return allItemAttributes[begin..<end]
+            .filter { rect.intersects($0.frame) }
     }
 
     override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -378,32 +358,18 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     ///
     /// - Returns: index for the shortest column
     private func shortestColumnIndex(inSection section: Int) -> Int {
-        var index = 0
-        var shorestHeight = CGFloat.greatestFiniteMagnitude
-        for (idx, height) in columnHeights[section].enumerated() {
-            if height < shorestHeight {
-                shorestHeight = height
-                index = idx
-            }
-        }
-        return index
+        return columnHeights[section].enumerated()
+            .min(by: { $0.element < $1.element })?
+            .offset ?? 0
     }
 
     /// Find the longest column.
     ///
     /// - Returns: index for the longest column
     private func longestColumnIndex(inSection section: Int) -> Int {
-        var index = 0
-        var longestHeight: CGFloat = 0.0
-
-        for (idx, height) in columnHeights[section].enumerated() {
-            if height > longestHeight {
-                longestHeight = height
-                index = idx
-            }
-        }
-        return index
-
+        return columnHeights[section].enumerated()
+            .max(by: { $0.element < $1.element })?
+            .offset ?? 0
     }
 
     /// Find the index for the next column.
