@@ -203,17 +203,12 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         headersAttributes = [:]
         footersAttributes = [:]
         unionRects = []
-        columnHeights = []
         allItemAttributes = []
         sectionItemAttributes = []
-
-        for section in 0 ..< numberOfSections {
+        columnHeights = (0 ..< numberOfSections).map { section in
             let columnCount = self.columnCount(forSection: section)
-            var sectionColumnHeights: [CGFloat] = []
-            for idx in 0 ..< columnCount {
-                sectionColumnHeights.append(CGFloat(idx))
-            }
-            columnHeights.append(sectionColumnHeights)
+            let sectionColumnHeights = (0 ..< columnCount).map { CGFloat($0) }
+            return sectionColumnHeights
         }
 
         var top: CGFloat = 0.0
@@ -221,15 +216,17 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
         for section in 0 ..< numberOfSections {
             // MARK: 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
-            let minimumInteritemSpacing = delegate?.collectionView?(collectionView!, layout: self, minimumInteritemSpacingFor: section) ?? self.minimumInteritemSpacing
+            let minimumInteritemSpacing = delegate?.collectionView?(collectionView!, layout: self, minimumInteritemSpacingFor: section)
+                ?? self.minimumInteritemSpacing
             let sectionInsets = delegate?.collectionView?(collectionView!, layout: self, insetsFor: section) ?? self.sectionInset
-            let columnCount = self.columnCount(forSection: section)
+            let columnCount = columnHeights[section].count
             let spaceColumCount = CGFloat(columnCount - 1)
             let width = collectionViewContentWidth(ofSection: section)
             let itemWidth = floor((width - (spaceColumCount * minimumColumnSpacing)) / CGFloat(columnCount))
 
             // MARK: 2. Section header
-            let heightHeader = delegate?.collectionView?(collectionView!, layout: self, heightForHeaderIn: section) ?? self.headerHeight
+            let heightHeader = delegate?.collectionView?(collectionView!, layout: self, heightForHeaderIn: section)
+                ?? self.headerHeight
             if heightHeader > 0 {
                 attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: IndexPath(row: 0, section: section))
                 attributes.frame = CGRect(x: 0, y: top, width: collectionView!.bounds.size.width, height: heightHeader)
@@ -239,9 +236,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
                 top = attributes.frame.maxY
             }
             top += sectionInsets.top
-            for idx in 0 ..< columnCount {
-                columnHeights[section][idx]=top
-            }
+            columnHeights[section] = [CGFloat](repeating: top, count: columnCount)
 
             // MARK: 3. Section items
             let itemCount = collectionView!.numberOfItems(inSection: section)
@@ -285,9 +280,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
                 top = attributes.frame.maxY
             }
 
-            for idx in 0 ..< columnCount {
-                columnHeights[section][idx] = top
-            }
+            columnHeights[section] = [CGFloat](repeating: top, count: columnCount)
         }
 
         var idx = 0
