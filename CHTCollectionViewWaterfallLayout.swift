@@ -239,9 +239,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
                 ?? self.minimumInteritemSpacing
             let sectionInsets = delegate?.collectionView?(collectionView!, layout: self, insetsFor: section) ?? self.sectionInset
             let columnCount = columnHeights[section].count
-            let spaceColumCount = CGFloat(columnCount - 1)
-            let width = collectionViewContentWidth(ofSection: section)
-            let itemWidth = floor((width - (spaceColumCount * minimumColumnSpacing)) / CGFloat(columnCount))
+            let itemWidth = self.itemWidth(inSection: section)
 
             // MARK: 2. Section header
             let heightHeader = delegate?.collectionView?(collectionView!, layout: self, heightForHeaderIn: section)
