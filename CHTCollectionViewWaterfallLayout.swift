@@ -79,17 +79,19 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
                                         columnCountForSection section: Int) -> Int
 }
 
-public enum ItemRenderDirection: Int {
-    case shortestFirst
-    case leftToRight
-    case rightToLeft
-}
-
-public enum SectionInsetReference {
-    case fromContentInset
-    case fromLayoutMargins
-    @available(iOS 11, *)
-    case fromSafeArea
+extension CHTCollectionViewWaterfallLayout {
+    public enum ItemRenderDirection: Int {
+        case shortestFirst
+        case leftToRight
+        case rightToLeft
+    }
+    
+    public enum SectionInsetReference {
+        case fromContentInset
+        case fromLayoutMargins
+        @available(iOS 11, *)
+        case fromSafeArea
+    }
 }
 
 @available(*, unavailable, renamed: "UICollectionView.elementKindSectionHeader")
