@@ -82,7 +82,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 @available(*, unavailable, renamed: "CHTCollectionViewWaterfallLayout.ItemRenderDirection")
 public enum CHTCollectionViewWaterfallLayoutItemRenderDirection { }
 
-extension CHTCollectionViewWaterfallLayout.ItemRenderDirection {
+public extension CHTCollectionViewWaterfallLayout.ItemRenderDirection {
     @available(*, unavailable, renamed: "shortestFirst")
     static let chtCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst = 0
     @available(*, unavailable, renamed: "leftToRight")
@@ -197,6 +197,11 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     private func collectionViewContentWidth(ofSection section: Int) -> CGFloat {
         let insets = delegate?.collectionView?(collectionView!, layout: self, insetsFor: section) ?? sectionInset
         return collectionViewContentWidth - insets.left - insets.right
+    }
+    
+    @available(*, unavailable, renamed: "itemWidth(inSection:)")
+    public func itemWidthInSectionAtIndex(_ section: Int) -> CGFloat {
+        return itemWidth(inSection: section)
     }
 
     public func itemWidth(inSection section: Int) -> CGFloat {
