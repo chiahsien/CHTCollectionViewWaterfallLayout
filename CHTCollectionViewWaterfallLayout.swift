@@ -79,6 +79,18 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
                                         columnCountForSection section: Int) -> Int
 }
 
+@available(*, unavailable, renamed: "CHTCollectionViewWaterfallLayout.ItemRenderDirection")
+public enum CHTCollectionViewWaterfallLayoutItemRenderDirection { }
+
+extension CHTCollectionViewWaterfallLayout.ItemRenderDirection {
+    @available(*, unavailable, renamed: "shortestFirst")
+    static let chtCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst = 0
+    @available(*, unavailable, renamed: "leftToRight")
+    static let chtCollectionViewWaterfallLayoutItemRenderDirectionLeftToRight = 1
+    @available(*, unavailable, renamed: "rightToLeft")
+    static let chtCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft = 2
+}
+
 extension CHTCollectionViewWaterfallLayout {
     public enum ItemRenderDirection: Int {
         case shortestFirst
