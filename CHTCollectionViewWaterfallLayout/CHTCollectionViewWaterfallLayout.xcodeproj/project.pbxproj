@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C2340CA1DC7E6000077FA16 /* CHTCollectionViewWaterfallLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CCE2141C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C37C5011DC8314900CA7DA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C37C5001DC8314900CA7DA8 /* Info.plist */; };
 		30CCE2171C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCE2151C9A8F7E00429C17 /* CHTCollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
@@ -123,7 +122,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C37C5011DC8314900CA7DA8 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
