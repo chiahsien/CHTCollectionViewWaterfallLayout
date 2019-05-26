@@ -11,23 +11,12 @@
 		62C26FDF1ABE01840027F8D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */; };
 		62C26FE61ABE01840027F8D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE51ABE01840027F8D4 /* Images.xcassets */; };
 		62C26FE91ABE01840027F8D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE71ABE01840027F8D4 /* LaunchScreen.xib */; };
-		62C26FF51ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26FF41ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.swift */; };
 		62C26FFF1ABE01B20027F8D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FFE1ABE01B20027F8D4 /* Main.storyboard */; };
 		62C270011ABE01BA0027F8D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270001ABE01BA0027F8D4 /* ViewController.swift */; };
 		62C270031ABE01D70027F8D4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270021ABE01D70027F8D4 /* Model.swift */; };
 		62C270061ABE01E70027F8D4 /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */; };
 		62C270071ABE01E70027F8D4 /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		62C26FEF1ABE01850027F8D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 62C26FD11ABE01840027F8D4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 62C26FD81ABE01840027F8D4;
-			remoteInfo = CHTWaterfallSwiftDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		52FADF3C1CB650DC0097FB12 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = ../../../CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
@@ -36,9 +25,6 @@
 		62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62C26FE51ABE01840027F8D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		62C26FE81ABE01840027F8D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		62C26FEE1ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CHTWaterfallSwiftDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		62C26FF31ABE01850027F8D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		62C26FF41ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTWaterfallSwiftDemoTests.swift; sourceTree = "<group>"; };
 		62C26FFE1ABE01B20027F8D4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		62C270001ABE01BA0027F8D4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		62C270021ABE01D70027F8D4 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -48,13 +34,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		62C26FD61ABE01840027F8D4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		62C26FEB1ABE01850027F8D4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				62C26FDB1ABE01840027F8D4 /* CHTWaterfallSwiftDemo */,
-				62C26FF11ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests */,
 				62C26FDA1ABE01840027F8D4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */,
-				62C26FEE1ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,23 +92,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		62C26FF11ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				62C26FF41ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.swift */,
-				62C26FF21ABE01850027F8D4 /* Supporting Files */,
-			);
-			path = CHTWaterfallSwiftDemoTests;
-			sourceTree = "<group>";
-		};
-		62C26FF21ABE01850027F8D4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				62C26FF31ABE01850027F8D4 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,24 +112,6 @@
 			productReference = 62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		62C26FED1ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 62C26FFB1ABE01850027F8D4 /* Build configuration list for PBXNativeTarget "CHTWaterfallSwiftDemoTests" */;
-			buildPhases = (
-				62C26FEA1ABE01850027F8D4 /* Sources */,
-				62C26FEB1ABE01850027F8D4 /* Frameworks */,
-				62C26FEC1ABE01850027F8D4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				62C26FF01ABE01850027F8D4 /* PBXTargetDependency */,
-			);
-			name = CHTWaterfallSwiftDemoTests;
-			productName = CHTWaterfallSwiftDemoTests;
-			productReference = 62C26FEE1ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -178,21 +120,18 @@
 			attributes = {
 				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Sophie Fader";
 				TargetAttributes = {
 					62C26FD81ABE01840027F8D4 = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					62C26FED1ABE01850027F8D4 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 62C26FD81ABE01840027F8D4;
+						DevelopmentTeam = KZ7D8X3PRK;
 					};
 				};
 			};
 			buildConfigurationList = 62C26FD41ABE01840027F8D4 /* Build configuration list for PBXProject "CHTWaterfallSwiftDemo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -204,7 +143,6 @@
 			projectRoot = "";
 			targets = (
 				62C26FD81ABE01840027F8D4 /* CHTWaterfallSwiftDemo */,
-				62C26FED1ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,13 +156,6 @@
 				62C26FE91ABE01840027F8D4 /* LaunchScreen.xib in Resources */,
 				62C270071ABE01E70027F8D4 /* ImageUICollectionViewCell.xib in Resources */,
 				62C26FE61ABE01840027F8D4 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		62C26FEC1ABE01850027F8D4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,23 +174,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62C26FEA1ABE01850027F8D4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				62C26FF51ABE01850027F8D4 /* CHTWaterfallSwiftDemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		62C26FF01ABE01850027F8D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 62C26FD81ABE01840027F8D4 /* CHTWaterfallSwiftDemo */;
-			targetProxy = 62C26FEF1ABE01850027F8D4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		62C26FE71ABE01840027F8D4 /* LaunchScreen.xib */ = {
@@ -277,17 +192,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -296,6 +222,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -321,17 +248,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -339,6 +277,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -348,6 +287,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -362,8 +302,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -376,43 +315,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-			};
-			name = Release;
-		};
-		62C26FFC1ABE01850027F8D4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CHTWaterfallSwiftDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CHTWaterfallSwiftDemo.app/CHTWaterfallSwiftDemo";
-			};
-			name = Debug;
-		};
-		62C26FFD1ABE01850027F8D4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CHTWaterfallSwiftDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CHTWaterfallSwiftDemo.app/CHTWaterfallSwiftDemo";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -433,15 +336,6 @@
 			buildConfigurations = (
 				62C26FF91ABE01850027F8D4 /* Debug */,
 				62C26FFA1ABE01850027F8D4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		62C26FFB1ABE01850027F8D4 /* Build configuration list for PBXNativeTarget "CHTWaterfallSwiftDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				62C26FFC1ABE01850027F8D4 /* Debug */,
-				62C26FFD1ABE01850027F8D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
