@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
   s.subspec 'Swift' do |ss|
     ss.ios.deployment_target = '8.0'
-    ss.source_files = '*.swift'
+    ss.source_files = 'SwiftSources/**/*'
   end
 end
