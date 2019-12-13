@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52FADF3C1CB650DC0097FB12 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = ../../../CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		52FADF3C1CB650DC0097FB12 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = ../../../SwiftSources/CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
 		62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHTWaterfallSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C26FDD1ABE01840027F8D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
