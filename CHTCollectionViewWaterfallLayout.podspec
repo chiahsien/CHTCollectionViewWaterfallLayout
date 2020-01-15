@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CHTCollectionViewWaterfallLayout"
-  s.version      = "0.9.7"
+  s.version      = "0.9.8"
   s.summary      = "The waterfall (i.e., Pinterest-like) layout for UICollectionView."
   s.homepage     = "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout"
   s.screenshots  = "https://raw.github.com/chiahsien/UICollectionViewWaterfallLayout/master/Screenshots/2-columns.png"
@@ -19,8 +19,9 @@ Pod::Spec.new do |s|
     ss.source_files = '*.{h,m}'
   end
 
+  s.swift_version = '4.2'
   s.subspec 'Swift' do |ss|
     ss.ios.deployment_target = '8.0'
-    ss.source_files = '*.swift'
+    ss.source_files = 'SwiftSources/**/*'
   end
 end
