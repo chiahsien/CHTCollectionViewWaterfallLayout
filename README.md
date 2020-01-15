@@ -22,23 +22,29 @@ Features
 * Support header and footer views.
 * Different column counts in different sections.
 
-Prerequisite
+Requirements
 ------------
-* ARC
-* Xcode 4.4+, which supports literals syntax.
-* iOS 6+, or
-* iOS 4.x/5.x, with [PSTCollectionView].
+* iOS 8+ / tvOS 9+
+* Objective-C or Swift 4.2
 
 How to install
 --------------
-* [CocoaPods]  
+* [CocoaPods]
   - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
   - If you prefer Swift, `pod 'CHTCollectionViewWaterfallLayout/Swift'` is ready for you.
 
 * [Carthage]
   - Add `github chiahsien/CHTCollectionViewWaterfallLayout` to your Cartfile.
 
-* Manual  
+* [Swift Package Manager]
+  - Add it to the `dependencies` value of your `Package.swift`.
+  ```
+  dependencies: [
+    .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.8")
+  ]
+  ```
+
+* Manual
   - Copy `CHTCollectionViewWaterfallLayout.h/m` or `CHTCollectionViewWaterfallLayout.swift` to your project.
 
 How to Use
@@ -82,21 +88,21 @@ Who is using it
 ---------------
 Please let me know if your app is using this library. I'm glad to put your app on the list :-)
 
-* [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)  
+* [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)
 F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
-* [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)  
+* [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)
 GroupMe - A Home for All the Groups in Your Life.
-* [Flickr](https://itunes.apple.com/us/app/id328407587)  
+* [Flickr](https://itunes.apple.com/us/app/id328407587)
 Access and organize your photos from anywhere.
-* [Tumblr](https://www.tumblr.com/policy/en/ios-credits)  
+* [Tumblr](https://www.tumblr.com/policy/en/ios-credits)
 Post whatever you want to your Tumblr. Follow other people who are doing the same. You’ll probably never be bored again.
-* [Funliday](https://itunes.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)  
+* [Funliday](https://itunes.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)
 The best trip planning app in the world!
-* [Imgur](https://itunes.apple.com/us/app/imgur-funny-gifs-memes-images/id639881495?mt=8)  
+* [Imgur](https://itunes.apple.com/us/app/imgur-funny-gifs-memes-images/id639881495?mt=8)
 Funny GIFs, Memes, and Images!
-* [DealPad](https://itunes.apple.com/us/app/dealpad-bargains-freebies/id949294107?mt=8)  
+* [DealPad](https://itunes.apple.com/us/app/dealpad-bargains-freebies/id949294107?mt=8)
 DealPad gives you access to the UK’s hottest Deals, Voucher Codes and Freebies in the palm of your hand.
-* [Teespring Shopping](https://itunes.apple.com/app/apple-store/id1144693237?pt=117854047&ct=CHTCollectionViewWaterfallLayout%20README&mt=8)  
+* [Teespring Shopping](https://itunes.apple.com/app/apple-store/id1144693237?pt=117854047&ct=CHTCollectionViewWaterfallLayout%20README&mt=8)
 Browse and purchase shirts, mugs, totes and more!
 
 License
@@ -113,3 +119,4 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [PSTCollectionView]: https://github.com/steipete/PSTCollectionView
 [CocoaPods]: http://cocoapods.org/
 [Carthage]: https://github.com/Carthage/Carthage
+[Swift Package Manager]: https://swift.org/package-manager/
