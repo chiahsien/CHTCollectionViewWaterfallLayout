@@ -30,53 +30,35 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 @objc public protocol CHTCollectionViewDelegateWaterfallLayout: UICollectionViewDelegate {
+    @objc(collectionView:layout:sizeForItemAtIndexPath:)
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize
 
-    @objc optional func collectionView(_ collectionView: UICollectionView,
+    @objc(collectionView:layout:heightForHeaderInSection:)
+    optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        heightForHeaderIn section: Int) -> CGFloat
 
-    @objc optional func collectionView(_ collectionView: UICollectionView,
+    @objc(collectionView:layout:heightForFooterIn:)
+    optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        heightForFooterIn section: Int) -> CGFloat
 
-    @objc optional func collectionView(_ collectionView: UICollectionView,
+    @objc(collectionView:layout:insetForSectionAtIndex:)
+    optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        insetsFor section: Int) -> UIEdgeInsets
 
-    @objc optional func collectionView(_ collectionView: UICollectionView,
+    @objc(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)
+    optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        minimumInteritemSpacingFor section: Int) -> CGFloat
 
-    @objc optional func collectionView(_ collectionView: UICollectionView,
+    @objc(collectionView:layout:columnCountForSection:)
+    optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        columnCountFor section: Int) -> Int
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:sizeForItemAt:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:heightForHeaderIn:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                                        heightForHeaderInSection section: Int) -> CGFloat
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:heightForFooterIn:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                                        heightForFooterInSection section: Int) -> CGFloat
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:insetsFor:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                                        insetForSectionAtIndex section: Int) -> UIEdgeInsets
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:minimumInteritemSpacingFor:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                                        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
-
-    @available(*, unavailable, renamed: "collectionView(_:layout:columnCountFor:)")
-    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                                        columnCountForSection section: Int) -> Int
 }
 
 @available(*, unavailable, renamed: "CHTCollectionViewWaterfallLayout.ItemRenderDirection")
@@ -92,13 +74,13 @@ public extension CHTCollectionViewWaterfallLayout.ItemRenderDirection {
 }
 
 extension CHTCollectionViewWaterfallLayout {
-    public enum ItemRenderDirection: Int {
+    @objc public enum ItemRenderDirection: Int {
         case shortestFirst
         case leftToRight
         case rightToLeft
     }
     
-    public enum SectionInsetReference {
+    @objc public enum SectionInsetReference:Int {
         case fromContentInset
         case fromLayoutMargins
         @available(iOS 11, *)
@@ -111,55 +93,55 @@ public let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSect
 @available(*, unavailable, renamed: "UICollectionView.elementKindSectionFooter")
 public let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
 public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
-    public var columnCount: Int = 2 {
+    @objc public var columnCount: Int = 2 {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var minimumColumnSpacing: CGFloat = 10 {
+   @objc public var minimumColumnSpacing: CGFloat = 10 {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var minimumInteritemSpacing: CGFloat = 10 {
+    @objc public var minimumInteritemSpacing: CGFloat = 10 {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var headerHeight: CGFloat = 0 {
+    @objc public var headerHeight: CGFloat = 0 {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var footerHeight: CGFloat = 0 {
+    @objc public var footerHeight: CGFloat = 0 {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var sectionInset: UIEdgeInsets = .zero {
+    @objc public var sectionInset: UIEdgeInsets = .zero {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var itemRenderDirection: ItemRenderDirection = .shortestFirst {
+    @objc public var itemRenderDirection: ItemRenderDirection = .shortestFirst {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var sectionInsetReference: SectionInsetReference = .fromContentInset {
+    @objc public var sectionInsetReference: SectionInsetReference = .fromContentInset {
         didSet {
             invalidateLayout()
         }
     }
 
-    public var delegate: CHTCollectionViewDelegateWaterfallLayout? {
+    @objc public var delegate: CHTCollectionViewDelegateWaterfallLayout? {
         get {
             return collectionView!.delegate as? CHTCollectionViewDelegateWaterfallLayout
         }
