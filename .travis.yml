@@ -1,5 +1,0 @@
-language: objective-c
-before_install:
-- cd Demo/Objective-C
-script:
-- xctool -project Demo.xcodeproj -scheme Demo -sdk iphonesimulator
