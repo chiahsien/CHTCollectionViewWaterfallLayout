@@ -2,13 +2,14 @@ CHTCollectionViewWaterfallLayout
 ================================
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![Version](https://cocoapod-badges.herokuapp.com/v/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
 [![Platform](https://cocoapod-badges.herokuapp.com/p/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
-[![Build Status](https://travis-ci.org/chiahsien/CHTCollectionViewWaterfallLayout.svg?branch=develop)](https://travis-ci.org/chiahsien/CHTCollectionViewWaterfallLayout)
+[![Build Status](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/workflows/CHTCollectionViewWaterfallLayout%20CI/badge.svg?branch=develop)](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/actions)
 
 **CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout], and it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
 
-This layout is inspired by [Pinterest]. It also is compatible with [PSTCollectionView].
+This layout is inspired by [Pinterest].
 
 Screen Shots
 ------------
@@ -24,14 +25,14 @@ Features
 
 Requirements
 ------------
-* iOS 8+ / tvOS 9+
+* iOS 9+ / tvOS 9+
 * Objective-C or Swift 4.2
 
 How to install
 --------------
 * [CocoaPods]
   - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
-  - If you prefer Swift, `pod 'CHTCollectionViewWaterfallLayout/Swift'` is ready for you.
+  - If you prefer Objective-C, `pod 'CHTCollectionViewWaterfallLayout/ObjC'` is ready for you.
 
 * [Carthage]
   - Add `github chiahsien/CHTCollectionViewWaterfallLayout` to your Cartfile.
@@ -40,7 +41,7 @@ How to install
   - Add it to the `dependencies` value of your `Package.swift`.
   ```
   dependencies: [
-    .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.8")
+    .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.9")
   ]
   ```
 
@@ -71,13 +72,6 @@ Your collection view's delegate (which often is your view controller) must confo
 ``` objc
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
 ```
-
-#### Step 3 (Optional)
-If you need to support iOS 4.x/5.x and you have installed [PSTCollectionView], then you **NEED** to modify some codes.
-
-Quoted from [PSTCollectionView] README file:
-> **If you want to have PSTCollectionView on iOS4.3/5.x and UICollectionView on iOS6, use PSUICollectionView (basically add PS on any UICollectionView* class to get auto-support for older iOS versions)**
-> If you always want to use PSTCollectionView, use PSTCollectionView as class names. (replace the UI with PST)
 
 Limitation
 ----------
@@ -116,7 +110,6 @@ Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWater
 [UICollectionViewLayout]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html
 [UICollectionViewFlowLayout]: https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewFlowLayout_class/Reference/Reference.html
 [Pinterest]: http://pinterest.com/
-[PSTCollectionView]: https://github.com/steipete/PSTCollectionView
 [CocoaPods]: http://cocoapods.org/
 [Carthage]: https://github.com/Carthage/Carthage
 [Swift Package Manager]: https://swift.org/package-manager/
