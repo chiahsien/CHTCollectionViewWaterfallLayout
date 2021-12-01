@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "CHTCollectionViewWaterfallLayout",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v9),
         .tvOS(.v9)
     ],
     products: [
@@ -14,16 +14,19 @@ let package = Package(
     targets: [
         .target(
             name: "CHTCollectionViewWaterfallLayout",
-            path: "SwiftSources"
+            path: "Source",
+            sources: [
+                "CHTCollectionViewWaterfallLayout.swift"
+            ]
         ),
         .target(
             name: "CHTCollectionViewWaterfallLayoutObjC",
-            path: ".",
+            path: "Source",
             sources: [
                 "CHTCollectionViewWaterfallLayout.h",
                 "CHTCollectionViewWaterfallLayout.m"
             ],
-            publicHeadersPath: "."
+            publicHeadersPath: "Source"
         )
     ],
     swiftLanguageVersions: [.v5]
