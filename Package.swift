@@ -8,12 +8,22 @@ let package = Package(
         .tvOS(.v9)
     ],
     products: [
-        .library(name: "CHTCollectionViewWaterfallLayout", targets: ["CHTCollectionViewWaterfallLayout"])
+        .library(name: "CHTCollectionViewWaterfallLayout", targets: ["CHTCollectionViewWaterfallLayout"]),
+        .library(name: "CHTCollectionViewWaterfallLayoutObjC", targets: ["CHTCollectionViewWaterfallLayoutObjC"])
     ],
     targets: [
         .target(
             name: "CHTCollectionViewWaterfallLayout",
             path: "SwiftSources"
+        ),
+        .target(
+            name: "CHTCollectionViewWaterfallLayoutObjC",
+            path: ".",
+            sources: [
+                "CHTCollectionViewWaterfallLayout.h",
+                "CHTCollectionViewWaterfallLayout.m"
+            ],
+            publicHeadersPath: "."
         )
     ],
     swiftLanguageVersions: [.v5]

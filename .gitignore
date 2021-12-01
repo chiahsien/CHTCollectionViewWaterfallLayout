@@ -19,3 +19,8 @@ DerivedData
 
 # Carthage
 Carthage/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
