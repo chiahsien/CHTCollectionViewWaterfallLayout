@@ -13,16 +13,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     let model = Model()
     
-    
     //MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         
         super.viewDidLoad()
         model.buildDataSource()
         
-        
         // Attach datasource and delegate
-        collectionView.dataSource  = self
+        collectionView.dataSource = self
         collectionView.delegate = self
         
         //Layout setup
@@ -31,12 +29,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //Register nibs
         registerNibs()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     //MARK: - CollectionView UI Setup
     func setupCollectionView(){
         
@@ -44,11 +37,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let layout = CHTCollectionViewWaterfallLayout()
         
         // Change individual layout attributes for the spacing between cells
-        layout.minimumColumnSpacing = 1.0
-        layout.minimumInteritemSpacing = 1.0
+        layout.minimumColumnSpacing = 5.0
+        layout.minimumInteritemSpacing = 5.0
         
         // Collection view attributes
-        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.alwaysBounceVertical = true
         
         // Add the waterfall layout to your collection view
@@ -62,10 +54,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
     }
-    
-    
-    
-    
+
     //MARK: - CollectionView Delegate Methods
     
      //** Number of Cells in the CollectionView */
@@ -81,7 +70,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
         
         // Add image to cell
-        cell.image.image = model.images[indexPath.row]
+        cell.image.image = model.images[indexPath.item]
         return cell
     }
     
@@ -91,9 +80,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //** Size for the cells in the Waterfall Layout */
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // create a cell size from the image size, and return the size
-        let imageSize = model.images[indexPath.row].size
+        let imageSize = model.images[indexPath.item].size
         
         return imageSize
     }
 }
-

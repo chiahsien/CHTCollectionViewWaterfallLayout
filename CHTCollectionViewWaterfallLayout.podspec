@@ -9,19 +9,19 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", :tag => "#{s.version}" }
   s.requires_arc = true
 
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
 
-  s.default_subspec = 'ObjC'
+  s.default_subspec = 'Swift'
 
   s.subspec 'ObjC' do |ss|
-    ss.ios.deployment_target = '6.0'
-    ss.source_files = '*.{h,m}'
+    ss.ios.deployment_target = '9.0'
+    ss.source_files = 'Source/*.{h,m}'
   end
 
   s.swift_version = '4.2'
   s.subspec 'Swift' do |ss|
-    ss.ios.deployment_target = '8.0'
-    ss.source_files = 'SwiftSources/**/*'
+    ss.ios.deployment_target = '9.0'
+    ss.source_files = 'Source/*.swift'
   end
 end
