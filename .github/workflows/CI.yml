@@ -44,6 +44,14 @@ jobs:
           scheme: Demo
           destination: name=iPhone 13 Pro
           action: build
+
+      - name: Build Objective-C SPM Project
+        uses: sersoft-gmbh/xcodebuild-action@v1.8.0
+        with:
+          project: Demo/Objective-C/Demo.xcodeproj
+          scheme: SPMDemo
+          destination: name=iPhone 13 Pro
+          action: build
           
   Pods:
     name: Cocoapods Lint (Latest Stable Xcode)
