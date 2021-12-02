@@ -29,6 +29,14 @@ jobs:
           destination: name=iPhone 13 Pro
           action: build
 
+      - name: Build Swift SPM Project
+        uses: sersoft-gmbh/xcodebuild-action@v1.8.0
+        with:
+          project: Demo/Swift/CHTWaterfallSwiftDemo.xcodeproj
+          scheme: CHTWaterfallSwiftSPMDemo
+          destination: name=iPhone 13 Pro
+          action: build
+
       - name: Build Objective-C Project
         uses: sersoft-gmbh/xcodebuild-action@v1.8.0
         with:

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if canImport(CHTCollectionViewWaterfallLayout)
+import CHTCollectionViewWaterfallLayout
+#endif
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
     
