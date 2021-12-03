@@ -26,7 +26,7 @@ let package = Package(
                 "CHTCollectionViewWaterfallLayout.h",
                 "CHTCollectionViewWaterfallLayout.m"
             ],
-            publicHeadersPath: "Source"
+            publicHeadersPath: "."
         )
     ],
     swiftLanguageVersions: [.v5]

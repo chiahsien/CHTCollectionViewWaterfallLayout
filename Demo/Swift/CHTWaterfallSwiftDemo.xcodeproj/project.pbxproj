@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,12 +16,21 @@
 		62C270031ABE01D70027F8D4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270021ABE01D70027F8D4 /* Model.swift */; };
 		62C270061ABE01E70027F8D4 /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */; };
 		62C270071ABE01E70027F8D4 /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */; };
+		A561128927595AE500D4F206 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270021ABE01D70027F8D4 /* Model.swift */; };
+		A561128A27595AE500D4F206 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270001ABE01BA0027F8D4 /* ViewController.swift */; };
+		A561128B27595AE500D4F206 /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */; };
+		A561128C27595AE500D4F206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */; };
+		A561129027595AE500D4F206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FFE1ABE01B20027F8D4 /* Main.storyboard */; };
+		A561129127595AE500D4F206 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE71ABE01840027F8D4 /* LaunchScreen.xib */; };
+		A561129227595AE500D4F206 /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */; };
+		A561129327595AE500D4F206 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C26FE51ABE01840027F8D4 /* Images.xcassets */; };
+		A561129B27595BAC00D4F206 /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = A561129A27595BAC00D4F206 /* CHTCollectionViewWaterfallLayout */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		52FADF3C1CB650DC0097FB12 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = ../../Source/CHTCollectionViewWaterfallLayout.swift; sourceTree = SOURCE_ROOT; };
 		62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHTWaterfallSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		62C26FDD1ABE01840027F8D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62C26FDD1ABE01840027F8D4 /* CHTWaterfallSwiftDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CHTWaterfallSwiftDemo-Info.plist"; sourceTree = "<group>"; };
 		62C26FDE1ABE01840027F8D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62C26FE51ABE01840027F8D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		62C26FE81ABE01840027F8D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -30,6 +39,9 @@
 		62C270021ABE01D70027F8D4 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		62C270041ABE01E70027F8D4 /* ImageUICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUICollectionViewCell.swift; sourceTree = "<group>"; };
 		62C270051ABE01E70027F8D4 /* ImageUICollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUICollectionViewCell.xib; sourceTree = "<group>"; };
+		A561128627595AB200D4F206 /* CHTCollectionViewWaterfallLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CHTCollectionViewWaterfallLayout; path = ../..; sourceTree = "<group>"; };
+		A561129727595AE500D4F206 /* CHTWaterfallSwiftSPMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHTWaterfallSwiftSPMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A561129827595AE600D4F206 /* CHTWaterfallSwiftSPMDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CHTWaterfallSwiftSPMDemo-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +49,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A561128E27595AE500D4F206 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A561129B27595BAC00D4F206 /* CHTCollectionViewWaterfallLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +74,10 @@
 		62C26FD01ABE01840027F8D4 = {
 			isa = PBXGroup;
 			children = (
+				A561128627595AB200D4F206 /* CHTCollectionViewWaterfallLayout */,
 				62C26FDB1ABE01840027F8D4 /* CHTWaterfallSwiftDemo */,
 				62C26FDA1ABE01840027F8D4 /* Products */,
+				A561129927595BAC00D4F206 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */,
+				A561129727595AE500D4F206 /* CHTWaterfallSwiftSPMDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +110,17 @@
 		62C26FDC1ABE01840027F8D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				62C26FDD1ABE01840027F8D4 /* Info.plist */,
+				62C26FDD1ABE01840027F8D4 /* CHTWaterfallSwiftDemo-Info.plist */,
+				A561129827595AE600D4F206 /* CHTWaterfallSwiftSPMDemo-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A561129927595BAC00D4F206 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +141,26 @@
 			name = CHTWaterfallSwiftDemo;
 			productName = CHTWaterfallSwiftDemo;
 			productReference = 62C26FD91ABE01840027F8D4 /* CHTWaterfallSwiftDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A561128727595AE500D4F206 /* CHTWaterfallSwiftSPMDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A561129427595AE500D4F206 /* Build configuration list for PBXNativeTarget "CHTWaterfallSwiftSPMDemo" */;
+			buildPhases = (
+				A561128827595AE500D4F206 /* Sources */,
+				A561128E27595AE500D4F206 /* Frameworks */,
+				A561128F27595AE500D4F206 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CHTWaterfallSwiftSPMDemo;
+			packageProductDependencies = (
+				A561129A27595BAC00D4F206 /* CHTCollectionViewWaterfallLayout */,
+			);
+			productName = CHTWaterfallSwiftDemo;
+			productReference = A561129727595AE500D4F206 /* CHTWaterfallSwiftSPMDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,6 +194,7 @@
 			projectRoot = "";
 			targets = (
 				62C26FD81ABE01840027F8D4 /* CHTWaterfallSwiftDemo */,
+				A561128727595AE500D4F206 /* CHTWaterfallSwiftSPMDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -159,6 +211,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A561128F27595AE500D4F206 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A561129027595AE500D4F206 /* Main.storyboard in Resources */,
+				A561129127595AE500D4F206 /* LaunchScreen.xib in Resources */,
+				A561129227595AE500D4F206 /* ImageUICollectionViewCell.xib in Resources */,
+				A561129327595AE500D4F206 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -171,6 +234,17 @@
 				62C270061ABE01E70027F8D4 /* ImageUICollectionViewCell.swift in Sources */,
 				62C26FDF1ABE01840027F8D4 /* AppDelegate.swift in Sources */,
 				52FADF3D1CB650DC0097FB12 /* CHTCollectionViewWaterfallLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A561128827595AE500D4F206 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A561128927595AE500D4F206 /* Model.swift in Sources */,
+				A561128A27595AE500D4F206 /* ViewController.swift in Sources */,
+				A561128B27595AE500D4F206 /* ImageUICollectionViewCell.swift in Sources */,
+				A561128C27595AE500D4F206 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,8 +372,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = CHTWaterfallSwiftDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "CHTWaterfallSwiftDemo/CHTWaterfallSwiftDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -311,9 +388,44 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = CHTWaterfallSwiftDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "CHTWaterfallSwiftDemo/CHTWaterfallSwiftDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A561129527595AE500D4F206 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "CHTWaterfallSwiftDemo/CHTWaterfallSwiftSPMDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sophiefader.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A561129627595AE500D4F206 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "CHTWaterfallSwiftDemo/CHTWaterfallSwiftSPMDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sophiefader.CHTWaterfallSwiftSPMDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -340,7 +452,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A561129427595AE500D4F206 /* Build configuration list for PBXNativeTarget "CHTWaterfallSwiftSPMDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A561129527595AE500D4F206 /* Debug */,
+				A561129627595AE500D4F206 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A561129A27595BAC00D4F206 /* CHTCollectionViewWaterfallLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CHTCollectionViewWaterfallLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 62C26FD11ABE01840027F8D4 /* Project object */;
 }
