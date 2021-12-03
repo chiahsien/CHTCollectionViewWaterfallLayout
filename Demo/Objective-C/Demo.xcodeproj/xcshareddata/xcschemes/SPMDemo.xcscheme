@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A561129F27595F0600D4F206"
-               BuildableName = "Demo copy.app"
+               BuildableName = "SPMDemo.app"
                BlueprintName = "SPMDemo"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A561129F27595F0600D4F206"
-            BuildableName = "Demo copy.app"
+            BuildableName = "SPMDemo.app"
             BlueprintName = "SPMDemo"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A561129F27595F0600D4F206"
-            BuildableName = "Demo copy.app"
+            BuildableName = "SPMDemo.app"
             BlueprintName = "SPMDemo"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
