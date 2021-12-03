@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#if __has_feature(modules)
+@import CHTCollectionViewWaterfallLayoutObjC;
+#else
 #import "CHTCollectionViewWaterfallLayout.h"
+#endif
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout>
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;

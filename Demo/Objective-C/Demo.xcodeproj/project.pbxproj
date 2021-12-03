@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,26 @@
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
 		529599F62757C93E00621B8A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529599F52757C93E00621B8A /* Launch Screen.storyboard */; };
 		52FADF371CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */; };
+		A56112A127595F0600D4F206 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D016646F4D005E4B6E /* main.m */; };
+		A56112A227595F0600D4F206 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D416646F4D005E4B6E /* AppDelegate.m */; };
+		A56112A327595F0600D4F206 /* CHTCollectionViewWaterfallFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */; };
+		A56112A527595F0600D4F206 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
+		A56112A627595F0600D4F206 /* CHTCollectionViewWaterfallHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */; };
+		A56112A727595F0600D4F206 /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
+		A56112A927595F0600D4F206 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C416646F4D005E4B6E /* UIKit.framework */; };
+		A56112AA27595F0600D4F206 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C616646F4D005E4B6E /* Foundation.framework */; };
+		A56112AB27595F0600D4F206 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C816646F4D005E4B6E /* CoreGraphics.framework */; };
+		A56112AD27595F0600D4F206 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
+		A56112AE27595F0600D4F206 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526109CD16646F4D005E4B6E /* InfoPlist.strings */; };
+		A56112AF27595F0600D4F206 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70739195E341500773FD3 /* cat3.jpg */; };
+		A56112B027595F0600D4F206 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D616646F4D005E4B6E /* Default.png */; };
+		A56112B127595F0600D4F206 /* cat4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E7073A195E341500773FD3 /* cat4.jpg */; };
+		A56112B227595F0600D4F206 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D816646F4D005E4B6E /* Default@2x.png */; };
+		A56112B327595F0600D4F206 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
+		A56112B427595F0600D4F206 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
+		A56112B527595F0600D4F206 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529599F52757C93E00621B8A /* Launch Screen.storyboard */; };
+		A56112B627595F0600D4F206 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
+		A56112C12759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */ = {isa = PBXBuildFile; productRef = A56112C02759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC */; };
 		E5E7073B195E341500773FD3 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
 		E5E7073C195E341500773FD3 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
 		E5E7073D195E341500773FD3 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70739195E341500773FD3 /* cat3.jpg */; };
@@ -55,6 +75,9 @@
 		529599F52757C93E00621B8A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		52FADF351CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../Source/CHTCollectionViewWaterfallLayout.h; sourceTree = SOURCE_ROOT; };
 		52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../Source/CHTCollectionViewWaterfallLayout.m; sourceTree = SOURCE_ROOT; };
+		A561129E27595EF100D4F206 /* CHTCollectionViewWaterfallLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CHTCollectionViewWaterfallLayout; path = ../..; sourceTree = "<group>"; };
+		A56112BA27595F0600D4F206 /* SPMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56112BB27595F0600D4F206 /* SPMDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPMDemo-Info.plist"; sourceTree = "<group>"; };
 		E5E70737195E341500773FD3 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
 		E5E70738195E341500773FD3 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
 		E5E70739195E341500773FD3 /* cat3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat3.jpg; sourceTree = "<group>"; };
@@ -72,12 +95,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A56112A827595F0600D4F206 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56112A927595F0600D4F206 /* UIKit.framework in Frameworks */,
+				A56112AA27595F0600D4F206 /* Foundation.framework in Frameworks */,
+				A56112C12759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */,
+				A56112AB27595F0600D4F206 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		526109B516646F4D005E4B6E = {
 			isa = PBXGroup;
 			children = (
+				A561129E27595EF100D4F206 /* CHTCollectionViewWaterfallLayout */,
 				526109CA16646F4D005E4B6E /* Demo */,
 				526109C316646F4D005E4B6E /* Frameworks */,
 				526109C116646F4D005E4B6E /* Products */,
@@ -88,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				526109C016646F4D005E4B6E /* Demo.app */,
+				A56112BA27595F0600D4F206 /* SPMDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +163,7 @@
 			children = (
 				E5E70736195E341500773FD3 /* images */,
 				526109CC16646F4D005E4B6E /* Demo-Info.plist */,
+				A56112BB27595F0600D4F206 /* SPMDemo-Info.plist */,
 				526109CD16646F4D005E4B6E /* InfoPlist.strings */,
 				526109D016646F4D005E4B6E /* main.m */,
 				526109D216646F4D005E4B6E /* Demo-Prefix.pch */,
@@ -178,6 +215,26 @@
 			productReference = 526109C016646F4D005E4B6E /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A561129F27595F0600D4F206 /* SPMDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A56112B727595F0600D4F206 /* Build configuration list for PBXNativeTarget "SPMDemo" */;
+			buildPhases = (
+				A56112A027595F0600D4F206 /* Sources */,
+				A56112A827595F0600D4F206 /* Frameworks */,
+				A56112AC27595F0600D4F206 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPMDemo;
+			packageProductDependencies = (
+				A56112C02759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC */,
+			);
+			productName = Demo;
+			productReference = A56112BA27595F0600D4F206 /* SPMDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,6 +258,7 @@
 			projectRoot = "";
 			targets = (
 				526109BF16646F4D005E4B6E /* Demo */,
+				A561129F27595F0600D4F206 /* SPMDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +281,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A56112AC27595F0600D4F206 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56112AD27595F0600D4F206 /* cat2.jpg in Resources */,
+				A56112AE27595F0600D4F206 /* InfoPlist.strings in Resources */,
+				A56112AF27595F0600D4F206 /* cat3.jpg in Resources */,
+				A56112B027595F0600D4F206 /* Default.png in Resources */,
+				A56112B127595F0600D4F206 /* cat4.jpg in Resources */,
+				A56112B227595F0600D4F206 /* Default@2x.png in Resources */,
+				A56112B327595F0600D4F206 /* Default-568h@2x.png in Resources */,
+				A56112B427595F0600D4F206 /* cat1.jpg in Resources */,
+				A56112B527595F0600D4F206 /* Launch Screen.storyboard in Resources */,
+				A56112B627595F0600D4F206 /* MainStoryboard_iPhone.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -237,6 +312,19 @@
 				526109E416646F4D005E4B6E /* ViewController.m in Sources */,
 				28FB2A16181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m in Sources */,
 				526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A56112A027595F0600D4F206 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56112A127595F0600D4F206 /* main.m in Sources */,
+				A56112A227595F0600D4F206 /* AppDelegate.m in Sources */,
+				A56112A327595F0600D4F206 /* CHTCollectionViewWaterfallFooter.m in Sources */,
+				A56112A527595F0600D4F206 /* ViewController.m in Sources */,
+				A56112A627595F0600D4F206 /* CHTCollectionViewWaterfallHeader.m in Sources */,
+				A56112A727595F0600D4F206 /* CHTCollectionViewWaterfallCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +469,32 @@
 			};
 			name = Release;
 		};
+		A56112B827595F0600D4F206 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
+				INFOPLIST_FILE = "Demo/SPMDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A56112B927595F0600D4F206 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
+				INFOPLIST_FILE = "Demo/SPMDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -402,7 +516,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A56112B727595F0600D4F206 /* Build configuration list for PBXNativeTarget "SPMDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56112B827595F0600D4F206 /* Debug */,
+				A56112B927595F0600D4F206 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A56112C02759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CHTCollectionViewWaterfallLayoutObjC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 526109B716646F4D005E4B6E /* Project object */;
 }
