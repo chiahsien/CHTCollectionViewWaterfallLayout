@@ -53,6 +53,10 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     @objc optional func collectionView(_ collectionView: UICollectionView,
                                        layout collectionViewLayout: UICollectionViewLayout,
                                        columnCountFor section: Int) -> Int
+    
+    @objc optional func collectionView(_ collectionView: UICollectionView,
+                                       layout collectionViewLayout: UICollectionViewLayout,
+                                       minimumColumnSpacingFor section: Int) -> CGFloat
 
     @available(*, unavailable, renamed: "collectionView(_:layout:sizeForItemAt:)")
     @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
@@ -205,10 +209,13 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     }
 
     public func itemWidth(inSection section: Int) -> CGFloat {
-        let columnCount = self.columnCount(forSection: section)
-        let spaceColumCount = CGFloat(columnCount - 1)
         let width = collectionViewContentWidth(ofSection: section)
-        return floor((width - (spaceColumCount * minimumColumnSpacing)) / CGFloat(columnCount))
+
+        let columnCount = self.columnCount(forSection: section)
+        let spaceColumnCount = CGFloat(columnCount - 1)
+        let columnSpacing = delegate?.collectionView?(collectionView!, layout: self, minimumColumnSpacingFor: section) ?? minimumColumnSpacing
+
+        return floor((width - (spaceColumnCount * columnSpacing)) / CGFloat(columnCount))
     }
 
     override public func prepare() {
