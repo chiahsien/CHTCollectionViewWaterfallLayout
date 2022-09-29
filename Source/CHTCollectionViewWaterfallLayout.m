@@ -314,8 +314,11 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       CGFloat yOffset = [self.columnHeights[section][columnIndex] floatValue];
       CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
       CGFloat itemHeight = 0;
-      if (itemSize.height > 0 && itemSize.width > 0) {
-        itemHeight = CHTFloorCGFloat(itemSize.height * itemWidth / itemSize.width);
+      if (itemSize.height > 0){
+        itemHeight=itemSize.height;
+          if(itemSize.width > 0) {
+            itemHeight = CHTFloorCGFloat(itemSize.height * itemWidth / itemSize.width);
+          }
       }
 
       attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
