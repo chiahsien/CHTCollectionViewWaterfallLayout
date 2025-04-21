@@ -23,6 +23,8 @@ Features
 * Support header and footer views.
 * Different column counts in different sections.
 
+<a href="https://www.buymeacoffee.com/chiahsien"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chiahsien&button_colour=5F7FFF&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
+
 Requirements
 ------------
 * iOS 9+ / tvOS 9+
