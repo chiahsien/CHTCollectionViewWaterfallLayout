@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,16 +12,13 @@
 		526109C516646F4D005E4B6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C416646F4D005E4B6E /* UIKit.framework */; };
 		526109C716646F4D005E4B6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C616646F4D005E4B6E /* Foundation.framework */; };
 		526109C916646F4D005E4B6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C816646F4D005E4B6E /* CoreGraphics.framework */; };
-		526109CF16646F4D005E4B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526109CD16646F4D005E4B6E /* InfoPlist.strings */; };
 		526109D116646F4D005E4B6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D016646F4D005E4B6E /* main.m */; };
 		526109D516646F4D005E4B6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D416646F4D005E4B6E /* AppDelegate.m */; };
-		526109D716646F4D005E4B6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D616646F4D005E4B6E /* Default.png */; };
-		526109D916646F4D005E4B6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D816646F4D005E4B6E /* Default@2x.png */; };
-		526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
-		526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
 		526109E416646F4D005E4B6E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109E316646F4D005E4B6E /* ViewController.m */; };
 		526109F31664740B005E4B6E /* CHTCollectionViewWaterfallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */; };
 		529599F62757C93E00621B8A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529599F52757C93E00621B8A /* Launch Screen.storyboard */; };
+		52AD60432F65985D00732C03 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD60422F65985D00732C03 /* SceneDelegate.m */; };
+		52AD60442F65985D00732C03 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD60422F65985D00732C03 /* SceneDelegate.m */; };
 		52FADF371CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */; };
 		A56112A127595F0600D4F206 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D016646F4D005E4B6E /* main.m */; };
 		A56112A227595F0600D4F206 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526109D416646F4D005E4B6E /* AppDelegate.m */; };
@@ -33,15 +30,10 @@
 		A56112AA27595F0600D4F206 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C616646F4D005E4B6E /* Foundation.framework */; };
 		A56112AB27595F0600D4F206 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526109C816646F4D005E4B6E /* CoreGraphics.framework */; };
 		A56112AD27595F0600D4F206 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
-		A56112AE27595F0600D4F206 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526109CD16646F4D005E4B6E /* InfoPlist.strings */; };
 		A56112AF27595F0600D4F206 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70739195E341500773FD3 /* cat3.jpg */; };
-		A56112B027595F0600D4F206 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D616646F4D005E4B6E /* Default.png */; };
 		A56112B127595F0600D4F206 /* cat4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E7073A195E341500773FD3 /* cat4.jpg */; };
-		A56112B227595F0600D4F206 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109D816646F4D005E4B6E /* Default@2x.png */; };
-		A56112B327595F0600D4F206 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 526109DA16646F4D005E4B6E /* Default-568h@2x.png */; };
 		A56112B427595F0600D4F206 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
 		A56112B527595F0600D4F206 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529599F52757C93E00621B8A /* Launch Screen.storyboard */; };
-		A56112B627595F0600D4F206 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */; };
 		A56112C12759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */ = {isa = PBXBuildFile; productRef = A56112C02759620E00D4F206 /* CHTCollectionViewWaterfallLayoutObjC */; };
 		E5E7073B195E341500773FD3 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70737195E341500773FD3 /* cat1.jpg */; };
 		E5E7073C195E341500773FD3 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5E70738195E341500773FD3 /* cat2.jpg */; };
@@ -59,20 +51,16 @@
 		526109C616646F4D005E4B6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		526109C816646F4D005E4B6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		526109CC16646F4D005E4B6E /* Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Demo-Info.plist"; sourceTree = "<group>"; };
-		526109CE16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		526109D016646F4D005E4B6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		526109D216646F4D005E4B6E /* Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Prefix.pch"; sourceTree = "<group>"; };
 		526109D316646F4D005E4B6E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		526109D416646F4D005E4B6E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		526109D616646F4D005E4B6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		526109D816646F4D005E4B6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		526109DA16646F4D005E4B6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		526109DD16646F4D005E4B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		526109E216646F4D005E4B6E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		526109E316646F4D005E4B6E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallCell.h; sourceTree = "<group>"; };
 		526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallCell.m; sourceTree = "<group>"; };
 		529599F52757C93E00621B8A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		52AD60412F65985D00732C03 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		52AD60422F65985D00732C03 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		52FADF351CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallLayout.h; path = ../../Source/CHTCollectionViewWaterfallLayout.h; sourceTree = SOURCE_ROOT; };
 		52FADF361CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallLayout.m; path = ../../Source/CHTCollectionViewWaterfallLayout.m; sourceTree = SOURCE_ROOT; };
 		A561129E27595EF100D4F206 /* CHTCollectionViewWaterfallLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CHTCollectionViewWaterfallLayout; path = ../..; sourceTree = "<group>"; };
@@ -145,15 +133,16 @@
 				526109D416646F4D005E4B6E /* AppDelegate.m */,
 				526109F11664740B005E4B6E /* CHTCollectionViewWaterfallCell.h */,
 				526109F21664740B005E4B6E /* CHTCollectionViewWaterfallCell.m */,
-				28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */,
-				28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */,
 				28ACC0C9181E580300454F4A /* CHTCollectionViewWaterfallFooter.h */,
 				28ACC0CA181E580300454F4A /* CHTCollectionViewWaterfallFooter.m */,
-				526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */,
+				28FB2A14181580B0002B84F4 /* CHTCollectionViewWaterfallHeader.h */,
+				28FB2A15181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m */,
+				52AD60412F65985D00732C03 /* SceneDelegate.h */,
+				52AD60422F65985D00732C03 /* SceneDelegate.m */,
+				526109CB16646F4D005E4B6E /* Supporting Files */,
+				52E121B91867F53600B9DC53 /* Vender */,
 				526109E216646F4D005E4B6E /* ViewController.h */,
 				526109E316646F4D005E4B6E /* ViewController.m */,
-				52E121B91867F53600B9DC53 /* Vender */,
-				526109CB16646F4D005E4B6E /* Supporting Files */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -164,12 +153,7 @@
 				E5E70736195E341500773FD3 /* images */,
 				526109CC16646F4D005E4B6E /* Demo-Info.plist */,
 				A56112BB27595F0600D4F206 /* SPMDemo-Info.plist */,
-				526109CD16646F4D005E4B6E /* InfoPlist.strings */,
 				526109D016646F4D005E4B6E /* main.m */,
-				526109D216646F4D005E4B6E /* Demo-Prefix.pch */,
-				526109D616646F4D005E4B6E /* Default.png */,
-				526109D816646F4D005E4B6E /* Default@2x.png */,
-				526109DA16646F4D005E4B6E /* Default-568h@2x.png */,
 				529599F52757C93E00621B8A /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
@@ -269,15 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5E7073C195E341500773FD3 /* cat2.jpg in Resources */,
-				526109CF16646F4D005E4B6E /* InfoPlist.strings in Resources */,
 				E5E7073D195E341500773FD3 /* cat3.jpg in Resources */,
-				526109D716646F4D005E4B6E /* Default.png in Resources */,
 				E5E7073E195E341500773FD3 /* cat4.jpg in Resources */,
-				526109D916646F4D005E4B6E /* Default@2x.png in Resources */,
-				526109DB16646F4D005E4B6E /* Default-568h@2x.png in Resources */,
 				E5E7073B195E341500773FD3 /* cat1.jpg in Resources */,
 				529599F62757C93E00621B8A /* Launch Screen.storyboard in Resources */,
-				526109DE16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,15 +265,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A56112AD27595F0600D4F206 /* cat2.jpg in Resources */,
-				A56112AE27595F0600D4F206 /* InfoPlist.strings in Resources */,
 				A56112AF27595F0600D4F206 /* cat3.jpg in Resources */,
-				A56112B027595F0600D4F206 /* Default.png in Resources */,
 				A56112B127595F0600D4F206 /* cat4.jpg in Resources */,
-				A56112B227595F0600D4F206 /* Default@2x.png in Resources */,
-				A56112B327595F0600D4F206 /* Default-568h@2x.png in Resources */,
 				A56112B427595F0600D4F206 /* cat1.jpg in Resources */,
 				A56112B527595F0600D4F206 /* Launch Screen.storyboard in Resources */,
-				A56112B627595F0600D4F206 /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +282,7 @@
 				526109D116646F4D005E4B6E /* main.m in Sources */,
 				526109D516646F4D005E4B6E /* AppDelegate.m in Sources */,
 				28ACC0CB181E580300454F4A /* CHTCollectionViewWaterfallFooter.m in Sources */,
+				52AD60432F65985D00732C03 /* SceneDelegate.m in Sources */,
 				52FADF371CB64F5C0097FB12 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				526109E416646F4D005E4B6E /* ViewController.m in Sources */,
 				28FB2A16181580B1002B84F4 /* CHTCollectionViewWaterfallHeader.m in Sources */,
@@ -322,6 +297,7 @@
 				A56112A127595F0600D4F206 /* main.m in Sources */,
 				A56112A227595F0600D4F206 /* AppDelegate.m in Sources */,
 				A56112A327595F0600D4F206 /* CHTCollectionViewWaterfallFooter.m in Sources */,
+				52AD60442F65985D00732C03 /* SceneDelegate.m in Sources */,
 				A56112A527595F0600D4F206 /* ViewController.m in Sources */,
 				A56112A627595F0600D4F206 /* CHTCollectionViewWaterfallHeader.m in Sources */,
 				A56112A727595F0600D4F206 /* CHTCollectionViewWaterfallCell.m in Sources */,
@@ -329,25 +305,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		526109CD16646F4D005E4B6E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				526109CE16646F4D005E4B6E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		526109DC16646F4D005E4B6E /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				526109DD16646F4D005E4B6E /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		526109E516646F4D005E4B6E /* Debug */ = {
@@ -394,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,8 +405,6 @@
 		526109E816646F4D005E4B6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,8 +415,6 @@
 		526109E916646F4D005E4B6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/Demo-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,8 +426,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/SPMDemo-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -486,8 +437,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/Demo-Prefix.pch";
 				INFOPLIST_FILE = "Demo/SPMDemo-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "nelson.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

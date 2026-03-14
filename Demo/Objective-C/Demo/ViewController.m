@@ -73,11 +73,6 @@
 
 #pragma mark - Life Cycle
 
-- (void)dealloc {
-  _collectionView.delegate = nil;
-  _collectionView.dataSource = nil;
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self.view addSubview:self.collectionView];
@@ -85,17 +80,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self updateLayoutForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+  [self updateColumnCount];
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  [self updateLayoutForOrientation:toInterfaceOrientation];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+  [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    [self updateColumnCount];
+  } completion:nil];
 }
 
-- (void)updateLayoutForOrientation:(UIInterfaceOrientation)orientation {
+- (void)updateColumnCount {
   CHTCollectionViewWaterfallLayout *layout =
   (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
+  UIInterfaceOrientation orientation = self.view.window.windowScene.interfaceOrientation;
   layout.columnCount = UIInterfaceOrientationIsPortrait(orientation) ? 2 : 3;
 }
 

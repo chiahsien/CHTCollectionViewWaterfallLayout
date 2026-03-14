@@ -1,19 +1,18 @@
 CHTCollectionViewWaterfallLayout
 ================================
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Version](https://cocoapod-badges.herokuapp.com/v/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
-[![Platform](https://cocoapod-badges.herokuapp.com/p/CHTCollectionViewWaterfallLayout/badge.png)](http://cocoadocs.org/docsets/CHTCollectionViewWaterfallLayout)
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/CHTCollectionViewWaterfallLayout.svg)](https://cocoapods.org/pods/CHTCollectionViewWaterfallLayout)
+[![Platform](https://img.shields.io/cocoapods/p/CHTCollectionViewWaterfallLayout.svg)](https://cocoapods.org/pods/CHTCollectionViewWaterfallLayout)
 [![Build Status](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/workflows/CHTCollectionViewWaterfallLayout%20CI/badge.svg?branch=develop)](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/actions)
 
-**CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout], and it trys to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
+**CHTCollectionViewWaterfallLayout** is a subclass of [UICollectionViewLayout], and it tries to imitate [UICollectionViewFlowLayout]'s usage as much as possible.
 
 This layout is inspired by [Pinterest].
 
-Screen Shots
-------------
-![2 columns](https://cloud.githubusercontent.com/assets/474/3419095/25b4de9e-fe56-11e3-9b98-690319d736ce.png)
+Screenshots
+-----------
+![2 columns](Screenshots/2-columns.png)
 
 Features
 --------
@@ -23,81 +22,135 @@ Features
 * Support header and footer views.
 * Different column counts in different sections.
 
+<a href="https://www.buymeacoffee.com/chiahsien"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chiahsien&button_colour=5F7FFF&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
+
 Requirements
 ------------
-* iOS 9+ / tvOS 9+
-* Objective-C or Swift 4.2
+* iOS 13+ / tvOS 13+
+* Swift 5.0+ or Objective-C
 
-How to install
+How to Install
 --------------
-* [CocoaPods]
-  - Add `pod 'CHTCollectionViewWaterfallLayout'` to your Podfile.
-  - If you prefer Objective-C, `pod 'CHTCollectionViewWaterfallLayout/ObjC'` is ready for you.
 
-* [Carthage]
-  - Add `github chiahsien/CHTCollectionViewWaterfallLayout` to your Cartfile.
+### [Swift Package Manager]
 
-* [Swift Package Manager]
-  - Add it to the `dependencies` value of your `Package.swift`.
-  ```
-  dependencies: [
-    .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.9")
-  ]
-  ```
+Add it to the `dependencies` value of your `Package.swift`:
 
-* Manual
-  - Copy `CHTCollectionViewWaterfallLayout.h/m` or `CHTCollectionViewWaterfallLayout.swift` to your project.
+```swift
+dependencies: [
+  .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.10")
+]
+```
+
+Two library products are available:
+- `CHTCollectionViewWaterfallLayout` — Swift implementation
+- `CHTCollectionViewWaterfallLayoutObjC` — Objective-C implementation
+
+### [CocoaPods]
+
+Add the following to your Podfile:
+
+```ruby
+pod 'CHTCollectionViewWaterfallLayout'           # Swift (default)
+pod 'CHTCollectionViewWaterfallLayout/ObjC'      # Objective-C
+```
+
+### Manual
+
+Copy `CHTCollectionViewWaterfallLayout.swift` (Swift) or `CHTCollectionViewWaterfallLayout.h/.m` (Objective-C) to your project.
 
 How to Use
 ----------
-Read the demo codes and `CHTCollectionViewWaterfallLayout.h` header file for more information.
 
-#### Step 1
-Below lists the properties for you to customize the layout. Although they have default values, I strongly recommend you to set up at least the `columnCount` property to suit your needs.
-The `itemRenderDirection` property is an enum which decides the order in which your items will be rendered in subsequent rows. For eg. Left-Right | Right-Left | Shortest column filling up first.
+Both Swift and Objective-C demo projects are included in the `Demo/` directory. Read the demo code and the source headers for more information.
 
-``` objc
-@property (nonatomic, assign) NSInteger columnCount;
-@property (nonatomic, assign) CGFloat minimumColumnSpacing;
-@property (nonatomic, assign) CGFloat minimumInteritemSpacing;
-@property (nonatomic, assign) CGFloat headerHeight;
-@property (nonatomic, assign) CGFloat footerHeight;
-@property (nonatomic, assign) UIEdgeInsets sectionInset;
-@property (nonatomic, assign) ItemRenderDirection itemRenderDirection;
+### Step 1: Configure the Layout
+
+Below are the properties available for customizing the layout. Although they have default values, it is strongly recommended to set at least `columnCount` to suit your needs.
+
+The `itemRenderDirection` property controls the order in which items are rendered in subsequent rows: left-to-right, right-to-left, or shortest column first.
+
+#### Swift
+
+```swift
+let layout = CHTCollectionViewWaterfallLayout()
+layout.columnCount = 2
+layout.minimumColumnSpacing = 10
+layout.minimumInteritemSpacing = 10
+layout.headerHeight = 0
+layout.footerHeight = 0
+layout.headerInset = .zero
+layout.footerInset = .zero
+layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+layout.itemRenderDirection = .shortestFirst
+layout.minimumContentHeight = 0
 ```
 
-#### Step 2
-Your collection view's delegate (which often is your view controller) must conforms to `CHTCollectionViewDelegateWaterfallLayout` protocol and implements the required method, all you need to do is return the original size of the item:
+#### Objective-C
 
-``` objc
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
+```objc
+CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
+layout.columnCount = 2;
+layout.minimumColumnSpacing = 10;
+layout.minimumInteritemSpacing = 10;
+layout.headerHeight = 0;
+layout.footerHeight = 0;
+layout.headerInset = UIEdgeInsetsZero;
+layout.footerInset = UIEdgeInsetsZero;
+layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+layout.itemRenderDirection = CHTCollectionViewWaterfallLayoutItemRenderDirectionShortestFirst;
+layout.minimumContentHeight = 0;
 ```
 
-Limitation
-----------
+### Step 2: Implement the Delegate
+
+Your collection view's delegate (typically your view controller) must conform to `CHTCollectionViewDelegateWaterfallLayout` and implement the required method. Return the original size of each item:
+
+#### Swift
+
+```swift
+func collectionView(_ collectionView: UICollectionView,
+                    layout collectionViewLayout: UICollectionViewLayout,
+                    sizeForItemAt indexPath: IndexPath) -> CGSize {
+  return CGSize(width: imageWidth, height: imageHeight)
+}
+```
+
+#### Objective-C
+
+```objc
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  return CGSizeMake(imageWidth, imageHeight);
+}
+```
+
+Limitations
+-----------
 * Only vertical scrolling is supported.
 * No decoration view.
 
-Who is using it
+Who Is Using It
 ---------------
 Please let me know if your app is using this library. I'm glad to put your app on the list :-)
 
-* [F3PiX](https://itunes.apple.com/us/app/samenwerken-f3pix/id897714553?mt=8)
-F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
-* [GroupMe for iOS](https://itunes.apple.com/us/app/groupme/id392796698?mt=8)
-GroupMe - A Home for All the Groups in Your Life.
-* [Flickr](https://itunes.apple.com/us/app/id328407587)
-Access and organize your photos from anywhere.
+* [F3PiX](https://apps.apple.com/us/app/samenwerken-f3pix/id897714553)
+  F3PiX is a series of apps which gives you a concise, curated collection of pictures by professional (Dutch) photographers according to a specific theme. You can use the pictures freely for your own work.
+* [GroupMe for iOS](https://apps.apple.com/us/app/groupme/id392796698)
+  GroupMe - A Home for All the Groups in Your Life.
+* [Flickr](https://apps.apple.com/us/app/id328407587)
+  Access and organize your photos from anywhere.
 * [Tumblr](https://www.tumblr.com/policy/en/ios-credits)
-Post whatever you want to your Tumblr. Follow other people who are doing the same. You’ll probably never be bored again.
-* [Funliday](https://itunes.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)
-The best trip planning app in the world!
-* [Imgur](https://itunes.apple.com/us/app/imgur-funny-gifs-memes-images/id639881495?mt=8)
-Funny GIFs, Memes, and Images!
-* [DealPad](https://itunes.apple.com/us/app/dealpad-bargains-freebies/id949294107?mt=8)
-DealPad gives you access to the UK’s hottest Deals, Voucher Codes and Freebies in the palm of your hand.
-* [Teespring Shopping](https://itunes.apple.com/app/apple-store/id1144693237?pt=117854047&ct=CHTCollectionViewWaterfallLayout%20README&mt=8)
-Browse and purchase shirts, mugs, totes and more!
+  Post whatever you want to your Tumblr. Follow other people who are doing the same. You'll probably never be bored again.
+* [Funliday](https://apps.apple.com/us/app/funlidays-lu-you-gui-hua/id905768387)
+  The best trip planning app in the world!
+* [Imgur](https://apps.apple.com/us/app/imgur-funny-gifs-memes-images/id639881495)
+  Funny GIFs, Memes, and Images!
+* [DealPad](https://apps.apple.com/us/app/dealpad-bargains-freebies/id949294107)
+  DealPad gives you access to the UK's hottest Deals, Voucher Codes and Freebies in the palm of your hand.
+* [Teespring Shopping](https://apps.apple.com/app/apple-store/id1144693237)
+  Browse and purchase shirts, mugs, totes and more!
 
 License
 -------
@@ -107,9 +160,8 @@ Changelog
 ---------
 Refer to the [Releases page](https://github.com/chiahsien/CHTCollectionViewWaterfallLayout/releases).
 
-[UICollectionViewLayout]: http://developer.apple.com/library/ios/#documentation/uikit/reference/UICollectionViewLayout_class/Reference/Reference.html
-[UICollectionViewFlowLayout]: https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewFlowLayout_class/Reference/Reference.html
-[Pinterest]: http://pinterest.com/
-[CocoaPods]: http://cocoapods.org/
-[Carthage]: https://github.com/Carthage/Carthage
+[UICollectionViewLayout]: https://developer.apple.com/documentation/uikit/uicollectionviewlayout
+[UICollectionViewFlowLayout]: https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout
+[Pinterest]: https://pinterest.com/
+[CocoaPods]: https://cocoapods.org/
 [Swift Package Manager]: https://swift.org/package-manager/

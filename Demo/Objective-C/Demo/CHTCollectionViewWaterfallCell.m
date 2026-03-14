@@ -21,7 +21,7 @@
   return _imageView;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     [self.contentView addSubview:self.imageView];
   }
