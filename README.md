@@ -32,13 +32,13 @@ Requirements
 How to Install
 --------------
 
-### [Swift Package Manager]
+### [Swift Package Manager] (Recommended)
 
 Add it to the `dependencies` value of your `Package.swift`:
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "0.9.10")
+  .package(url: "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git", from: "1.0.0")
 ]
 ```
 
@@ -47,6 +47,8 @@ Two library products are available:
 - `CHTCollectionViewWaterfallLayoutObjC` — Objective-C implementation
 
 ### [CocoaPods]
+
+> **Note:** CocoaPods is [no longer actively maintained](https://blog.cocoapods.org/CocoaPods-Specs-Repo/). We recommend migrating to [Swift Package Manager] for future updates.
 
 Add the following to your Podfile:
 
@@ -58,6 +60,70 @@ pod 'CHTCollectionViewWaterfallLayout/ObjC'      # Objective-C
 ### Manual
 
 Copy `CHTCollectionViewWaterfallLayout.swift` (Swift) or `CHTCollectionViewWaterfallLayout.h/.m` (Objective-C) to your project.
+
+Migrating to v1.0.0
+--------------------
+
+v1.0.0 includes a full rewrite of the Swift implementation. The Objective-C implementation is unchanged. If you are using the Swift version, please review the following breaking changes.
+
+### Deployment Target
+
+The minimum deployment target is now **iOS 13 / tvOS 13** (was iOS 9 / tvOS 9). Projects targeting earlier versions cannot adopt this release.
+
+### Swift Toolchain
+
+`swift-tools-version` is now **5.9** (was 5.0). Xcode 15+ is required to resolve this package via SPM.
+
+### Supplementary View Element Kind
+
+Headers and footers are now created with custom element kind strings (`CHTCollectionElementKindSectionHeader` / `CHTCollectionElementKindSectionFooter`) to match the Objective-C implementation. In 0.9.x these constants were marked `@available(*, unavailable)` and redirected to `UICollectionView.elementKindSectionHeader/Footer`.
+
+If you register supplementary views, update the element kind:
+
+```swift
+// Before (0.9.x)
+collectionView.register(HeaderView.self,
+                        forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                        withReuseIdentifier: "Header")
+
+// After (1.0.0)
+collectionView.register(HeaderView.self,
+                        forSupplementaryViewOfKind: CHTCollectionElementKindSectionHeader,
+                        withReuseIdentifier: "Header")
+```
+
+> `layoutAttributesForSupplementaryView(ofKind:at:)` accepts both variants, so layout queries work either way. But `layoutAttributesForElements(in:)` returns attributes with the `CHT`-prefixed kind, so any code filtering by `representedElementKind` must match accordingly.
+
+### Return Type Change
+
+`layoutAttributesForSupplementaryView(ofKind:at:)` now returns `UICollectionViewLayoutAttributes?` (optional) instead of a non-optional value. It returns `nil` for unknown element kinds instead of an empty attributes object.
+
+### Removed Public `delegate` Property
+
+The `delegate` computed property is now `private`. Access the delegate through `collectionView.delegate` instead.
+
+### Removed Migration Shims
+
+The following `@available(*, unavailable, renamed:)` declarations from 0.9.x have been removed. If your code still references the old names, rename them:
+
+| Removed                                               | Replacement                                            |
+|-------------------------------------------------------|--------------------------------------------------------|
+| `sizeForItemAtIndexPath:`                             | `sizeForItemAt:`                                       |
+| `heightForHeaderInSection:`                           | `heightForHeaderIn:`                                   |
+| `heightForFooterInSection:`                           | `heightForFooterIn:`                                   |
+| `insetForSectionAtIndex:`                             | `insetsFor:`                                           |
+| `minimumInteritemSpacingForSectionAtIndex:`           | `minimumInteritemSpacingFor:`                          |
+| `columnCountForSection:`                              | `columnCountFor:`                                      |
+| `CHTCollectionViewWaterfallLayoutItemRenderDirection` | `CHTCollectionViewWaterfallLayout.ItemRenderDirection` |
+
+### New Properties and Delegate Methods
+
+The following are additive (non-breaking) but worth noting:
+
+* **Properties**: `headerInset`, `footerInset`, `minimumContentHeight`
+* **Delegate methods**: `insetsForHeaderIn:`, `insetsForFooterIn:`, `minimumColumnSpacingFor:`
+
+All have sensible defaults and do not require adoption.
 
 How to Use
 ----------
