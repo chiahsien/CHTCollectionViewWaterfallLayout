@@ -314,6 +314,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     /// The default value is ``SectionInsetReference/fromContentInset``.
     public var sectionInsetReference: SectionInsetReference = .fromContentInset {
         didSet {
+            guard sectionInsetReference != oldValue else { return }
             invalidateLayout()
         }
     }
@@ -335,9 +336,10 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
     // MARK: Helpers
 
-    private static func floorToPixel(_ value: CGFloat) -> CGFloat {
-        let scale = UIScreen.main.scale
-        return floor(value * scale) / scale
+    private func floorToPixel(_ value: CGFloat) -> CGFloat {
+        let scale = collectionView?.traitCollection.displayScale ?? 0
+        let validScale = scale > 0 ? scale : 1
+        return floor(value * validScale) / validScale
     }
 
     private func columnCount(forSection section: Int) -> Int {
@@ -379,7 +381,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         let columnSpacing = delegate?.collectionView?(collectionView, layout: self, minimumColumnSpacingFor: section)
             ?? minimumColumnSpacing
 
-        return Self.floorToPixel((width - CGFloat(columnCount - 1) * columnSpacing) / CGFloat(columnCount))
+        return floorToPixel((width - CGFloat(columnCount - 1) * columnSpacing) / CGFloat(columnCount))
     }
 
     // MARK: UICollectionViewLayout Overrides
@@ -423,7 +425,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
             let contentWidth = collectionViewContentWidth(of: collectionView) - sectionInset.left - sectionInset.right
             let columnCount = columnHeights[section].count
-            let itemWidth = Self.floorToPixel((contentWidth - CGFloat(columnCount - 1) * sectionColumnSpacing) / CGFloat(columnCount))
+            let itemWidth = floorToPixel((contentWidth - CGFloat(columnCount - 1) * sectionColumnSpacing) / CGFloat(columnCount))
 
             // 2. Section header
             let headerHeight = delegate?.collectionView?(collectionView, layout: self, heightForHeaderIn: section)
@@ -466,7 +468,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
                 let itemSize = delegate?.collectionView(collectionView, layout: self, sizeForItemAt: indexPath) ?? .zero
                 var itemHeight: CGFloat = 0
                 if itemSize.height > 0 && itemSize.width > 0 {
-                    itemHeight = Self.floorToPixel(itemSize.height * itemWidth / itemSize.width)
+                    itemHeight = floorToPixel(itemSize.height * itemWidth / itemSize.width)
                 }
 
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -547,9 +549,11 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         ofKind elementKind: String,
         at indexPath: IndexPath
     ) -> UICollectionViewLayoutAttributes? {
-        if elementKind == CHTCollectionElementKindSectionHeader {
+        if elementKind == CHTCollectionElementKindSectionHeader
+            || elementKind == UICollectionView.elementKindSectionHeader {
             return headersAttributes[indexPath.section]
-        } else if elementKind == CHTCollectionElementKindSectionFooter {
+        } else if elementKind == CHTCollectionElementKindSectionFooter
+            || elementKind == UICollectionView.elementKindSectionFooter {
             return footersAttributes[indexPath.section]
         }
         return nil
