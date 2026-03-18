@@ -17,6 +17,9 @@ let package = Package(
             path: "Source",
             sources: [
                 "CHTCollectionViewWaterfallLayout.swift"
+            ],
+            resources: [
+                .copy("PrivacyInfo.xcprivacy")
             ]
         ),
         .target(
@@ -25,6 +28,9 @@ let package = Package(
             sources: [
                 "CHTCollectionViewWaterfallLayout.h",
                 "CHTCollectionViewWaterfallLayout.m"
+            ],
+            resources: [
+                .copy("PrivacyInfo.xcprivacy")
             ],
             publicHeadersPath: "."
         )

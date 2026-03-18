@@ -12,6 +12,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.tvos.deployment_target = '13.0'
 
+  s.resource_bundles = { 'CHTCollectionViewWaterfallLayout' => ['Source/PrivacyInfo.xcprivacy'] }
+
   s.default_subspec = 'Swift'
 
   s.subspec 'ObjC' do |ss|
