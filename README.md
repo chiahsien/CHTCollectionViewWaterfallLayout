@@ -48,7 +48,7 @@ Two library products are available:
 
 ### [CocoaPods]
 
-> **Note:** CocoaPods is [no longer actively maintained](https://blog.cocoapods.org/CocoaPods-Specs-Repo/). We recommend migrating to [Swift Package Manager] for future updates.
+> **Note:** CocoaPods trunk will become [read-only on December 2, 2026](https://blog.cocoapods.org/CocoaPods-Specs-Repo/) and no new versions will be published after that date. We recommend migrating to [Swift Package Manager].
 
 Add the following to your Podfile:
 
